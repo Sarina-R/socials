@@ -5,10 +5,8 @@ export async function GET(request: Request) {
   const bearerToken = process.env.TWITTER_BEARER_TOKEN;
 
   try {
-    // Log the token for debugging
     console.log("Bearer Token:", bearerToken);
 
-    // Fetch user ID from Twitter API
     const userIdResponse = await axios.get(
       `https://api.twitter.com/2/users/by/username/${username}`,
       {
@@ -17,14 +15,13 @@ export async function GET(request: Request) {
         },
       }
     );
-    console.log("User ID Response:", userIdResponse.data); // Debugging the response
+    console.log("User ID Response:", userIdResponse.data);
     const userId = userIdResponse?.data?.data?.id;
 
     if (!userId) {
       throw new Error("User ID not found");
     }
 
-    // Fetch tweets for the user
     const tweetsResponse = await axios.get(
       `https://api.twitter.com/2/users/${userId}/tweets`,
       {
@@ -37,7 +34,7 @@ export async function GET(request: Request) {
         },
       }
     );
-    console.log("Tweets Response:", tweetsResponse.data); // Debugging the response
+    console.log("Tweets Response:", tweetsResponse.data);
 
     return new Response(JSON.stringify(tweetsResponse.data), {
       status: 200,
