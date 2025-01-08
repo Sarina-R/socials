@@ -1,36 +1,26 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
 const Instagram = ({ grid }: { grid: boolean }) => {
-  const [posts, setPosts] = useState<any[]>([
-    {
-      imageUrl:
-        "https://gratisography.com/wp-content/uploads/2024/10/gratisography-cool-cat-800x525.jpg",
-      caption: "Post 1",
-    },
-    {
-      imageUrl:
-        "https://gratisography.com/wp-content/uploads/2024/10/gratisography-cool-cat-800x525.jpg",
-      caption: "Post 2",
-    },
-    {
-      imageUrl:
-        "https://gratisography.com/wp-content/uploads/2024/10/gratisography-cool-cat-800x525.jpg",
-      caption: "Post 3",
-    },
-    {
-      imageUrl:
-        "https://gratisography.com/wp-content/uploads/2024/10/gratisography-cool-cat-800x525.jpg",
-      caption: "Post 4",
-    },
-    {
-      imageUrl:
-        "https://gratisography.com/wp-content/uploads/2024/10/gratisography-cool-cat-800x525.jpg",
-      caption: "Post 5",
-    },
-  ]);
+  const [posts, setPosts] = useState<any[]>([]);
+
+  useEffect(() => {
+    const fetchInstagramPosts = async () => {
+      try {
+        const response = await axios.get("/api/connect-socials/instagram");
+        if (response.data?.posts) {
+          setPosts(response.data.posts);
+        }
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    };
+
+    fetchInstagramPosts();
+  }, []);
 
   return (
     <>
