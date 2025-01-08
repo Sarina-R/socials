@@ -27,7 +27,7 @@ const XFeed = () => {
   useEffect(() => {
     const fetchTweets = async () => {
       try {
-        const response = await axios.get("/api/tweets");
+        const response = await axios.get("/api/connect-socials/tweets");
         setTweets(response.data.data);
       } catch (error) {
         setError("Failed");
