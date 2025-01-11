@@ -10,9 +10,12 @@ const Instagram = ({ grid }: { grid: boolean }) => {
   useEffect(() => {
     const fetchInstagramPosts = async () => {
       try {
-        const response = await axios.get("/api/connect-socials/instagram");
-        if (response.data?.posts) {
-          setPosts(response.data.posts);
+        const response = await axios.get(
+          "https://rss.app/feeds/v1.1/JMworoRtNfxVrUth.json"
+        );
+        if (response.data?.items) {
+          setPosts(response.data.items);
+          console.log("posts", posts);
         }
       } catch (error) {
         console.error("Error:", error);
@@ -32,11 +35,11 @@ const Instagram = ({ grid }: { grid: boolean }) => {
 
           <ScrollArea className="h-96 mt-3 bg-gray-100 rounded-b-lg">
             <div className="grid grid-cols-3 gap-1">
-              {posts.slice(0, 10).map((post, index) => (
+              {posts.slice(0, 10).map((post) => (
                 <img
-                  key={index}
-                  src={post.imageUrl}
-                  alt={post.caption}
+                  key={post.id}
+                  src={post.image}
+                  alt={post.title}
                   className="w-full aspect-[1/1] object-cover "
                 />
               ))}
@@ -56,11 +59,11 @@ const Instagram = ({ grid }: { grid: boolean }) => {
                   className="p-4  bg-white border rounded-lg shadow-sm"
                 >
                   <img
-                    src={post.imageUrl}
-                    alt={post.caption}
+                    src={post.image}
+                    alt={post.title}
                     className="w-full h-48 object-cover rounded-md mb-2"
                   />
-                  <p className="text-sm">{post.caption}</p>
+                  <p className="text-sm">{post.title}</p>
                 </div>
               ))}
             </div>

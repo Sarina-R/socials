@@ -1,17 +1,20 @@
 import axios from "axios";
 import { NextResponse } from "next/server";
 
-const FACEBOOK_API_URL = "https://graph.facebook.com/v15.0/me/feed";
+// const FACEBOOK_API_URL = "https://graph.facebook.com/v15.0/me/feed";
 const ACCESS_TOKEN = process.env.FACEBOOK_ACCESS_TOKEN;
+const FACEBOOK_API_URL = `https://graph.facebook.com/v16.0/me/posts?access_token=${ACCESS_TOKEN}`;
 
 export async function GET() {
   try {
-    const response = await axios.get(FACEBOOK_API_URL, {
-      params: {
-        access_token: ACCESS_TOKEN,
-        fields: "id,message,created_time,shares,comments,likes,picture",
-      },
-    });
+    // const response = await axios.get(FACEBOOK_API_URL, {
+    //   params: {
+    //     access_token: ACCESS_TOKEN,
+    //     fields: "id,message,created_time,shares,comments,likes,picture",
+    //   },
+    // });
+
+    const response = await axios.get(FACEBOOK_API_URL);
 
     const posts = response.data.data.map((post: any) => ({
       id: post.id,

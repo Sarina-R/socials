@@ -1,14 +1,14 @@
 import axios from "axios";
 
 export async function GET(request: Request) {
-  const username = "elonmusk";
+  const username = "Sarinar229859";
   const bearerToken = process.env.TWITTER_BEARER_TOKEN;
 
   try {
     console.log("Bearer Token:", bearerToken);
 
     const userIdResponse = await axios.get(
-      `https://api.twitter.com/2/users/by/username/${username}`,
+      `https://api.x.com/2/users/by/username/${username}`,
       {
         headers: {
           Authorization: `Bearer ${bearerToken}`,
