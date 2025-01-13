@@ -16,7 +16,9 @@ interface Tweet {
   id: string;
   content_text: string;
   date_published: string;
-  image: string;
+  image?: string;
+  url: string;
+  authors: { name: string }[];
 }
 
 const XFeed = () => {
@@ -48,36 +50,6 @@ const XFeed = () => {
       <div className="instagram-header h-[60px] mb-5 bg-blue-600 p-4 text-white">
         <h2 className="text-xl font-semibold">Latest Tweets</h2>
       </div>
-      <Carousel orientation="vertical" className="mt-12">
-        <CarouselContent className="h-[500px]">
-          {tweets.slice(0, 10).map((tweet) => (
-            <CarouselItem key={tweet.id} className="pt-1 md:basis-1/2">
-              <div className="p-1">
-                <Card>
-                  <CardContent className="p-4">
-                    <p className="text-gray-800 text-sm">
-                      {tweet.content_text}
-                    </p>
-                    <img
-                      src={
-                        tweet.image
-                          ? tweet.image
-                          : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPBZyPFWGE9-__tBi4XtLUii6dF_1Fi2BDsA&s"
-                      }
-                      className="w-full h-48 object-cover rounded-md"
-                    />
-                    <p className="text-xs text-gray-600 mt-2">
-                      {new Date(tweet.date_published).toLocaleString()}
-                    </p>
-                  </CardContent>
-                </Card>
-              </div>
-            </CarouselItem>
-          ))}
-        </CarouselContent>
-        <CarouselPrevious />
-        <CarouselNext />
-      </Carousel>
       {/* <a
         className="twitter-timeline"
         data-lang="en"
@@ -89,6 +61,53 @@ const XFeed = () => {
         Tweets by FiraCup
       </a>{" "}
       <script async src="https://platform.twitter.com/widgets.js"></script> */}
+      <div>
+        <ScrollArea className="h-96">
+          {tweets.map((tweet) => (
+            <Card
+              key={tweet.id}
+              className="bg-white mt-3 shadow-sm rounded-lg transition hover:shadow-md"
+            >
+              <CardContent className="p-3">
+                <div className="flex flex-col lg:flex-row items-start gap-4">
+                  <img
+                    src="https://pbs.twimg.com/profile_images/1446519556948860943/Gfr3E2iY_normal.jpg"
+                    alt="User Avatar"
+                    className="w-12 h-12 md:w-10 md:h-10 rounded-full"
+                  />
+                  <div className="flex-1">
+                    <div className="flex items-center gap-2">
+                      <h4 className="font-semibold text-sm">@FiraCup</h4>
+                      <span className="text-xs text-gray-500">
+                        {new Date(tweet.date_published).toLocaleDateString()}
+                      </span>
+                    </div>
+                    <p className="text-sm text-gray-800 mt-1">
+                      {tweet.content_text}
+                    </p>
+                    {tweet.image && (
+                      <img
+                        src={tweet.image}
+                        alt="Tweet Image"
+                        className="mt-2 rounded-md w-full max-h-80 object-cover"
+                      />
+                    )}
+                    {/* Tweet Link */}
+                    <a
+                      href={tweet.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-500 text-sm mt-2 block hover:underline"
+                    >
+                      View on Twitter
+                    </a>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+        </ScrollArea>
+      </div>
     </div>
   );
 };

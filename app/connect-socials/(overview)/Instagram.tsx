@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import "./instagram.scss";
 
 const Instagram = ({ grid }: { grid: boolean }) => {
   const [posts, setPosts] = useState<any[]>([]);
@@ -10,9 +11,7 @@ const Instagram = ({ grid }: { grid: boolean }) => {
   useEffect(() => {
     const fetchInstagramPosts = async () => {
       try {
-        const response = await axios.get(
-          "https://rss.app/feeds/v1.1/JMworoRtNfxVrUth.json"
-        );
+        const response = await axios.get("/api/proxy");
         if (response.data?.items) {
           setPosts(response.data.items);
           console.log("posts", posts);
@@ -33,18 +32,15 @@ const Instagram = ({ grid }: { grid: boolean }) => {
             <h2 className="text-xl font-semibold">Latest Instagram Posts</h2>
           </div>
 
-          <ScrollArea className="h-96 mt-3 bg-gray-100 rounded-b-lg">
-            <div className="grid grid-cols-3 gap-1">
-              {posts.slice(0, 10).map((post) => (
-                <img
-                  key={post.id}
-                  src={post.image}
-                  alt={post.title}
-                  className="w-full aspect-[1/1] object-cover "
-                />
-              ))}
-            </div>
-          </ScrollArea>
+          <div className="p-0 m-0">
+            <iframe
+              // src="api/proxy"
+              src="https://rss.app/embed/v1/feed/JMworoRtNfxVrUth"
+              height={500}
+              className="w-full min-h-1 iframe"
+            ></iframe>
+          </div>
+          <ScrollArea className="h-96 mt-3 bg-gray-100 rounded-b-lg"></ScrollArea>
         </div>
       ) : (
         <div className="max-w-md mx-auto">

@@ -1,0 +1,10 @@
+.iframe {
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+
+  img {
+    height: 10px !important;
+    aspect-ratio: 1 / 1 !important;
+    object-fit: cover !important;
+  }
+}
