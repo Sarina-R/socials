@@ -3,69 +3,94 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { PostItem, User } from "../page";
 import "./instagram.scss";
 
 const Instagram = ({ grid }: { grid: boolean }) => {
-  const [posts, setPosts] = useState<any[]>([]);
+  const [user, setUser] = useState<User | null>(null);
+  const [posts, setPosts] = useState<PostItem[]>([]);
 
   useEffect(() => {
     const fetchInstagramPosts = async () => {
       try {
-        const response = await axios.get("/api/proxy");
-        if (response.data?.items) {
-          setPosts(response.data.items);
-          console.log("posts", posts);
+        const response = await axios.get(
+          "https://rss.app/feeds/v1.1/JMworoRtNfxVrUth.json"
+        );
+        if (response.data) {
+          setUser({
+            name: response.data.title,
+            description: response.data.description,
+            home_page_url: response.data.home_page_url,
+            favicon: response.data.favicon,
+          });
+          setPosts(response.data);
+          console.log("user.home_page_url", user?.home_page_url);
+          console.log("first");
         }
       } catch (error) {
-        console.error("Error:", error);
+        console.error("Error fetching Facebook posts:", error);
       }
     };
+    console.log("user.home_page_url", user?.home_page_url);
 
     fetchInstagramPosts();
   }, []);
 
   return (
     <>
-      {grid ? (
-        <div className="max-w-md mx-auto">
-          <div className="instagram-header bg-pink-600 p-4 text-white">
-            <h2 className="text-xl font-semibold">Latest Instagram Posts</h2>
+      <div className="max-w-md mx-auto">
+        <div className="facebook-header p-4 mb-2 bg-pink-600 text-white">
+          Latest Instagram Posts
+        </div>
+
+        <div className="bg-white p-2 flex flex-row items-start">
+          <div className="bg-blue-500 ml-3 mb-1 text-white rounded-full h-12 w-12 flex items-center justify-center flex-shrink-0">
+            <span className="text-2xl font-semibold">
+              {user?.name.charAt(0)}
+            </span>
           </div>
 
-          <div className="p-0 m-0">
+          <div className="ml-4">
+            <p className="font-semibold text-lg">{user?.name}</p>
+            <p className="text-sm text-gray-500">{user?.description}</p>
+            <a
+              href={user?.home_page_url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-400 text-xs hover:underline"
+            >
+              Visit Instagram Group
+            </a>
+          </div>
+        </div>
+
+        {grid ? (
+          user?.home_page_url && (
+            // <iframe
+            //   src={`${user?.home_page_url}/embed`}
+            //   height={500}
+            //   className="w-full min-h-1 iframe"
+            // />
             <iframe
-              // src="api/proxy"
-              src="https://rss.app/embed/v1/feed/JMworoRtNfxVrUth"
+              src="https://www.instagram.com/firaworldcup/embed"
               height={500}
               className="w-full min-h-1 iframe"
-            ></iframe>
-          </div>
-          <ScrollArea className="h-96 mt-3 bg-gray-100 rounded-b-lg"></ScrollArea>
-        </div>
-      ) : (
-        <div className="max-w-md mx-auto">
-          <div className="instagram-header bg-pink-600 p-4 text-white">
-            <h2 className="text-xl font-semibold">Latest Instagram Posts</h2>
-          </div>
-          <ScrollArea className="h-96 mt-3">
-            <div className="space-y-4 ">
-              {posts.slice(0, 10).map((post, index) => (
-                <div
-                  key={index}
-                  className="p-4  bg-white border rounded-lg shadow-sm"
-                >
-                  <img
-                    src={post.image}
-                    alt={post.title}
-                    className="w-full h-48 object-cover rounded-md mb-2"
-                  />
-                  <p className="text-sm">{post.title}</p>
-                </div>
-              ))}
+            />
+          )
+        ) : (
+          <>
+            <div className="p-0 m-0">
+              <iframe
+                // src="api/proxy"
+                src="https://rss.app/embed/v1/feed/JMworoRtNfxVrUth"
+                height={500}
+                className="w-full min-h-1 iframe"
+              ></iframe>
             </div>
-          </ScrollArea>
-        </div>
-      )}
+            <ScrollArea className="h-96 mt-3 bg-gray-100 rounded-b-lg"></ScrollArea>
+          </>
+        )}
+      </div>
     </>
   );
 };
