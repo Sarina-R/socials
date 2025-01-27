@@ -28,6 +28,7 @@ const XFeed = () => {
         }
       } catch (error) {
         console.error("Error fetching Facebook posts:", error);
+        setError("Error");
       } finally {
         setLoading(false);
       }

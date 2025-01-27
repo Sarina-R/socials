@@ -23,8 +23,7 @@ const Instagram = ({ grid }: { grid: boolean }) => {
             favicon: response.data.favicon,
           });
           setPosts(response.data);
-          console.log("user.home_page_url", user?.home_page_url);
-          console.log("first");
+          console.log(posts);
         }
       } catch (error) {
         console.error("Error fetching Facebook posts:", error);
@@ -42,7 +41,7 @@ const Instagram = ({ grid }: { grid: boolean }) => {
           Latest Instagram Posts
         </div>
 
-        <div className="bg-white p-2 flex flex-row items-start">
+        <div className="bg-white p-2 flex flex-row items-start shadow-md mb-3">
           <div className="bg-blue-500 ml-3 mb-1 text-white rounded-full h-12 w-12 flex items-center justify-center flex-shrink-0">
             <span className="text-2xl font-semibold">
               {user?.name.charAt(0)}
