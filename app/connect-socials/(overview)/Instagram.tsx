@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { PostItem, User } from "../page";
+import { API_URLS } from "@/app/api/url";
 import "./instagram.scss";
 
 const Instagram = ({ grid }: { grid: boolean }) => {
@@ -13,9 +14,7 @@ const Instagram = ({ grid }: { grid: boolean }) => {
   useEffect(() => {
     const fetchInstagramPosts = async () => {
       try {
-        const response = await axios.get(
-          "https://rss.app/feeds/v1.1/JMworoRtNfxVrUth.json"
-        );
+        const response = await axios.get(API_URLS.INSTAGRAM);
         if (response.data) {
           setUser({
             name: response.data.title,
@@ -66,13 +65,8 @@ const Instagram = ({ grid }: { grid: boolean }) => {
 
         {grid ? (
           user?.home_page_url && (
-            // <iframe
-            //   src={`${user?.home_page_url}/embed`}
-            //   height={500}
-            //   className="w-full min-h-1 iframe"
-            // />
             <iframe
-              src="https://www.instagram.com/firaworldcup/embed"
+              src={`${user?.home_page_url}embed`}
               height={500}
               className="w-full min-h-1 iframe"
             />
@@ -81,8 +75,7 @@ const Instagram = ({ grid }: { grid: boolean }) => {
           <>
             <div className="p-0 m-0">
               <iframe
-                // src="api/proxy"
-                src="https://rss.app/embed/v1/feed/JMworoRtNfxVrUth"
+                src={API_URLS.INSTAGRAM_IFRAME}
                 height={500}
                 className="w-full min-h-1 iframe"
               ></iframe>

@@ -4,7 +4,9 @@ import { useEffect, useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { FacebookResponse, PostItem, User } from "../page";
+import { API_URLS } from "@/app/api/url";
 import axios from "axios";
+import Image from "next/image";
 
 const FaceBook = () => {
   const [user, setUser] = useState<User | null>(null);
@@ -13,9 +15,7 @@ const FaceBook = () => {
   useEffect(() => {
     const fetchFacebookPosts = async () => {
       try {
-        const response = await axios.get<FacebookResponse>(
-          "https://rss.app/feeds/v1.1/1BMCz5MICRhTObh2.json"
-        );
+        const response = await axios.get<FacebookResponse>(API_URLS.FACEBOOK);
         if (response.data) {
           setUser({
             name: response.data.title,
@@ -68,7 +68,7 @@ const FaceBook = () => {
                     <div className="flex items-center mb-4">
                       <div className="bg-blue-500 text-white rounded-full h-10 w-10 flex items-center justify-center">
                         {post.favicon ? (
-                          <img
+                          <Image
                             src={post.favicon}
                             alt="post avatar"
                             className="rounded-full"

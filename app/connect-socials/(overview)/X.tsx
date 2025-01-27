@@ -2,15 +2,9 @@
 
 import { useEffect, useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { FacebookResponse, PostItem, User } from "../page";
+import { PostItem, User } from "../page";
+import { API_URLS } from "@/app/api/url";
 import axios from "axios";
 
 const XFeed = () => {
@@ -22,9 +16,7 @@ const XFeed = () => {
   useEffect(() => {
     const fetchTweets = async () => {
       try {
-        const response = await axios.get(
-          "https://rss.app/feeds/v1.1/r2ERafSiD9lpQLyH.json"
-        );
+        const response = await axios.get(API_URLS.TWEETER);
         if (response.data) {
           setUser({
             name: response.data.title,
@@ -75,15 +67,15 @@ const XFeed = () => {
             </div>
           </div>
           <ScrollArea className="h-96">
-            {tweets.map((tweet) => (
+            {tweets.map((tweet, index) => (
               <Card
-                key={tweet.id}
+                key={tweet.id || index}
                 className="bg-white mt-3 shadow-sm rounded-lg transition hover:shadow-md"
               >
                 <CardContent className="p-3">
                   <div className="flex flex-col lg:flex-row items-start gap-4">
                     <img
-                      src="https://pbs.twimg.com/profile_images/1446519556948860943/Gfr3E2iY_normal.jpg"
+                      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLXU3Sxn8X1sdn2wuTi16y_jFiX6ZjOfa_WQ&s"
                       alt="User Avatar"
                       className="w-12 h-12 md:w-10 md:h-10 rounded-full"
                     />

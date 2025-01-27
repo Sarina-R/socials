@@ -44,7 +44,7 @@ const ConnectSocialsPage: React.FC = () => {
         <XFeed />
       </div>
       <div className="col-span-1">
-        <Instagram grid={true} />
+        <Instagram grid={false} />
       </div>
       <div className="col-span-1">
         <FaceBook />
