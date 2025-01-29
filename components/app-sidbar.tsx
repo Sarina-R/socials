@@ -35,12 +35,6 @@ export function AppSidebar() {
   return (
     <Sidebar>
       <SidebarContent>
-        {/* دکمه تغییر تم و breadcrumbs */}
-        <div className="flex justify-between items-center p-4">
-          <Breadcrumbs />
-          <ThemeToggle />
-        </div>
-
         <SidebarGroup>
           <SidebarMenuButton asChild>
             <a href="/connect-socials">
