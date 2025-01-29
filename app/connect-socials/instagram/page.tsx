@@ -3,8 +3,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { PostItem, User } from "../page";
 import { API_URLS } from "@/app/api/url";
+import { PostItem, User } from "../type";
 import "./instagram.scss";
 
 const Instagram = ({ grid }: { grid: boolean }) => {

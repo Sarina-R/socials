@@ -3,8 +3,8 @@
 import { useEffect, useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { FacebookResponse, PostItem, User } from "../page";
 import { API_URLS } from "@/app/api/url";
+import { User, PostItem, FacebookResponse } from "../type";
 import axios from "axios";
 import Image from "next/image";
 
