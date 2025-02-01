@@ -8,7 +8,7 @@ export function ThemeToggle() {
 
   return (
     <button
-      className="p-2 rounded-md border dark:border-gray-700 border-gray-300"
+      className="p-2 rounded-md border dark:border-gray-700 border-gray-300 transition"
       onClick={() => setTheme(theme === "light" ? "dark" : "light")}
     >
       {theme === "light" ? (
