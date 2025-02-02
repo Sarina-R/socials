@@ -1,5 +1,4 @@
 import { HomeIcon, Menu, Instagram, Twitter, Facebook } from "lucide-react";
-import { Breadcrumbs } from "@/components/Breadcrumbs";
 
 import {
   Sidebar,
@@ -11,7 +10,6 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import { ThemeToggle } from "./ThemToggle";
 
 const items = [
   {

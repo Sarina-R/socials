@@ -83,8 +83,9 @@ const Instagram = () => {
               <Image
                 src={post.image ?? ""}
                 alt={post.title}
-                layout="fill"
-                objectFit="cover"
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                style={{ objectFit: "cover" }}
               />
             </div>
           ))}
@@ -99,6 +100,7 @@ const Instagram = () => {
                 width={400}
                 height={400}
                 className="m-auto"
+                style={{ width: "auto", height: "auto" }}
               />
               <p className="mt-2 text-sm text-gray-700 dark:text-gray-300">
                 {expandedCaptions === post.id ? (

@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
-import { ScrollArea } from "@/components/ui/scroll-area";
 import { API_URLS } from "@/app/api/url";
 import { User, PostItem, FacebookResponse } from "../type";
 import axios from "axios";
