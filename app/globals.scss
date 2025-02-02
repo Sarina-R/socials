@@ -86,3 +86,7 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+#instagram-frame ~ html {
+  scrollbar-width: none !important  ;
+}
