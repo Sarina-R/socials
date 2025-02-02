@@ -2,9 +2,8 @@
 
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Card, CardContent } from "@/components/ui/card";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
-import Image from "next/image";
+import TwitterBase from "@/components/explore/TwitterBase";
 
 type Admins = {
   id: number;
@@ -36,32 +35,15 @@ const ConnectSocialsPage: React.FC = () => {
       <ScrollArea className="rounded-md overflow-x-auto">
         <div className="flex space-x-4 p-4 w-max">
           {admins.map((admin) => (
-            <Card
+            <TwitterBase
               key={admin.id}
-              className="w-[350px] h-[250px] flex flex-col justify-between p-4 shadow-md bg-gray-100 dark:bg-gray-900 rounded-xl"
-            >
-              <CardContent className="flex flex-col gap-3 flex-grow">
-                <div className="flex items-center gap-3">
-                  <Image
-                    src={admin.avatar}
-                    alt={admin.name}
-                    className="w-12 h-12 rounded-full object-cover"
-                  />
-                  <div>
-                    <h3 className="text-md font-semibold">{admin.name}</h3>
-                    <p className="text-xs text-gray-500 dark:text-gray-400">
-                      {admin.monthOfJoin}
-                    </p>
-                  </div>
-                </div>
-                <p className="text-gray-700 dark:text-gray-300 text-sm break-words leading-relaxed">
-                  {admin.description}
-                </p>
-              </CardContent>
-              <div className="p-2 border-t text-green-600 dark:text-green-400 font-bold text-sm text-center">
-                {admin.position}
-              </div>
-            </Card>
+              id={admin.id}
+              name={admin.name}
+              avatar={admin.avatar}
+              time={admin.monthOfJoin}
+              des={admin.description}
+              footer={admin.position}
+            />
           ))}
         </div>
         <ScrollBar orientation="horizontal" />
