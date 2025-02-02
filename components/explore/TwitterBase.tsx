@@ -2,7 +2,6 @@ import { Card, CardContent } from "@/components/ui/card";
 import Image from "next/image";
 
 type Admins = {
-  id: number;
   name: string;
   des: string;
   time: string;
@@ -10,7 +9,7 @@ type Admins = {
   footer: string;
 };
 
-const TwitterBase = ({ id, avatar, name, footer, time, des }: Admins) => {
+const TwitterBase = ({ avatar, name, footer, time, des }: Admins) => {
   return (
     <Card className="w-[350px] h-[250px] flex flex-col justify-between p-4 shadow-md bg-gray-100 dark:bg-gray-900 rounded-xl">
       <CardContent className="flex flex-col gap-3 flex-grow">

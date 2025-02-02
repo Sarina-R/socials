@@ -37,7 +37,6 @@ const ConnectSocialsPage: React.FC = () => {
           {admins.map((admin) => (
             <TwitterBase
               key={admin.id}
-              id={admin.id}
               name={admin.name}
               avatar={admin.avatar}
               time={admin.monthOfJoin}
