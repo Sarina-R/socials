@@ -4,6 +4,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
+import Image from "next/image";
 
 type Admins = {
   id: number;
@@ -41,7 +42,7 @@ const ConnectSocialsPage: React.FC = () => {
             >
               <CardContent className="flex flex-col gap-3 flex-grow">
                 <div className="flex items-center gap-3">
-                  <img
+                  <Image
                     src={admin.avatar}
                     alt={admin.name}
                     className="w-12 h-12 rounded-full object-cover"
