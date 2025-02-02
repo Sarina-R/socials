@@ -32,7 +32,7 @@ const ConnectSocialsPage: React.FC = () => {
 
   return (
     <div className="max-w-5xl mx-auto p-6">
-      <h2 className="text-2xl font-bold mb-6">What's New</h2>
+      <h2 className="text-2xl font-bold mb-6">What&apos;s New</h2>
       <ScrollArea className="rounded-md overflow-x-auto">
         <div className="flex space-x-4 p-4 w-max">
           {admins.map((admin) => (
