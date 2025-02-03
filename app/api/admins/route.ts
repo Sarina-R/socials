@@ -22,7 +22,8 @@ const admins = [
   {
     id: 3,
     name: "Charlie Lee",
-    description: "HR specialist managing company culture and hiring.",
+    description:
+      "HR specialist managing company culture and hiring.HR specialist managing company culture and hiring.HR specialist managing company culture and hiring.",
     monthOfJoin: "June 2020",
     avatar:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLXU3Sxn8X1sdn2wuTi16y_jFiX6ZjOfa_WQ&s",

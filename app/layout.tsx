@@ -35,7 +35,7 @@ export default function RootLayout({
         <ThemeProvider>
           <SidebarProvider>
             <AppSidebar />
-            <main className="flex-1 p-4">
+            <main className="flex-1 p-4 w-[calc(100vw-16rem)]">
               <div className="flex justify-between items-center p-4">
                 <div className="flex">
                   <SidebarTrigger />
