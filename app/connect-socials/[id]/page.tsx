@@ -4,15 +4,21 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { API_URLS } from "@/app/api/url";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Skeleton } from "@/components/ui/skeleton";
+import Image from "next/image";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
+import PictureBase from "@/components/explore/PictureBase";
 
-type Admin = {
+// Define the Admin type
+interface Admin {
   id: number;
   name: string;
   description: string;
   monthOfJoin: string;
   avatar: string;
   position: string;
-};
+}
 
 const AdminDetailPage: React.FC = () => {
   const { id } = useParams();
@@ -39,24 +45,68 @@ const AdminDetailPage: React.FC = () => {
   }, [id]);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="p-4">
+        <Skeleton className="h-48 w-full mb-4" />
+        <Skeleton className="h-32 w-32 rounded-full mx-auto" />
+        <Skeleton className="h-6 w-1/2 mx-auto mt-4" />
+      </div>
+    );
   }
 
   if (!admin) {
-    return <div>Admin not found</div>;
+    return <div className="p-4 text-center text-red-500">Admin not found</div>;
   }
 
   return (
-    <div className="p-4">
-      <h1 className="text-3xl font-bold">{admin.name}</h1>
-      <img
-        src={admin.avatar}
-        alt={admin.name}
-        className="rounded-full w-32 h-32"
-      />
-      <p className="mt-4">{admin.description}</p>
-      <p className="mt-2">Position: {admin.position}</p>
-      <p className="mt-2">Joined: {admin.monthOfJoin}</p>
+    <div className="p-4 space-y-8">
+      <div className="relative w-full h-32 overflow-hidden rounded-lg">
+        <video
+          src="https://files-us-east-1.t-cdn.net/files/1GG2rmxcOLAUjnt5zTqoY"
+          className="w-full h-full object-cover"
+          autoPlay
+          loop
+          muted
+        />
+        <h3 className="absolute bottom-2 left-2 text-white text-lg font-bold bg-black bg-opacity-80 px-2 py-1 rounded">
+          {admin.name} &#128075;
+        </h3>
+      </div>
+
+      <Card className="flex flex-col justify-between shadow-md bg-gray-100 dark:bg-gray-900 rounded-xl hover:cursor-pointer">
+        <CardHeader className="text-center">
+          <div className="relative h-80 w-full">
+            <Image
+              src={admin.avatar}
+              alt={admin.name}
+              fill
+              className="object-cover w-full rounded-xl"
+            />
+          </div>
+        </CardHeader>
+        <CardContent>
+          <p className="text-gray-600 dark:text-gray-300">
+            {admin.description}
+          </p>
+        </CardContent>
+      </Card>
+
+      <div className="p-[1rem] overflow-hidden">
+        <h2 className="text-2xl font-bold mb-6">What&apos;s New</h2>
+        <ScrollArea className="rounded-md overflow-hidden">
+          <div className="flex space-x-4 p-4">
+            <PictureBase
+              key={admin.id}
+              title={admin.name}
+              des={admin.description}
+              imgSrc={admin.avatar}
+              imgAlt={admin.name}
+              onClick={() => console.log("")}
+            />
+          </div>
+          <ScrollBar orientation="horizontal" />
+        </ScrollArea>
+      </div>
     </div>
   );
 };
