@@ -10,7 +10,6 @@ import Image from "next/image";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import PictureBase from "@/components/explore/PictureBase";
 
-// Define the Admin type
 interface Admin {
   id: number;
   name: string;
@@ -73,7 +72,7 @@ const AdminDetailPage: React.FC = () => {
         </h3>
       </div>
 
-      <Card className="flex flex-col justify-between shadow-md bg-gray-100 dark:bg-gray-900 rounded-xl hover:cursor-pointer">
+      <Card className="flex flex-col justify-between shadow-md bg-gray-100 dark:bg-gray-900 rounded-xl">
         <CardHeader className="text-center">
           <div className="relative h-80 w-full">
             <Image
