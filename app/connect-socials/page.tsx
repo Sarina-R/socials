@@ -3,8 +3,10 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
+import { useRouter } from "next/navigation";
 import TwitterBase from "@/components/explore/TwitterBase";
 import PictureBase from "@/components/explore/PictureBase";
+import { API_URLS } from "../api/url";
 
 type Admins = {
   id: number;
@@ -17,11 +19,12 @@ type Admins = {
 
 const ConnectSocialsPage: React.FC = () => {
   const [admins, setAdmins] = useState<Admins[]>([]);
+  const router = useRouter();
 
   useEffect(() => {
     const fetchAdmins = async () => {
       try {
-        const response = await axios.get("/api/admins");
+        const response = await axios.get(API_URLS.ADMINS);
         setAdmins(response.data);
       } catch (error) {
         console.error("Error fetching admins:", error);
@@ -29,6 +32,10 @@ const ConnectSocialsPage: React.FC = () => {
     };
     fetchAdmins();
   }, []);
+
+  const handleCardClick = (id: number) => {
+    router.push(`/connect-socials/${id}`);
+  };
 
   return (
     <>
@@ -62,6 +69,7 @@ const ConnectSocialsPage: React.FC = () => {
                 des={admin.description}
                 imgSrc={admin.avatar}
                 imgAlt={admin.name}
+                onClick={() => handleCardClick(admin.id)}
               />
             ))}
           </div>

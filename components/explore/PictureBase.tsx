@@ -6,11 +6,15 @@ type Props = {
   des: string;
   imgSrc: string;
   imgAlt: string;
+  onClick: () => void;
 };
 
-const PictureBase = ({ title, des, imgSrc, imgAlt }: Props) => {
+const PictureBase = ({ title, des, imgSrc, imgAlt, onClick }: Props) => {
   return (
-    <Card className="w-[350px] h-[350px] flex flex-col justify-between shadow-md bg-gray-100 dark:bg-gray-900 rounded-xl">
+    <Card
+      className="w-[350px] h-[350px] flex flex-col justify-between shadow-md bg-gray-100 dark:bg-gray-900 rounded-xl hover:cursor-pointer"
+      onClick={onClick}
+    >
       <div className="relative h-52 w-full">
         <Image
           src={imgSrc}
