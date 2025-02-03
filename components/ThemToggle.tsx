@@ -12,11 +12,15 @@ export function ThemeToggle() {
     setMounted(true);
   }, []);
 
+  useEffect(() => {
+    const userTheme = localStorage?.getItem("user-theme");
+    setTheme(userTheme ? userTheme : "light");
+  }, [theme]);
+
   const toggleTheme = () => {
     const newTheme = theme === "light" ? "dark" : "light";
     setTheme(newTheme);
-
-    document.cookie = `theme=${newTheme}; path=/; max-age=31536000; SameSite=Lax`;
+    localStorage?.setItem("user-theme", newTheme);
   };
 
   if (!mounted) return null;

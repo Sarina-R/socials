@@ -27,20 +27,12 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const theme =
-    typeof window !== "undefined"
-      ? document.cookie
-          .split("; ")
-          .find((row) => row.startsWith("theme="))
-          ?.split("=")[1] || "light"
-      : "light";
-
   return (
-    <html lang="en" className={theme}>
+    <html lang="en" suppressHydrationWarning={true}>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <ThemeProvider defaultTheme={theme}>
+        <ThemeProvider defaultTheme={"light"}>
           <SidebarProvider>
             <AppSidebar />
             <main className="flex-1 p-4 w-[calc(100vw-17rem)]">
