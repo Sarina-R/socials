@@ -32,7 +32,7 @@ const ConnectSocialsPage: React.FC = () => {
 
   return (
     <>
-      <div className="p-6 overflow-hidden">
+      <div className="p-4 overflow-hidden">
         <h2 className="text-2xl font-bold mb-6">What&apos;s New</h2>
         <ScrollArea className="flex">
           <div className="flex space-x-4 p-4">
@@ -51,7 +51,7 @@ const ConnectSocialsPage: React.FC = () => {
         </ScrollArea>
       </div>
 
-      <div className="p-6 overflow-hidden">
+      <div className="p-[1rem] overflow-hidden">
         <h2 className="text-2xl font-bold mb-6">What&apos;s New</h2>
         <ScrollArea className="rounded-md overflow-hidden">
           <div className="flex space-x-4 p-4">
