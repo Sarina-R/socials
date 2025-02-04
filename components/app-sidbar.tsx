@@ -1,4 +1,12 @@
-import { HomeIcon, Menu, Instagram, Twitter, Facebook } from "lucide-react";
+import {
+  HomeIcon,
+  Menu,
+  Instagram,
+  Twitter,
+  Facebook,
+  GraduationCap,
+  CircleHelp,
+} from "lucide-react";
 
 import {
   Sidebar,
@@ -32,8 +40,14 @@ const items = [
 
 const learn = [
   {
-    title: "academy",
-    url: "",
+    title: "Academy",
+    url: "/learn/academy",
+    icon: GraduationCap,
+  },
+  {
+    title: "Help Center",
+    url: "/learn/help-center",
+    icon: CircleHelp,
   },
 ];
 
@@ -72,10 +86,10 @@ export function AppSidebar() {
             </SidebarMenu>
           </SidebarGroupContent>
 
-          <SidebarGroupLabel>Group 2</SidebarGroupLabel>
+          <SidebarGroupLabel>Learn</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
-              {items.map((item) => (
+              {learn.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton asChild>
                     <Link href={item.url}>
