@@ -10,6 +10,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
+import Link from "next/link";
 
 const items = [
   {
@@ -35,17 +36,17 @@ export function AppSidebar() {
       <SidebarContent>
         <SidebarGroup>
           <SidebarMenuButton asChild>
-            <a href="/connect-socials">
+            <Link href="/connect-socials">
               <HomeIcon />
               <span>Explore</span>
-            </a>
+            </Link>
           </SidebarMenuButton>
 
           <SidebarMenuButton asChild>
-            <a href="/connect-socials">
+            <Link href="/connect-socials">
               <Menu />
               <span>Feed</span>
-            </a>
+            </Link>
           </SidebarMenuButton>
 
           <SidebarGroupLabel>Socials</SidebarGroupLabel>
@@ -54,10 +55,10 @@ export function AppSidebar() {
               {items.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton asChild>
-                    <a href={item.url}>
+                    <Link href={item.url}>
                       <item.icon />
                       <span>{item.title}</span>
-                    </a>
+                    </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
@@ -70,10 +71,10 @@ export function AppSidebar() {
               {items.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton asChild>
-                    <a href={item.url}>
+                    <Link href={item.url}>
                       <item.icon />
                       <span>{item.title}</span>
-                    </a>
+                    </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
