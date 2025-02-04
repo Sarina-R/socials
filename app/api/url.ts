@@ -5,4 +5,5 @@ export const API_URLS = {
   TWEETER: "https://rss.app/feeds/v1.1/1X2aDFbgYhC1HpQI.json",
   ADMINS: "/api/admins",
   HELP_CARD: "/api/helpCenter",
+  IMG: "/api/img",
 };
