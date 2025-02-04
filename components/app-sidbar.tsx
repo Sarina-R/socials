@@ -30,20 +30,27 @@ const items = [
   },
 ];
 
+const learn = [
+  {
+    title: "academy",
+    url: "",
+  },
+];
+
 export function AppSidebar() {
   return (
     <Sidebar>
       <SidebarContent>
         <SidebarGroup>
           <SidebarMenuButton asChild>
-            <Link href="/connect-socials">
+            <Link href="/explore">
               <HomeIcon />
               <span>Explore</span>
             </Link>
           </SidebarMenuButton>
 
           <SidebarMenuButton asChild>
-            <Link href="/connect-socials">
+            <Link href="/explore">
               <Menu />
               <span>Feed</span>
             </Link>
