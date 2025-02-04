@@ -4,4 +4,5 @@ export const API_URLS = {
   FACEBOOK: "https://rss.app/feeds/v1.1/s89Pt7P57VMUzuqN.json",
   TWEETER: "https://rss.app/feeds/v1.1/1X2aDFbgYhC1HpQI.json",
   ADMINS: "/api/admins",
+  HELP_CARD: "/api/helpCenter",
 };

@@ -10,7 +10,7 @@ const HelpCard: React.FC<HelpCardProps> = ({ title, iconUrl, links }) => {
   return (
     <Card className="shadow-md bg-gray-100 dark:bg-gray-900 ">
       <div
-        className="h-32 mb-4 w-full bg-cover bg-center rounded-t-lg"
+        className="h-20 mb-4 w-full bg-cover bg-center rounded-t-lg"
         style={{ backgroundImage: `url(${iconUrl})` }}
       />
       <CardContent>
@@ -19,7 +19,7 @@ const HelpCard: React.FC<HelpCardProps> = ({ title, iconUrl, links }) => {
           {links.map((link, index) => (
             <li
               key={index}
-              className="hover:underline text-green-400 dark:text-green-700"
+              className="hover:underline hover:cursor-pointer text-green-700 dark:text-green-400"
             >
               • {link}
             </li>
