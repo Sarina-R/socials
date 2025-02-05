@@ -150,10 +150,15 @@ const HelpCenterPage = () => {
         <h3 className="text-2xl font-bold mb-6">Explore More Resources</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           <Suspense
-            fallback={<div className="bg-gray-800 h-36 rounded-lg p-4" />}
+            fallback={
+              <div className="bg-gray-50 dark:bg-gray-800 h-36 rounded-lg p-4" />
+            }
           >
             {textData.map((data) => (
-              <div key={data.id} className="bg-gray-800 rounded-lg p-4">
+              <div
+                key={data.id}
+                className="bg-gray-100 shadow-md dark:bg-gray-800 rounded-lg p-4"
+              >
                 <h4 className="text-lg font-semibold mb-2">{data.name}</h4>
                 <p className="text-sm">{data.description}</p>
               </div>
