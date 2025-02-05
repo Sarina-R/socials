@@ -8,6 +8,7 @@ const nextConfig: NextConfig = {
       "encrypted-tbn0.gstatic.com",
       "img1.wikia.nocookie.net",
       "i.pinimg.com",
+      "tribe-s3-production.imgix.net",
     ],
   },
 };

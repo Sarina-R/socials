@@ -20,7 +20,7 @@ const HelpCard: React.FC<HelpCardProps> = ({ title, iconUrl, links }) => {
           {links.map((link) => (
             <li key={link.id}>
               <Link
-                className="hover:underline hover:cursor-pointer text-green-700 dark:text-green-400"
+                className="hover:text-green-600 hover:cursor-pointer text-green-700 dark:text-green-400 dark:hover:text-green-300"
                 href={`/questions/${link.id}`}
               >
                 • {link.title}

@@ -8,13 +8,13 @@ interface ImageScrollAreaProps {
 const ImageScrollArea: React.FC<ImageScrollAreaProps> = ({ link }) => {
   return (
     <ScrollArea className="w-full overflow-x-auto">
-      <div className="flex space-x-4 p-4">
-        <div className="relative w-48 h-36 flex-shrink-0">
+      <div className="flex p-1">
+        <div className="relative w-72 h-44 flex-shrink-0">
           <Image
             src={link}
             alt="img"
             fill
-            className="object-cover rounded-t-xl"
+            className="object-cover rounded-md"
           />
         </div>
       </div>
