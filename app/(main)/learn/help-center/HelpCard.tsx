@@ -4,12 +4,12 @@ import Link from "next/link";
 interface HelpCardProps {
   title: string;
   iconUrl: string;
-  links: string[];
+  links: { id: number; title: string }[];
 }
 
 const HelpCard: React.FC<HelpCardProps> = ({ title, iconUrl, links }) => {
   return (
-    <Card className="shadow-md bg-gray-100 dark:bg-gray-900 ">
+    <Card className="shadow-md bg-gray-100 dark:bg-gray-900">
       <div
         className="h-20 mb-4 w-full bg-cover bg-center rounded-t-lg"
         style={{ backgroundImage: `url(${iconUrl})` }}
@@ -17,13 +17,13 @@ const HelpCard: React.FC<HelpCardProps> = ({ title, iconUrl, links }) => {
       <CardContent>
         <CardTitle>{title}</CardTitle>
         <ul className="mt-2 space-y-1 text-sm">
-          {links.map((link, index) => (
-            <li key={index}>
+          {links.map((link) => (
+            <li key={link.id}>
               <Link
                 className="hover:underline hover:cursor-pointer text-green-700 dark:text-green-400"
-                href={`/questions/${encodeURIComponent(link)}`}
+                href={`/questions/${link.id}`}
               >
-                • {link}
+                • {link.title}
               </Link>
             </li>
           ))}

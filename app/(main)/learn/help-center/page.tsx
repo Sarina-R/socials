@@ -10,10 +10,15 @@ import HelpCard from "./HelpCard";
 import axios from "axios";
 import ImageScrollArea from "./ImageScrollArea";
 
+type LinkItem = {
+  id: number;
+  title: string;
+};
+
 type Card = {
   title: string;
   iconUrl: string;
-  links: string[];
+  links: LinkItem[];
 };
 
 type Img = {
@@ -87,7 +92,7 @@ const HelpCenterPage = () => {
           <Input
             type="text"
             placeholder="Search for answers"
-            className="pr-12"
+            className="pr-12 bg-gray-950 bg-opacity-40"
           />
           <Search className="absolute top-1.5 right-3 text-gray-400" />
         </div>

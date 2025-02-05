@@ -19,7 +19,7 @@ export default function RootLayout({
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(API_URLS.HELP_CARD);
+        const response = await axios.get(API_URLS.QUESTIONS);
         const helpCenterData = response.data;
 
         const sidebarItems = helpCenterData.map((item: { title: string }) => ({
@@ -46,8 +46,8 @@ export default function RootLayout({
   return (
     <SidebarProvider>
       <AppSidebar groups={groups} />
-      <div className="flex-1 p-4 w-[calc(100vw-17rem)]">
-        <div className="flex justify-between items-center p-4">
+      <div className="flex-1 mx-[-17px] w-[calc(100vw-17rem)]">
+        <div className="flex justify-between items-center py-2">
           <div className="flex">
             <SidebarTrigger />
             <Breadcrumbs />

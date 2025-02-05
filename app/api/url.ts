@@ -6,4 +6,5 @@ export const API_URLS = {
   ADMINS: "/api/admins",
   HELP_CARD: "/api/helpCenter",
   IMG: "/api/img",
+  QUESTIONS: "/api/questions",
 };

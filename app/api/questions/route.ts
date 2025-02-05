@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 
 const helpCenterData = [
   {
+    id: 1,
     title: "How to get Support",
     des: [
       {
@@ -31,6 +32,7 @@ const helpCenterData = [
     ],
   },
   {
+    id: 2,
     title: "Community's Access Settings",
     des: [
       {
@@ -44,6 +46,7 @@ const helpCenterData = [
     ],
   },
   {
+    id: 3,
     title: "Use Keyboard Shortcuts",
     des: [
       {
@@ -65,6 +68,7 @@ const helpCenterData = [
     ],
   },
   {
+    id: 4,
     title: "Forgot your Password?",
     des: [
       {
@@ -86,6 +90,7 @@ const helpCenterData = [
     ],
   },
   {
+    id: 5,
     title: "Bettermode's Pricing and Plans",
     des: [
       {
@@ -107,6 +112,7 @@ const helpCenterData = [
     ],
   },
   {
+    id: 6,
     title: "Accessing your Billing Details",
     des: [
       {
