@@ -148,7 +148,7 @@ const HelpCenterPage = () => {
 
       <div className="px-6 py-10">
         <h3 className="text-2xl font-bold mb-6">Explore More Resources</h3>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           <Suspense
             fallback={<div className="bg-gray-800 h-36 rounded-lg p-4" />}
           >

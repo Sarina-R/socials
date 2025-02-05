@@ -42,7 +42,7 @@ export default function RootLayout({
   return (
     <SidebarProvider>
       <AppSidebar groups={groups} />
-      <div className="flex-1 p-4 w-[calc(100vw-17rem)]">
+      <div className="flex-1 p-4 w-[calc(100vw-18rem)]">
         <div className="flex justify-between items-center p-4">
           <div className="flex">
             <SidebarTrigger />

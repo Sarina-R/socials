@@ -83,24 +83,24 @@ const QuestionsPage = () => {
 
         {loading ? (
           <div>
-            {[...Array(5)].map((_, index) => (
+            {[...Array(5)].map((_, index, arr) => (
               <div key={index} className="mb-4">
                 <Skeleton className="h-6 w-3/4 mb-2" />
                 <Skeleton className="h-4 w-full" />
-                <hr className="my-4" />
+                {index < arr.length - 1 && <hr className="my-4" />}
               </div>
             ))}
           </div>
         ) : currentQuestion ? (
           <div>
             {currentQuestion.des?.length ? (
-              currentQuestion.des.map((item, index) => (
+              currentQuestion.des.map((item, index, arr) => (
                 <div key={index} className="mb-4">
                   <h2 className="font-semibold">{item.title}</h2>
-                  <p className="text-gray-700">
+                  <p className="dark:text-gray-400 text-gray-700">
                     {item.des || "No description available."}
                   </p>
-                  <hr className="my-4" />
+                  {index < arr.length - 1 && <hr className="my-4" />}
                 </div>
               ))
             ) : (
