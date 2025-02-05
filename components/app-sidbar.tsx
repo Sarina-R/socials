@@ -1,13 +1,4 @@
-import {
-  HomeIcon,
-  Menu,
-  Instagram,
-  Twitter,
-  Facebook,
-  GraduationCap,
-  CircleHelp,
-} from "lucide-react";
-
+import Link from "next/link";
 import {
   Sidebar,
   SidebarContent,
@@ -18,90 +9,45 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import Link from "next/link";
 
-const items = [
-  {
-    title: "Instagram",
-    url: "/connect-socials/instagram",
-    icon: Instagram,
-  },
-  {
-    title: "Facebook",
-    url: "/connect-socials/facebook",
-    icon: Facebook,
-  },
-  {
-    title: "Twitter",
-    url: "/connect-socials/twitter",
-    icon: Twitter,
-  },
-];
+type SidebarItem = {
+  title: string;
+  url: string;
+  icon: React.ElementType;
+};
 
-const learn = [
-  {
-    title: "Academy",
-    url: "/learn/academy",
-    icon: GraduationCap,
-  },
-  {
-    title: "Help Center",
-    url: "/learn/help-center",
-    icon: CircleHelp,
-  },
-];
+type SidebarGroup = {
+  label: string;
+  items: SidebarItem[];
+};
 
-export function AppSidebar() {
+type AppSidebarProps = {
+  groups: SidebarGroup[];
+};
+
+export function AppSidebar({ groups }: AppSidebarProps) {
   return (
     <Sidebar>
       <SidebarContent>
-        <SidebarGroup>
-          <SidebarMenuButton asChild>
-            <Link href="/explore">
-              <HomeIcon />
-              <span>Explore</span>
-            </Link>
-          </SidebarMenuButton>
-
-          <SidebarMenuButton asChild>
-            <Link href="/explore">
-              <Menu />
-              <span>Feed</span>
-            </Link>
-          </SidebarMenuButton>
-
-          <SidebarGroupLabel>Socials</SidebarGroupLabel>
-          <SidebarGroupContent>
-            <SidebarMenu>
-              {items.map((item) => (
-                <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild>
-                    <Link href={item.url}>
-                      <item.icon />
-                      <span>{item.title}</span>
-                    </Link>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
-            </SidebarMenu>
-          </SidebarGroupContent>
-
-          <SidebarGroupLabel>Learn</SidebarGroupLabel>
-          <SidebarGroupContent>
-            <SidebarMenu>
-              {learn.map((item) => (
-                <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild>
-                    <Link href={item.url}>
-                      <item.icon />
-                      <span>{item.title}</span>
-                    </Link>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
-            </SidebarMenu>
-          </SidebarGroupContent>
-        </SidebarGroup>
+        {groups.map((group, index) => (
+          <SidebarGroup key={index}>
+            <SidebarGroupLabel>{group.label}</SidebarGroupLabel>
+            <SidebarGroupContent>
+              <SidebarMenu>
+                {group.items.map((item) => (
+                  <SidebarMenuItem key={item.title}>
+                    <SidebarMenuButton asChild>
+                      <Link href={item.url}>
+                        <item.icon />
+                        <span>{item.title}</span>
+                      </Link>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                ))}
+              </SidebarMenu>
+            </SidebarGroupContent>
+          </SidebarGroup>
+        ))}
       </SidebarContent>
     </Sidebar>
   );

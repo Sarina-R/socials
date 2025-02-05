@@ -33,21 +33,10 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ThemeProvider defaultTheme={"light"}>
-          <SidebarProvider>
-            <AppSidebar />
-            <main className="flex-1 p-4 w-[calc(100vw-17rem)]">
-              <div className="flex justify-between items-center p-4">
-                <div className="flex">
-                  <SidebarTrigger />
-                  <Breadcrumbs />
-                </div>
-                <div>
-                  <ThemeToggle />
-                </div>
-              </div>
-              {children}
-            </main>
-          </SidebarProvider>
+          <main className="flex-1 p-4">
+            {/* <main className="flex-1 p-4 w-[calc(100vw-17rem)]"> */}
+            {children}
+          </main>
         </ThemeProvider>
       </body>
     </html>

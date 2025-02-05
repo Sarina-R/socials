@@ -4,9 +4,9 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { useRouter } from "next/navigation";
+import { API_URLS } from "@/app/api/url";
 import TwitterBase from "@/components/explore/TwitterBase";
 import PictureBase from "@/components/explore/PictureBase";
-import { API_URLS } from "../api/url";
 
 type Admins = {
   id: number;
@@ -17,7 +17,7 @@ type Admins = {
   position: string;
 };
 
-const ExplorePage: React.FC = () => {
+const ExplorePage = () => {
   const [admins, setAdmins] = useState<Admins[]>([]);
   const router = useRouter();
 
