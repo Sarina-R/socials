@@ -22,11 +22,13 @@ export default function RootLayout({
         const response = await axios.get(API_URLS.QUESTIONS);
         const helpCenterData = response.data;
 
-        const sidebarItems = helpCenterData.map((item: { title: string }) => ({
-          title: item.title,
-          url: `/questions/${item.title.replace(/\s+/g, "-").toLowerCase()}`,
-          icon: BookOpenText,
-        }));
+        const sidebarItems = helpCenterData.map(
+          (item: { id: number; title: string }) => ({
+            title: item.title,
+            url: `/questions/${item.id}`,
+            icon: BookOpenText,
+          })
+        );
 
         setGroups([
           {
