@@ -1,4 +1,5 @@
 import { Card, CardTitle, CardContent } from "@/components/ui/card";
+import Link from "next/link";
 
 interface HelpCardProps {
   title: string;
@@ -17,11 +18,13 @@ const HelpCard: React.FC<HelpCardProps> = ({ title, iconUrl, links }) => {
         <CardTitle>{title}</CardTitle>
         <ul className="mt-2 space-y-1 text-sm">
           {links.map((link, index) => (
-            <li
-              key={index}
-              className="hover:underline hover:cursor-pointer text-green-700 dark:text-green-400"
-            >
-              • {link}
+            <li key={index}>
+              <Link
+                className="hover:underline hover:cursor-pointer text-green-700 dark:text-green-400"
+                href={`/questions/${encodeURIComponent(link)}`}
+              >
+                • {link}
+              </Link>
             </li>
           ))}
         </ul>
