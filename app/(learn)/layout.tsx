@@ -9,26 +9,40 @@ import { useEffect, useState } from "react";
 import { API_URLS } from "../api/url";
 import axios from "axios";
 
+interface SidebarItem {
+  title: string;
+  url: string;
+  icon: React.ComponentType;
+}
+
+interface SidebarGroup {
+  label: string;
+  items: SidebarItem[];
+}
+
+interface HelpCenterItem {
+  id: number;
+  title: string;
+}
+
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const [groups, setGroups] = useState<{ label: string; items: any[] }[]>([]);
+  const [groups, setGroups] = useState<SidebarGroup[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(API_URLS.QUESTIONS);
+        const response = await axios.get<HelpCenterItem[]>(API_URLS.QUESTIONS);
         const helpCenterData = response.data;
 
-        const sidebarItems = helpCenterData.map(
-          (item: { id: number; title: string }) => ({
-            title: item.title,
-            url: `/questions/${item.id}`,
-            icon: BookOpenText,
-          })
-        );
+        const sidebarItems: SidebarItem[] = helpCenterData.map((item) => ({
+          title: item.title,
+          url: `/questions/${item.id}`,
+          icon: BookOpenText,
+        }));
 
         setGroups([
           {
