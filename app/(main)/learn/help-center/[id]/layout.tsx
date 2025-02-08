@@ -45,7 +45,7 @@ export default function RootLayout({
               <li key={idx}>
                 <Link
                   href={item.url}
-                  className="flex items-center space-x-2 w-full rounded-md p-2 hover:bg-neutral-800"
+                  className="flex items-center space-x-2 w-full rounded-md p-2 hover:bg-neutral-100 dark:hover:bg-neutral-800"
                 >
                   <div className="text-sm">
                     <Icon size={18} />

@@ -117,8 +117,8 @@ const QuestionsPage = () => {
                     }
                     className={`px-4 py-2 rounded-full text-sm font-medium border transition-all ${
                       selectedLabel === label
-                        ? "bg-neutral-50 dark:bg-neutral-600"
-                        : "bg-neutral-100 dark:bg-neutral-900"
+                        ? "bg-neutral-100 dark:bg-neutral-600"
+                        : "bg-neutral-50 dark:bg-neutral-900"
                     }`}
                   >
                     {label}
@@ -126,7 +126,7 @@ const QuestionsPage = () => {
                 ))}
               </div>
             )}
-            <div className="bg-neutral-100 dark:bg-neutral-900 p-4 rounded-md">
+            <div className="bg-neutral-50 dark:bg-neutral-900 p-4 rounded-md">
               {filteredDescriptions?.length ? (
                 filteredDescriptions.map((item, index, arr) => (
                   <Link key={item.id} href={`/learn/help-center/${item.id}`}>
