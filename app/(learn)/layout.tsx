@@ -1,7 +1,7 @@
 "use client";
 
 import { AppSidebar } from "@/components/app-sidbar";
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { SidebarProvider } from "@/components/ui/sidebar";
 import { BookOpenText, HomeIcon, Search } from "lucide-react";
 import { useEffect, useState } from "react";
 import { API_URLS } from "../api/url";

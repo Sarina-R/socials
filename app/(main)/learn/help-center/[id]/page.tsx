@@ -13,6 +13,10 @@ type HelpCenterItem = {
   labels?: string[];
 };
 
+type HelpCategory = {
+  des: HelpCenterItem[];
+};
+
 export default function HelpCenterDetail() {
   const router = useRouter();
   const { id } = useParams();
@@ -24,7 +28,9 @@ export default function HelpCenterDetail() {
     axios
       .get(API_URLS.QUESTIONS)
       .then((response) => {
-        const allItems = response.data.flatMap((category: any) => category.des);
+        const allItems = response.data.flatMap(
+          (category: HelpCategory) => category.des
+        );
         const item = allItems.find(
           (item: HelpCenterItem) => item.id === parseInt(id as string)
         );
