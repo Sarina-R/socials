@@ -8,18 +8,22 @@ const helpCenterData = [
       {
         title: "Contact Support Team",
         des: "You can contact the support team via email or live chat for quick assistance.",
+        labels: ["support", "access"],
       },
       {
         title: "Submit a Ticket",
         des: "For complex issues, submit a ticket through the help center portal.",
+        labels: ["support"],
       },
       {
         title: "Self-help Resources",
         des: "Access our knowledge base and FAQs for solutions to common problems.",
+        labels: ["support", "privacy"],
       },
       {
         title: "Contact Support Team2",
         des: "You can contact the support team via email or live chat for quick assistance.",
+        labels: ["support", "privacy"],
       },
       {
         title: "Submit a Ticket2",
@@ -38,10 +42,12 @@ const helpCenterData = [
       {
         title: "Change Member Roles",
         des: "Learn how to assign roles and permissions to community members.",
+        labels: ["access", "security"],
       },
       {
         title: "Privacy Settings",
         des: "Understand how to set your community to private, public, or restricted.",
+        labels: ["privacy", "security"],
       },
     ],
   },
@@ -52,18 +58,22 @@ const helpCenterData = [
       {
         title: "Navigation Shortcuts",
         des: "Quickly navigate through pages using predefined keyboard shortcuts.",
+        labels: ["shortcuts", "access"],
       },
       {
         title: "Customizing Shortcuts",
         des: "Set up your own shortcuts for frequently used actions.",
+        labels: ["shortcuts"],
       },
       {
         title: "Navigation Shortcuts2",
         des: "Quickly navigate through pages using predefined keyboard shortcuts.",
+        labels: ["security", "registration"],
       },
       {
         title: "Customizing Shortcuts2",
         des: "Set up your own shortcuts for frequently used actions.",
+        labels: ["shortcuts"],
       },
     ],
   },
@@ -74,18 +84,22 @@ const helpCenterData = [
       {
         title: "Reset Password",
         des: "Use the 'Forgot Password' link on the login page to reset your password.",
+        labels: ["shortcuts"],
       },
       {
         title: "Password Recovery Email",
         des: "Ensure you have access to the registered email to receive the recovery link.",
+        labels: ["security"],
       },
       {
         title: "Reset Password2",
         des: "Use the 'Forgot Password' link on the login page to reset your password.",
+        labels: ["security", "registration"],
       },
       {
         title: "Password Recovery Email2",
         des: "Ensure you have access to the registered email to receive the recovery link.",
+        labels: ["security", "registration"],
       },
     ],
   },
@@ -96,10 +110,12 @@ const helpCenterData = [
       {
         title: "Available Plans",
         des: "Explore the different pricing tiers and features offered in each plan.",
+        labels: ["billing"],
       },
       {
         title: "Upgrading Plans",
         des: "Learn how to upgrade your plan to unlock additional features.",
+        labels: ["billing", "security"],
       },
       {
         title: "Available Plans2",
@@ -118,6 +134,7 @@ const helpCenterData = [
       {
         title: "View Invoices",
         des: "Access your past invoices and download them for your records.",
+        labels: ["billing", "security"],
       },
       {
         title: "Update Payment Method",

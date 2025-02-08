@@ -11,12 +11,14 @@ import axios from "axios";
 type Description = {
   title: string;
   des: string;
+  labels?: string;
 };
 
 type Question = {
   id: number;
   title: string;
   des: Description[];
+  labels?: string[];
 };
 
 const QuestionsPage = () => {
@@ -25,6 +27,8 @@ const QuestionsPage = () => {
 
   const [currentQuestion, setCurrentQuestion] = useState<Question | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
+  const [selectedLabel, setSelectedLabel] = useState<string | null>(null);
+  const [labels, setLabels] = useState<string[]>([]);
 
   useEffect(() => {
     const fetchQuestions = async () => {
@@ -36,7 +40,21 @@ const QuestionsPage = () => {
           const matchedQuestion = response.data.find(
             (q: Question) => q.id === questionId
           );
-          setCurrentQuestion(matchedQuestion || null);
+
+          if (matchedQuestion) {
+            const extractedLabels = Array.from(
+              new Set(
+                matchedQuestion.des.flatMap(
+                  (item: Description) => item.labels || []
+                )
+              )
+            );
+
+            setLabels(extractedLabels as string[]);
+            setCurrentQuestion(matchedQuestion);
+          } else {
+            setCurrentQuestion(null);
+          }
         } else {
           console.error("API response is not an array");
         }
@@ -52,7 +70,13 @@ const QuestionsPage = () => {
     } else {
       setLoading(false);
     }
-  }, []);
+  }, [questionId]);
+
+  const filteredDescriptions = selectedLabel
+    ? currentQuestion?.des.filter((item) =>
+        item.labels?.includes(selectedLabel)
+      )
+    : currentQuestion?.des;
 
   return (
     <div>
@@ -76,11 +100,7 @@ const QuestionsPage = () => {
         </div>
       </div>
 
-      <div className="max-w-2xl my-8 lg:mx-auto mx-8 p-4 border rounded-md">
-        <h1 className="text-2xl font-bold mb-4">
-          Question: {currentQuestion?.title || "Not found"}
-        </h1>
-
+      <div className="max-w-2xl my-8 lg:mx-auto mx-8 p-4 rounded-md">
         {loading ? (
           <div>
             {[...Array(5)].map((_, index, arr) => (
@@ -93,19 +113,40 @@ const QuestionsPage = () => {
           </div>
         ) : currentQuestion ? (
           <div>
-            {currentQuestion.des?.length ? (
-              currentQuestion.des.map((item, index, arr) => (
-                <div key={index} className="mb-4">
-                  <h2 className="font-semibold">{item.title}</h2>
-                  <p className="dark:text-gray-400 text-gray-700">
-                    {item.des || "No description available."}
-                  </p>
-                  {index < arr.length - 1 && <hr className="my-4" />}
-                </div>
-              ))
-            ) : (
-              <p>No descriptions found for this question.</p>
+            {labels.length > 0 && (
+              <div className="flex space-x-2 mb-4 border-b pb-2 overflow-x-auto">
+                {labels.map((label) => (
+                  <button
+                    key={label}
+                    onClick={() =>
+                      setSelectedLabel(label === selectedLabel ? null : label)
+                    }
+                    className={`px-4 py-2 rounded-full text-sm font-medium border transition-all ${
+                      selectedLabel === label
+                        ? "bg-neutral-50 dark:bg-neutral-600"
+                        : "bg-neutral-100 dark:bg-neutral-900"
+                    }`}
+                  >
+                    {label}
+                  </button>
+                ))}
+              </div>
             )}
+            <div className="bg-neutral-100 dark:bg-neutral-900 p-4 rounded-md">
+              {filteredDescriptions?.length ? (
+                filteredDescriptions.map((item, index, arr) => (
+                  <div key={index} className="mb-4 p-1">
+                    <h2 className="font-semibold">{item.title}</h2>
+                    <p className="dark:text-gray-400 text-gray-700">
+                      {item.des || "No description available."}
+                    </p>
+                    {index < arr.length - 1 && <hr className="my-4" />}
+                  </div>
+                ))
+              ) : (
+                <p>No descriptions found for this question.</p>
+              )}
+            </div>
           </div>
         ) : (
           <p>No matching question found.</p>
