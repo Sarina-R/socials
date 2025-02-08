@@ -10,8 +10,10 @@ import axios from "axios";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { ThemeToggle } from "@/components/ThemToggle";
 import { SidebarTrigger } from "@/components/ui/sidebar";
+import Link from "next/link";
 
 type Description = {
+  id: number;
   title: string;
   des: string;
   labels?: string;
@@ -129,13 +131,16 @@ const QuestionsPage = () => {
             <div className="bg-neutral-100 dark:bg-neutral-900 p-4 rounded-md">
               {filteredDescriptions?.length ? (
                 filteredDescriptions.map((item, index, arr) => (
-                  <div key={index} className="mb-4 p-1">
-                    <h2 className="font-semibold">{item.title}</h2>
-                    <p className="dark:text-gray-400 text-gray-700">
-                      {item.des || "No description available."}
-                    </p>
-                    {index < arr.length - 1 && <hr className="my-4" />}
-                  </div>
+                  <Link key={item.id} href={`/learn/help-center/${item.id}`}>
+                    <div className="mb-4 p-1">
+                      <h2 className="font-semibold">{item.title}</h2>
+                      <p className="dark:text-gray-400 text-gray-700">
+                        {`${item.des.slice(0, 100)}...` ||
+                          "No description available."}
+                      </p>
+                      {index < arr.length - 1 && <hr className="my-4" />}
+                    </div>
+                  </Link>
                 ))
               ) : (
                 <p>No descriptions found for this question.</p>
