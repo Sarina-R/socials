@@ -7,6 +7,9 @@ import { Search } from "lucide-react";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { ThemeToggle } from "@/components/ThemToggle";
+import { SidebarTrigger } from "@/components/ui/sidebar";
 
 type Description = {
   title: string;
@@ -80,29 +83,20 @@ const QuestionsPage = () => {
 
   return (
     <div>
-      <div
-        className="bg-cover bg-center h-[220px] flex flex-col justify-center items-center text-white"
-        style={{
-          backgroundImage:
-            "url('https://tribe-s3-production.imgix.net/pNjC7h1dgJgePWHQA7krF?w=2000&auto=compress')",
-        }}
-      >
-        <h1 className="text-center sm:text-4xl text-xl font-bold">
-          How can we help you?
-        </h1>
-        <div className="relative mt-4 w-[60%]">
-          <Input
-            type="text"
-            placeholder="Search for answers"
-            className="pr-12 bg-gray-950 bg-opacity-40"
-          />
-          <Search className="absolute top-1.5 right-3 text-gray-400" />
+      <div className="max-w-2xl my-8 mx-auto p-4 rounded-md">
+        <div className="flex justify-between items-center py-2">
+          <div className="flex items-center">
+            <div className="md:block">
+              <SidebarTrigger />
+            </div>
+            <Breadcrumbs />
+          </div>
+          <div className="flex items-center">
+            <ThemeToggle />
+          </div>
         </div>
-      </div>
-
-      <div className="max-w-2xl my-8 lg:mx-auto mx-8 p-4 rounded-md">
         {loading ? (
-          <div>
+          <div className="min-w-80 md:min-w-min">
             {[...Array(5)].map((_, index, arr) => (
               <div key={index} className="mb-4">
                 <Skeleton className="h-6 w-3/4 mb-2" />
