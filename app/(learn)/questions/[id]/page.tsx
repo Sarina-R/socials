@@ -1,9 +1,7 @@
 "use client";
 
 import { API_URLS } from "@/app/api/url";
-import { Input } from "@/components/ui/input";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Search } from "lucide-react";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import axios from "axios";

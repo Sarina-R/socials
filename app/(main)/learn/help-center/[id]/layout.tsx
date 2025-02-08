@@ -6,20 +6,24 @@ import axios from "axios";
 import Link from "next/link";
 import { API_URLS } from "@/app/api/url";
 
+interface SidebarItem {
+  title: string;
+  url: string;
+  icon: React.ElementType;
+}
+
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const [sidebarItems, setSidebarItems] = useState<
-    { title: string; url: string; icon: any }[]
-  >([]);
+  const [sidebarItems, setSidebarItems] = useState<SidebarItem[]>([]);
 
   useEffect(() => {
     axios
-      .get(API_URLS.QUESTIONS)
+      .get<{ id: number; title: string }[]>(API_URLS.QUESTIONS)
       .then((response) => {
-        const formattedItems = response.data.map((item: any) => ({
+        const formattedItems: SidebarItem[] = response.data.map((item) => ({
           title: item.title,
           url: `/questions/${item.id}`,
           icon: BookOpenText,
@@ -35,19 +39,22 @@ export default function RootLayout({
 
       <div className="sm:block hidden w-64 text-white p-4">
         <ul className="space-y-2">
-          {sidebarItems.map((item, idx) => (
-            <li key={idx}>
-              <Link
-                href={item.url}
-                className="flex items-center space-x-2 w-full rounded-md p-2 hover:bg-neutral-800"
-              >
-                <div className="text-sm">
-                  <item.icon size={18} />
-                </div>
-                <span className="text-sm">{item.title}</span>
-              </Link>
-            </li>
-          ))}
+          {sidebarItems.map((item, idx) => {
+            const Icon = item.icon;
+            return (
+              <li key={idx}>
+                <Link
+                  href={item.url}
+                  className="flex items-center space-x-2 w-full rounded-md p-2 hover:bg-neutral-800"
+                >
+                  <div className="text-sm">
+                    <Icon size={18} />
+                  </div>
+                  <span className="text-sm">{item.title}</span>
+                </Link>
+              </li>
+            );
+          })}
         </ul>
       </div>
     </div>
