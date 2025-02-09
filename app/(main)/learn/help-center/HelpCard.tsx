@@ -9,7 +9,7 @@ interface HelpCardProps {
 
 const HelpCard: React.FC<HelpCardProps> = ({ title, iconUrl, links }) => {
   return (
-    <Card className="shadow-md bg-gray-100 dark:bg-gray-900">
+    <Card className="shadow-md bg-neutral-50 dark:bg-neutral-900">
       <div
         className="h-20 mb-4 w-full bg-cover bg-center rounded-t-lg"
         style={{ backgroundImage: `url(${iconUrl})` }}

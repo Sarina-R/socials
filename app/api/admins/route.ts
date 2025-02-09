@@ -7,7 +7,7 @@ const admins = [
     description: "Senior Developer with expertise in frontend technologies.",
     monthOfJoin: "January 2022",
     avatar:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLXU3Sxn8X1sdn2wuTi16y_jFiX6ZjOfa_WQ&s",
+      "https://cdn.iframe.ly/api/thumbnail?url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DqOHalJQH38k&key=29ae8f7432aadad5ca7c91b46030e818&maxwidth=960",
     position: "Senior Developer",
   },
   {
@@ -16,7 +16,7 @@ const admins = [
     description: "Project Manager overseeing multiple teams.",
     monthOfJoin: "March 2021",
     avatar:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLXU3Sxn8X1sdn2wuTi16y_jFiX6ZjOfa_WQ&s",
+      "https://cdn.iframe.ly/api/thumbnail?url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DqOHalJQH38k&key=29ae8f7432aadad5ca7c91b46030e818&maxwidth=960",
     position: "Project Manager",
   },
   {
@@ -26,7 +26,7 @@ const admins = [
       "HR specialist managing company culture and hiring.HR specialist managing company culture and hiring.HR specialist managing company culture and hiring.",
     monthOfJoin: "June 2020",
     avatar:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLXU3Sxn8X1sdn2wuTi16y_jFiX6ZjOfa_WQ&s",
+      "https://cdn.iframe.ly/api/thumbnail?url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DqOHalJQH38k&key=29ae8f7432aadad5ca7c91b46030e818&maxwidth=960",
     position: "HR Manager",
   },
   {
@@ -35,7 +35,7 @@ const admins = [
     description: "Lead UX/UI designer shaping user experiences.",
     monthOfJoin: "September 2019",
     avatar:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLXU3Sxn8X1sdn2wuTi16y_jFiX6ZjOfa_WQ&s",
+      "https://cdn.iframe.ly/api/thumbnail?url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DqOHalJQH38k&key=29ae8f7432aadad5ca7c91b46030e818&maxwidth=960",
     position: "Lead Designer",
   },
   {
@@ -44,7 +44,7 @@ const admins = [
     description: "DevOps engineer optimizing infrastructure and CI/CD.",
     monthOfJoin: "December 2018",
     avatar:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLXU3Sxn8X1sdn2wuTi16y_jFiX6ZjOfa_WQ&s",
+      "https://cdn.iframe.ly/api/thumbnail?url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DqOHalJQH38k&key=29ae8f7432aadad5ca7c91b46030e818&maxwidth=960",
     position: "DevOps Engineer",
   },
 ];

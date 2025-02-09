@@ -9,6 +9,7 @@ const nextConfig: NextConfig = {
       "img1.wikia.nocookie.net",
       "i.pinimg.com",
       "tribe-s3-production.imgix.net",
+      "cdn.iframe.ly",
     ],
   },
 };
