@@ -12,7 +12,7 @@ type Props = {
 const PictureBase = ({ title, des, imgSrc, imgAlt, onClick }: Props) => {
   return (
     <Card
-      className="w-full h-full flex flex-col justify-between shadow-md bg-neutral-50 dark:bg-neutral-900 rounded-xl hover:cursor-pointer"
+      className="w-[350px] h-[350px] flex flex-col justify-between shadow-md bg-neutral-50 dark:bg-neutral-900 rounded-xl hover:cursor-pointer"
       onClick={onClick}
     >
       <div className="relative h-52 w-full">

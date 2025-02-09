@@ -2,8 +2,10 @@
 
 import { API_URLS } from "@/app/api/url";
 import PictureBase from "@/components/explore/PictureBase";
+import { Card } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import axios from "axios";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -56,20 +58,33 @@ const AcademyPage = () => {
         </div>
 
         <div className="overflow-hidden">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 p-4">
             {loading
               ? Array.from({ length: 3 }).map((_, index) => (
                   <Skeleton key={index} className="w-full h-48 rounded-lg" />
                 ))
               : admins.map((admin) => (
-                  <PictureBase
-                    key={admin.id}
-                    title={admin.name}
-                    des={admin.description}
-                    imgSrc={admin.avatar}
-                    imgAlt={admin.name}
+                  <Card
+                    className="w-full h-full flex flex-col justify-between shadow-md bg-neutral-50 dark:bg-neutral-900 rounded-xl hover:cursor-pointer"
                     onClick={() => handleCardClick(admin.id)}
-                  />
+                  >
+                    <div className="relative h-52 w-full">
+                      <Image
+                        src={admin.avatar}
+                        alt={admin.name}
+                        fill
+                        className="object-cover rounded-t-xl"
+                      />
+                    </div>
+                    <div className="p-4">
+                      <h2 className="text-xl font-bold">{admin.name}</h2>
+                      <p className="text-sm text-neutral-500 dark:text-neutral-400 leading-relaxed">
+                        {admin.description.length > 100
+                          ? `${admin.description.slice(0, 60)}...`
+                          : admin.description}
+                      </p>
+                    </div>
+                  </Card>
                 ))}
           </div>
         </div>
