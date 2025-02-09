@@ -7,6 +7,8 @@ import axios from "axios";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { Link } from "lucide-react";
+import ShareModal from "./Modal";
 
 interface Admin {
   id: number;
@@ -20,6 +22,7 @@ interface Admin {
 const AcademyPage = () => {
   const [admins, setAdmins] = useState<Admin[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
+  const [isModalOpen, setModalOpen] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
@@ -40,6 +43,9 @@ const AcademyPage = () => {
     router.push(`/learn/academy/${id}`);
   };
 
+  const handleOpenModal = () => setModalOpen(true);
+  const handleCloseModal = () => setModalOpen(false);
+
   return (
     <>
       <div className="p-4 space-y-8">
@@ -54,6 +60,12 @@ const AcademyPage = () => {
           <h3 className="absolute bottom-2 left-2 text-white text-lg font-bold bg-black bg-opacity-80 px-2 py-1 rounded">
             Videos & Tutorials
           </h3>
+          <div
+            onClick={handleOpenModal}
+            className="absolute bottom-2 left-48 rounded-full bg-black bg-opacity-80 px-2 py-2 cursor-pointer hover:bg-neutral-800"
+          >
+            <Link className="text-white" />
+          </div>
         </div>
 
         <div className="overflow-hidden">
@@ -88,6 +100,9 @@ const AcademyPage = () => {
                 ))}
           </div>
         </div>
+        {isModalOpen && (
+          <ShareModal isOpen={isModalOpen} onClose={handleCloseModal} />
+        )}
       </div>
     </>
   );

@@ -29,7 +29,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ThemeProvider defaultTheme={"light"}>
-          <main className="flex-1 p-4">
+          <main className="flex-1 sm:p-4 p-0">
             {/* <main className="flex-1 p-4 w-[calc(100vw-17rem)]"> */}
             {children}
           </main>
