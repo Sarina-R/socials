@@ -9,11 +9,11 @@ const ShareModal = ({
   isOpen: boolean;
   onClose: () => void;
 }) => {
-  const link = window.location.href;
+  const link = encodeURIComponent(window.location.href);
   const [copied, setCopied] = useState(false);
 
   const handleCopyLink = () => {
-    navigator.clipboard.writeText(link);
+    navigator.clipboard.writeText(window.location.href);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
@@ -38,7 +38,7 @@ const ShareModal = ({
         <div className="mb-4">
           <input
             type="text"
-            value={link}
+            value={window.location.href}
             readOnly
             className={`w-full p-2 text-sm rounded-md border ${
               copied
@@ -50,37 +50,54 @@ const ShareModal = ({
         <div className="flex space-x-1 sm:space-x-4">
           <Button
             variant="ghost"
-            onClick={() => window.open("https://facebook.com", "_blank")}
+            onClick={() =>
+              window.open(
+                `https://www.facebook.com/sharer/sharer.php?u=${link}`,
+                "_blank"
+              )
+            }
           >
             <Facebook className="w-5 h-5" />
           </Button>
-          <Button
-            variant="ghost"
-            onClick={() => window.open("https://twitter.com", "_blank")}
-          >
-            <Twitter className="w-5 h-5" />
-          </Button>
-          <Button
-            variant="ghost"
-            onClick={() => window.open("https://linkedin.com", "_blank")}
-          >
-            <Linkedin className="w-5 h-5" />
-          </Button>
+
           <Button
             variant="ghost"
             onClick={() =>
-              (window.location.href = `mailto:?subject=Check out this page&body=${link}`)
+              window.open(
+                `https://twitter.com/intent/tweet?url=${link}&text=Check%20this%20out!`,
+                "_blank"
+              )
+            }
+          >
+            <Twitter className="w-5 h-5" />
+          </Button>
+
+          <Button
+            variant="ghost"
+            onClick={() =>
+              window.open(
+                `https://www.linkedin.com/sharing/share-offsite/?url=${link}`,
+                "_blank"
+              )
+            }
+          >
+            <Linkedin className="w-5 h-5" />
+          </Button>
+
+          <Button
+            variant="ghost"
+            onClick={() =>
+              (window.location.href = `mailto:?subject=Check out this page&body=${window.location.href}`)
             }
           >
             <Mail className="w-5 h-5" />
           </Button>
+
           <Button variant="ghost" className="m-auto" onClick={handleCopyLink}>
             {copied ? (
               <Check className="w-5 h-5 m-auto text-green-600 dark:text-green-400" />
             ) : (
-              <span>
-                <Copy />
-              </span>
+              <Copy className="w-5 h-5" />
             )}
           </Button>
         </div>
