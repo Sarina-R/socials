@@ -1,7 +1,6 @@
 "use client";
 
 import { API_URLS } from "@/app/api/url";
-import PictureBase from "@/components/explore/PictureBase";
 import { Card } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import axios from "axios";
