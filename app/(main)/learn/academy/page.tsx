@@ -64,6 +64,7 @@ const AcademyPage = () => {
                 ))
               : admins.map((admin) => (
                   <Card
+                    key={admin.id}
                     className="w-full h-full flex flex-col justify-between shadow-md bg-neutral-50 dark:bg-neutral-900 rounded-xl hover:cursor-pointer"
                     onClick={() => handleCardClick(admin.id)}
                   >
