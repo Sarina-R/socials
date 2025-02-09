@@ -96,7 +96,7 @@ const QuestionsPage = () => {
           </div>
         </div>
         {loading ? (
-          <div className="min-w-80 md:min-w-min">
+          <div className="min-w-100 md:min-w-100">
             {[...Array(5)].map((_, index, arr) => (
               <div key={index} className="mb-4">
                 <Skeleton className="h-6 w-3/4 mb-2" />

@@ -81,10 +81,10 @@ export default function RootLayout({
         </div>
       </div>
 
-      <div className="flex max-w-4xl md:max-w-max m-auto">
+      <div className="flex md:min-w-[60vw] md:max-w-[60vw] min-w-full m-auto">
         {/* md> */}
         <div className="hidden md:block">
-          <div className="max-w-full min-w-64 relative mt-12">
+          <div className="max-w-full min-w-100 relative mt-12">
             <div className="p-4">
               {groups.map((group, index) => (
                 <div key={index} className="mb-6">
