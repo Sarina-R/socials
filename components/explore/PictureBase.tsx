@@ -12,7 +12,7 @@ type Props = {
 const PictureBase = ({ title, des, imgSrc, imgAlt, onClick }: Props) => {
   return (
     <Card
-      className="w-[350px] h-[350px] flex flex-col justify-between shadow-md bg-neutral-50 dark:bg-neutral-900 rounded-xl hover:cursor-pointer"
+      className="w-full h-full flex flex-col justify-between shadow-md bg-neutral-50 dark:bg-neutral-900 rounded-xl hover:cursor-pointer"
       onClick={onClick}
     >
       <div className="relative h-52 w-full">
@@ -23,15 +23,11 @@ const PictureBase = ({ title, des, imgSrc, imgAlt, onClick }: Props) => {
           className="object-cover rounded-t-xl"
         />
       </div>
-      <div className="h-[10rem]">
-        <CardHeader>
-          <h2 className="text-xl font-bold">{title}</h2>
-        </CardHeader>
-        <CardContent>
-          <p className="text-sm text-neutral-500 dark:text-neutral-400 leading-relaxed">
-            {des.length > 100 ? `${des.slice(0, 100)}...` : des}
-          </p>
-        </CardContent>
+      <div className="p-4">
+        <h2 className="text-xl font-bold">{title}</h2>
+        <p className="text-sm text-neutral-500 dark:text-neutral-400 leading-relaxed">
+          {des.length > 100 ? `${des.slice(0, 60)}...` : des}
+        </p>
       </div>
     </Card>
   );
