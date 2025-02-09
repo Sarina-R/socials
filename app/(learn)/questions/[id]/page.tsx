@@ -86,7 +86,7 @@ const QuestionsPage = () => {
       <div className="max-w-2xl my-8 mx-auto p-4 rounded-md">
         <div className="flex justify-between items-center py-2">
           <div className="flex items-center">
-            <div className="md:block">
+            <div className="md:hidden">
               <SidebarTrigger />
             </div>
             <Breadcrumbs />

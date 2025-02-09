@@ -34,10 +34,10 @@ export default function RootLayout({
   }, []);
 
   return (
-    <div className="flex">
+    <div className="sm:flex">
       <div className="flex-1">{children}</div>
 
-      <div className="sm:block hidden w-64 p-4">
+      <div className="w-64 p-4">
         <ul className="space-y-2">
           {sidebarItems.map((item, idx) => {
             const Icon = item.icon;
