@@ -47,34 +47,10 @@ const AdminDetailPage: React.FC = () => {
     fetchAdmin();
   }, [id]);
 
-  if (loading) {
-    return (
-      <div className="p-4">
-        <div className="p-4 space-y-6">
-          <Skeleton className="h-48 w-full mb-4 animate-pulse" />
-
-          <Skeleton className="h-6 w-1/2 mx-auto mt-4 animate-pulse" />
-          <Skeleton className="h-6 w-1/3 mx-auto mt-2 animate-pulse" />
-          <div className="flex space-x-4">
-            {[1, 2, 3].map((_, index) => (
-              <Skeleton
-                key={index}
-                className="h-24 w-52 rounded-lg animate-pulse"
-              />
-            ))}
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  if (!admin) {
-    return <div className="p-4 text-center text-red-500">Admin not found</div>;
-  }
-
   const handleCardClick = (id: number) => {
     router.push(`/learn/academy/${id}`);
   };
+
   return (
     <div className="p-4 space-y-8">
       <div className="relative w-full h-32 overflow-hidden rounded-lg">
@@ -86,50 +62,66 @@ const AdminDetailPage: React.FC = () => {
           muted
         />
         <h3 className="absolute bottom-2 left-2 text-white text-lg font-bold bg-black bg-opacity-80 px-2 py-1 rounded">
-          {admin.name} &#128075;
+          {admin?.name} &#128075;
         </h3>
       </div>
 
-      <Card className="flex flex-col justify-between shadow-md bg-neutral-50 dark:bg-neutral-900 rounded-xl">
-        <CardHeader className="text-center">
-          <div className="flex justify-between">
-            <div>
+      {loading ? (
+        <Skeleton className="h-80 w-full mb-4 rounded-xl animate-pulse" />
+      ) : admin ? (
+        <Card className="flex flex-col justify-between shadow-md bg-neutral-50 dark:bg-neutral-900 rounded-xl">
+          <CardHeader className="text-center">
+            <div className="flex justify-between">
               <div className="flex">
                 <GraduationCap />
                 <span className="p-1 text-sm"> Academy</span>
               </div>
             </div>
-          </div>
-        </CardHeader>
-        <CardContent>
-          <div className="relative h-80 w-full">
-            <Image
-              src={admin.avatar}
-              alt={admin.name}
-              fill
-              className="object-cover w-full rounded-xl pb-4"
-            />
-          </div>
-          <p>{admin.description}</p>
-        </CardContent>
-      </Card>
+          </CardHeader>
+          <CardContent>
+            <div className="relative h-80 w-full">
+              <Image
+                src={admin.avatar}
+                alt={admin.name}
+                fill
+                className="object-cover w-full rounded-xl pb-4"
+              />
+            </div>
+            <p>{admin.description}</p>
+          </CardContent>
+        </Card>
+      ) : (
+        <div className="p-4 text-center text-red-500">Admin not found</div>
+      )}
 
-      <div className=" overflow-hidden">
-        <h2 className="text-2xl font-bold mb-6">What&apos;s New</h2>
+      <div className="overflow-hidden">
+        <div className="flex justify-between mb-4">
+          <h2 className="text-2xl font-bold my-auto">What&apos;s New</h2>
+          <p
+            className="text-green-400 items-center my-auto font-semibold text-sm cursor-pointer"
+            onClick={() => router.push("/learn/academy")}
+          >
+            View All
+          </p>
+        </div>
         <ScrollArea className="rounded-md overflow-hidden">
           <div className="flex space-x-4 p-4">
-            {admins
-              .filter((a) => a.id !== admin?.id)
-              .map((admin) => (
-                <PictureBase
-                  key={admin.id}
-                  title={admin.name}
-                  des={admin.description}
-                  imgSrc={admin.avatar}
-                  imgAlt={admin.name}
-                  onClick={() => handleCardClick(admin.id)}
-                />
-              ))}
+            {loading
+              ? Array.from({ length: 3 }).map((_, index) => (
+                  <Skeleton key={index} className="w-96 h-48 rounded-lg" />
+                ))
+              : admins
+                  .filter((a) => a.id !== admin?.id)
+                  .map((admin) => (
+                    <PictureBase
+                      key={admin.id}
+                      title={admin.name}
+                      des={admin.description}
+                      imgSrc={admin.avatar}
+                      imgAlt={admin.name}
+                      onClick={() => handleCardClick(admin.id)}
+                    />
+                  ))}
           </div>
           <ScrollBar orientation="horizontal" />
         </ScrollArea>
