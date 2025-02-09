@@ -50,9 +50,20 @@ const AdminDetailPage: React.FC = () => {
   if (loading) {
     return (
       <div className="p-4">
-        <Skeleton className="h-48 w-full mb-4" />
-        <Skeleton className="h-32 w-32 rounded-full mx-auto" />
-        <Skeleton className="h-6 w-1/2 mx-auto mt-4" />
+        <div className="p-4 space-y-6">
+          <Skeleton className="h-48 w-full mb-4 animate-pulse" />
+
+          <Skeleton className="h-6 w-1/2 mx-auto mt-4 animate-pulse" />
+          <Skeleton className="h-6 w-1/3 mx-auto mt-2 animate-pulse" />
+          <div className="flex space-x-4">
+            {[1, 2, 3].map((_, index) => (
+              <Skeleton
+                key={index}
+                className="h-24 w-52 rounded-lg animate-pulse"
+              />
+            ))}
+          </div>
+        </div>
       </div>
     );
   }
