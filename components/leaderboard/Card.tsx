@@ -24,7 +24,7 @@ const Card = ({
 
   return (
     <div
-      className={`flex flex-col items-center p-2 rounded-2xl shadow-md dark:border ${className}`}
+      className={`flex flex-col items-center p-2 rounded-2xl shadow-md bg-neutral-50 dark:bg-neutral-900 dark:border ${className}`}
     >
       <h3 className={`text-sm md:text-base font-bold ${textColors[rank - 1]}`}>
         Place {rank}
@@ -45,11 +45,9 @@ const Card = ({
         />
         <p className="text-xs text-gray-600">{team.country}</p>
       </div>
-      <div className="flex-col items-center gap-1 mt-1">
-        <Badge className="text-xs w-full justify-center">
-          {team.wins} Wins
-        </Badge>
-        <Badge variant="outline" className="text-xs w-full justify-center">
+      <div className="flex-col md:w-[80%] items-center gap-1 mt-1">
+        <Badge className="text-xs md:w-full m-1">{team.wins} Wins</Badge>
+        <Badge variant="outline" className="text-xs md:w-full m-1">
           {team.points} Points
         </Badge>
       </div>
