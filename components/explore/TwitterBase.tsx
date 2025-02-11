@@ -14,13 +14,15 @@ const TwitterBase = ({ avatar, name, footer, time, des }: Admins) => {
     <Card className="w-[350px] h-[250px] flex flex-col justify-between p-4 shadow-md bg-neutral-50 dark:bg-neutral-900 rounded-xl">
       <CardContent className="flex flex-col gap-3 flex-grow">
         <div className="flex items-center gap-3">
-          <Image
-            src={avatar}
-            alt={name}
-            width={40}
-            height={40}
-            className=" rounded-full"
-          />
+          <div className="h-10 w-10">
+            <Image
+              src={avatar}
+              alt={name}
+              width={40}
+              height={40}
+              className="h-full w-full rounded-full object-cover"
+            />
+          </div>
           <div>
             <h3 className="text-md font-semibold">{name}</h3>
             <p className="text-xs text-neutral-500 dark:text-neutral-400">
