@@ -5,9 +5,11 @@ import { Team } from "./page";
 import { API_URLS } from "@/app/api/url";
 import Card from "@/components/leaderboard/Card";
 import axios from "axios";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const TopThree = () => {
   const [top3, setTop3] = useState<Team[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchTopThree = async () => {
@@ -16,13 +18,30 @@ const TopThree = () => {
         setTop3(response.data.slice(0, 3));
       } catch (error) {
         console.log("error", error);
+      } finally {
+        setLoading(false);
       }
     };
     fetchTopThree();
   }, []);
 
-  if (!top3.length) {
-    return <div className="text-center">Loading...</div>;
+  if (loading) {
+    return (
+      <div className="flex flex-col gap-4">
+        <div className="hidden md:flex items-end justify-center gap-4 mt-8">
+          <Skeleton className="w-44 h-56" />
+          <Skeleton className="w-52 h-64" />
+          <Skeleton className="w-44 h-56" />
+        </div>
+        <div className="flex flex-col md:hidden items-center gap-4 mt-8">
+          <Skeleton className="w-full h-52 -mb-3" />
+          <div className="flex w-full justify-between gap-4">
+            <Skeleton className="w-full h-48" />
+            <Skeleton className="w-full h-48" />
+          </div>
+        </div>
+      </div>
+    );
   }
 
   return (
