@@ -4,8 +4,8 @@ import { useEffect, useState } from "react";
 import { Team } from "./page";
 import { API_URLS } from "@/app/api/url";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import axios from "axios";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import axios from "axios";
 
 const TopTable = () => {
   const [teams, setTeams] = useState<Team[]>([]);
