@@ -1,3 +1,4 @@
+import TopTable from "./TopTable";
 import TopThree from "./TopThree";
 
 export interface Team {
@@ -13,7 +14,7 @@ const Leaderboard = () => {
   return (
     <>
       <TopThree />
-      Leaderboard
+      <TopTable />
     </>
   );
 };
