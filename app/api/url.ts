@@ -7,4 +7,5 @@ export const API_URLS = {
   HELP_CARD: "/api/helpCenter",
   IMG: "/api/img",
   QUESTIONS: "/api/questions",
+  Leaderboard: "/api/leaderboard",
 };

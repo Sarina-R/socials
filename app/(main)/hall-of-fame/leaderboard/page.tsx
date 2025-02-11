@@ -1,7 +1,21 @@
-import React from "react";
+import TopThree from "./TopThree";
+
+export interface Team {
+  avatar?: string;
+  team: string;
+  country: string;
+  flag: string;
+  wins: number;
+  points: number;
+}
 
 const Leaderboard = () => {
-  return <div>Leaderboard</div>;
+  return (
+    <>
+      <TopThree />
+      Leaderboard
+    </>
+  );
 };
 
 export default Leaderboard;
