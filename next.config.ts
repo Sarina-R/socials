@@ -10,6 +10,7 @@ const nextConfig: NextConfig = {
       "i.pinimg.com",
       "tribe-s3-production.imgix.net",
       "cdn.iframe.ly",
+      "upload.wikimedia.org",
     ],
   },
 };
