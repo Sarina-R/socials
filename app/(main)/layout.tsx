@@ -33,10 +33,18 @@ const exploreItems = [
 ];
 
 const hallOfFameItems = [
-  { title: "Leaderboard", url: "/leaderboard", icon: Presentation },
-  { title: "Affiliations", url: "/affiliations", icon: LayoutDashboard },
-  { title: "Team", url: "/team", icon: Handshake },
-  { title: "Members", url: "/members", icon: PersonStanding },
+  {
+    title: "Leaderboard",
+    url: "/hall-of-fame/leaderboard",
+    icon: Presentation,
+  },
+  {
+    title: "Affiliations",
+    url: "/hall-of-fame/affiliations",
+    icon: LayoutDashboard,
+  },
+  { title: "Team", url: "/hall-of-fame/team", icon: Handshake },
+  { title: "Members", url: "/hall-of-fame/members", icon: PersonStanding },
 ];
 
 const groups = [
