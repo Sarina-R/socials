@@ -10,6 +10,10 @@ import {
   Facebook,
   GraduationCap,
   CircleHelp,
+  LayoutDashboard,
+  Presentation,
+  Handshake,
+  PersonStanding,
 } from "lucide-react";
 
 const socialItems = [
@@ -28,10 +32,18 @@ const exploreItems = [
   { title: "Feed", url: "/feed", icon: Menu },
 ];
 
+const hallOfFameItems = [
+  { title: "Leaderboard", url: "/leaderboard", icon: Presentation },
+  { title: "Affiliations", url: "/affiliations", icon: LayoutDashboard },
+  { title: "Team", url: "/team", icon: Handshake },
+  { title: "Members", url: "/members", icon: PersonStanding },
+];
+
 const groups = [
   { label: "Explore", items: exploreItems },
   { label: "Socials", items: socialItems },
   { label: "Learn", items: learnItems },
+  { label: "Hall Of Fame", items: hallOfFameItems },
 ];
 
 export default function RootLayout({
