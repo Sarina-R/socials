@@ -23,14 +23,14 @@ const TopTable = () => {
   }, []);
 
   return (
-    <ScrollArea className="h-60 max-w-max left-0">
+    <ScrollArea className="h-60 lg:max-w-max w-full">
       <div className="max-w-md mx-auto p-4">
         <h2 className="text-lg font-bold text-center mb-4">Leaderboard</h2>
         <div className="space-y-4">
           {teams.map((team, index) => (
             <div key={index} className="flex items-start gap-4">
               <div className="flex flex-col items-center">
-                <span className="text-sm font-medium text-gray-500">
+                <span className="text-sm mt-4 font-medium text-gray-500">
                   {index + 1}
                 </span>
                 {index < teams.length - 1 && (
