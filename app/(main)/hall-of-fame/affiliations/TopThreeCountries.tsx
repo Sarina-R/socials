@@ -4,15 +4,8 @@ import { useEffect, useState } from "react";
 import { API_URLS } from "@/app/api/url";
 import { Skeleton } from "@/components/ui/skeleton";
 import Card from "@/components/affiliations/Card";
+import { Countries } from "./page";
 import axios from "axios";
-
-interface Countries {
-  countryName: string;
-  id: number;
-  rank: number;
-  totalPoint: number;
-  countryFlag: string;
-}
 
 const TopThreeCountries = () => {
   const [top3, setTop3] = useState<Countries[]>([]);
