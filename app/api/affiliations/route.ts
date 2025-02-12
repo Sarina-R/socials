@@ -119,7 +119,7 @@ const countries = {
       id: 5,
       rank: 5,
       countryFlag:
-        "https://upload.wikimedia.org/wikipedia/en/thumb/9/9e/Flag_of_Japan.svg/800px-Flag_of_Japan.svg",
+        "https://i.pinimg.com/736x/bc/13/dc/bc13dc9873316cac19aa5c81b56a4857.jpg",
       top3Teams: [
         {
           Name: "Team Mike",
@@ -146,7 +146,7 @@ const countries = {
       id: 6,
       rank: 6,
       countryFlag:
-        "https://upload.wikimedia.org/wikipedia/en/thumb/0/03/Flag_of_Italy.svg/1200px-Flag_of_Italy.svg",
+        "https://addons-media.operacdn.com/media/CACHE/images/themes/25/123925/1.0-rev1/images/be92e9fa-1fc6-489a-871e-7375471d91f9/087b387f42dd09fde9382227eb4320ce.jpg",
       top3Teams: [
         {
           Name: "Team Papa",
@@ -173,7 +173,7 @@ const countries = {
       id: 7,
       rank: 7,
       countryFlag:
-        "https://upload.wikimedia.org/wikipedia/en/thumb/a/ae/Flag_of_the_United_Kingdom.svg/800px-Flag_of_the_United_Kingdom.svg",
+        "https://upload.wikimedia.org/wikipedia/en/thumb/a/ae/Flag_of_the_United_Kingdom.svg/800px-Flag_of_the_United_Kingdom.svg.png",
       top3Teams: [
         {
           Name: "Team Sierra",
@@ -200,7 +200,7 @@ const countries = {
       id: 8,
       rank: 8,
       countryFlag:
-        "https://upload.wikimedia.org/wikipedia/en/thumb/a/ae/Flag_of_the_United_Kingdom.svg/800px-Flag_of_the_United_Kingdom.svg",
+        "https://upload.wikimedia.org/wikipedia/en/thumb/a/ae/Flag_of_the_United_Kingdom.svg/800px-Flag_of_the_United_Kingdom.svg.png",
       top3Teams: [
         {
           Name: "Team Victor",
@@ -227,7 +227,7 @@ const countries = {
       id: 9,
       rank: 9,
       countryFlag:
-        "https://upload.wikimedia.org/wikipedia/en/thumb/a/ae/Flag_of_the_United_Kingdom.svg/800px-Flag_of_the_United_Kingdom.svg",
+        "https://upload.wikimedia.org/wikipedia/en/thumb/a/ae/Flag_of_the_United_Kingdom.svg/800px-Flag_of_the_United_Kingdom.svg.png",
       top3Teams: [
         {
           Name: "Team Yankee",
@@ -254,7 +254,7 @@ const countries = {
       id: 10,
       rank: 10,
       countryFlag:
-        "https://upload.wikimedia.org/wikipedia/en/thumb/a/ae/Flag_of_the_United_Kingdom.svg/800px-Flag_of_the_United_Kingdom.svg",
+        "https://upload.wikimedia.org/wikipedia/en/thumb/a/ae/Flag_of_the_United_Kingdom.svg/800px-Flag_of_the_United_Kingdom.svg.png",
       top3Teams: [
         {
           Name: "Team Beta",

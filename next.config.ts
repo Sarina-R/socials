@@ -12,6 +12,12 @@ const nextConfig: NextConfig = {
       "cdn.iframe.ly",
       "upload.wikimedia.org",
       "cdn.britannica.com",
+      "img.freepik.com",
+      "static.vecteezy.com",
+      "www.msruas.ac.in",
+      "www.therobotreport.com",
+      "rguktrkv.ac.in",
+      "addons-media.operacdn.com",
     ],
   },
 };

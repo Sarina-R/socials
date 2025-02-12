@@ -7,6 +7,13 @@ export interface Countries {
   rank: number;
   totalPoint: number;
   countryFlag: string;
+  top3Teams: Team[];
+}
+
+export interface Team {
+  Name: string;
+  Points: number;
+  Avatar: string;
 }
 
 const Affiliations = () => {
