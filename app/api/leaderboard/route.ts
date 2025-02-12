@@ -4,7 +4,7 @@ export async function GET() {
   const teams = [
     {
       avatar:
-        "https://media.vanityfair.com/photos/54cbfe423c894ccb27c81fb3/master/w_2560%2Cc_limit/image.jpg",
+        "https://d.newsweek.com/en/full/2027477/avatar-2-movie.jpg?w=1600&h=1600&q=88&f=a9c76735de5944303f821b996fd8a21c",
       team: "Team Alpha",
       country: "USA",
       flag: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Flag_of_the_United_States.png/1200px-Flag_of_the_United_States.png",
@@ -13,7 +13,7 @@ export async function GET() {
     },
     {
       avatar:
-        "https://media.vanityfair.com/photos/54cbfe423c894ccb27c81fb3/master/w_2560%2Cc_limit/image.jpg",
+        "https://d.newsweek.com/en/full/2027477/avatar-2-movie.jpg?w=1600&h=1600&q=88&f=a9c76735de5944303f821b996fd8a21c",
       team: "Team Beta",
       country: "USA",
       flag: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Flag_of_the_United_States.png/1200px-Flag_of_the_United_States.png",
@@ -22,7 +22,7 @@ export async function GET() {
     },
     {
       avatar:
-        "https://media.vanityfair.com/photos/54cbfe423c894ccb27c81fb3/master/w_2560%2Cc_limit/image.jpg",
+        "https://d.newsweek.com/en/full/2027477/avatar-2-movie.jpg?w=1600&h=1600&q=88&f=a9c76735de5944303f821b996fd8a21c",
       team: "Team Gamma",
       country: "Iran",
       flag: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Flag_of_Iran.svg/640px-Flag_of_Iran.svg.png",
@@ -31,7 +31,7 @@ export async function GET() {
     },
     {
       avatar:
-        "https://media.vanityfair.com/photos/54cbfe423c894ccb27c81fb3/master/w_2560%2Cc_limit/image.jpg",
+        "https://d.newsweek.com/en/full/2027477/avatar-2-movie.jpg?w=1600&h=1600&q=88&f=a9c76735de5944303f821b996fd8a21c",
       team: "Team Delta",
       country: "Iran",
       flag: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Flag_of_Iran.svg/640px-Flag_of_Iran.svg.png",
@@ -40,7 +40,7 @@ export async function GET() {
     },
     {
       avatar:
-        "https://media.vanityfair.com/photos/54cbfe423c894ccb27c81fb3/master/w_2560%2Cc_limit/image.jpg",
+        "https://d.newsweek.com/en/full/2027477/avatar-2-movie.jpg?w=1600&h=1600&q=88&f=a9c76735de5944303f821b996fd8a21c",
       team: "Team Epsilon",
       country: "Iran",
       flag: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Flag_of_Iran.svg/640px-Flag_of_Iran.svg.png",
@@ -49,7 +49,7 @@ export async function GET() {
     },
     {
       avatar:
-        "https://media.vanityfair.com/photos/54cbfe423c894ccb27c81fb3/master/w_2560%2Cc_limit/image.jpg",
+        "https://d.newsweek.com/en/full/2027477/avatar-2-movie.jpg?w=1600&h=1600&q=88&f=a9c76735de5944303f821b996fd8a21c",
       team: "Team Zeta",
       country: "Iran",
       flag: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Flag_of_Iran.svg/640px-Flag_of_Iran.svg.png",
@@ -58,7 +58,7 @@ export async function GET() {
     },
     {
       avatar:
-        "https://media.vanityfair.com/photos/54cbfe423c894ccb27c81fb3/master/w_2560%2Cc_limit/image.jpg",
+        "https://d.newsweek.com/en/full/2027477/avatar-2-movie.jpg?w=1600&h=1600&q=88&f=a9c76735de5944303f821b996fd8a21c",
       team: "Team Eta",
       country: "Iran",
       flag: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Flag_of_Iran.svg/640px-Flag_of_Iran.svg.png",
@@ -67,7 +67,7 @@ export async function GET() {
     },
     {
       avatar:
-        "https://media.vanityfair.com/photos/54cbfe423c894ccb27c81fb3/master/w_2560%2Cc_limit/image.jpg",
+        "https://d.newsweek.com/en/full/2027477/avatar-2-movie.jpg?w=1600&h=1600&q=88&f=a9c76735de5944303f821b996fd8a21c",
       team: "Team Theta",
       country: "USA",
       flag: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Flag_of_the_United_States.png/1200px-Flag_of_the_United_States.png",
@@ -76,7 +76,7 @@ export async function GET() {
     },
     {
       avatar:
-        "https://media.vanityfair.com/photos/54cbfe423c894ccb27c81fb3/master/w_2560%2Cc_limit/image.jpg",
+        "https://d.newsweek.com/en/full/2027477/avatar-2-movie.jpg?w=1600&h=1600&q=88&f=a9c76735de5944303f821b996fd8a21c",
       team: "Team Iota",
       country: "USA",
       flag: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Flag_of_the_United_States.png/1200px-Flag_of_the_United_States.png",
@@ -85,7 +85,7 @@ export async function GET() {
     },
     {
       avatar:
-        "https://media.vanityfair.com/photos/54cbfe423c894ccb27c81fb3/master/w_2560%2Cc_limit/image.jpg",
+        "https://d.newsweek.com/en/full/2027477/avatar-2-movie.jpg?w=1600&h=1600&q=88&f=a9c76735de5944303f821b996fd8a21c",
       team: "Team Kappa",
       country: "USA",
       flag: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Flag_of_the_United_States.png/1200px-Flag_of_the_United_States.png",
@@ -94,7 +94,7 @@ export async function GET() {
     },
     {
       avatar:
-        "https://media.vanityfair.com/photos/54cbfe423c894ccb27c81fb3/master/w_2560%2Cc_limit/image.jpg",
+        "https://d.newsweek.com/en/full/2027477/avatar-2-movie.jpg?w=1600&h=1600&q=88&f=a9c76735de5944303f821b996fd8a21c",
       team: "Team Lambda",
       country: "USA",
       flag: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Flag_of_the_United_States.png/1200px-Flag_of_the_United_States.png",
@@ -103,7 +103,7 @@ export async function GET() {
     },
     {
       avatar:
-        "https://media.vanityfair.com/photos/54cbfe423c894ccb27c81fb3/master/w_2560%2Cc_limit/image.jpg",
+        "https://d.newsweek.com/en/full/2027477/avatar-2-movie.jpg?w=1600&h=1600&q=88&f=a9c76735de5944303f821b996fd8a21c",
       team: "Team Mu",
       country: "Russia",
       flag: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSuFXVaBEnKbpodO0cyYPr7WLyHPiUUxtlr-g&s",
@@ -112,7 +112,7 @@ export async function GET() {
     },
     {
       avatar:
-        "https://media.vanityfair.com/photos/54cbfe423c894ccb27c81fb3/master/w_2560%2Cc_limit/image.jpg",
+        "https://d.newsweek.com/en/full/2027477/avatar-2-movie.jpg?w=1600&h=1600&q=88&f=a9c76735de5944303f821b996fd8a21c",
       team: "Team Nu",
       country: "Russia",
       flag: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSuFXVaBEnKbpodO0cyYPr7WLyHPiUUxtlr-g&s",
@@ -121,7 +121,7 @@ export async function GET() {
     },
     {
       avatar:
-        "https://media.vanityfair.com/photos/54cbfe423c894ccb27c81fb3/master/w_2560%2Cc_limit/image.jpg",
+        "https://d.newsweek.com/en/full/2027477/avatar-2-movie.jpg?w=1600&h=1600&q=88&f=a9c76735de5944303f821b996fd8a21c",
       team: "Team Xi",
       country: "Russia",
       flag: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSuFXVaBEnKbpodO0cyYPr7WLyHPiUUxtlr-g&s",
@@ -130,7 +130,7 @@ export async function GET() {
     },
     {
       avatar:
-        "https://media.vanityfair.com/photos/54cbfe423c894ccb27c81fb3/master/w_2560%2Cc_limit/image.jpg",
+        "https://d.newsweek.com/en/full/2027477/avatar-2-movie.jpg?w=1600&h=1600&q=88&f=a9c76735de5944303f821b996fd8a21c",
       team: "Team Omicron",
       country: "Russia",
       flag: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSuFXVaBEnKbpodO0cyYPr7WLyHPiUUxtlr-g&s",
@@ -139,7 +139,7 @@ export async function GET() {
     },
     {
       avatar:
-        "https://media.vanityfair.com/photos/54cbfe423c894ccb27c81fb3/master/w_2560%2Cc_limit/image.jpg",
+        "https://d.newsweek.com/en/full/2027477/avatar-2-movie.jpg?w=1600&h=1600&q=88&f=a9c76735de5944303f821b996fd8a21c",
       team: "Team Pi",
       country: "Russia",
       flag: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSuFXVaBEnKbpodO0cyYPr7WLyHPiUUxtlr-g&s",
@@ -148,7 +148,7 @@ export async function GET() {
     },
     {
       avatar:
-        "https://media.vanityfair.com/photos/54cbfe423c894ccb27c81fb3/master/w_2560%2Cc_limit/image.jpg",
+        "https://d.newsweek.com/en/full/2027477/avatar-2-movie.jpg?w=1600&h=1600&q=88&f=a9c76735de5944303f821b996fd8a21c",
       team: "Team Rho",
       country: "Russia",
       flag: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSuFXVaBEnKbpodO0cyYPr7WLyHPiUUxtlr-g&s",
@@ -157,7 +157,7 @@ export async function GET() {
     },
     {
       avatar:
-        "https://media.vanityfair.com/photos/54cbfe423c894ccb27c81fb3/master/w_2560%2Cc_limit/image.jpg",
+        "https://d.newsweek.com/en/full/2027477/avatar-2-movie.jpg?w=1600&h=1600&q=88&f=a9c76735de5944303f821b996fd8a21c",
       team: "Team Sigma",
       country: "Russia",
       flag: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSuFXVaBEnKbpodO0cyYPr7WLyHPiUUxtlr-g&s",
@@ -166,7 +166,7 @@ export async function GET() {
     },
     {
       avatar:
-        "https://media.vanityfair.com/photos/54cbfe423c894ccb27c81fb3/master/w_2560%2Cc_limit/image.jpg",
+        "https://d.newsweek.com/en/full/2027477/avatar-2-movie.jpg?w=1600&h=1600&q=88&f=a9c76735de5944303f821b996fd8a21c",
       team: "Team Tau",
       country: "China",
       flag: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Flag_of_China.png/1024px-Flag_of_China.png",
@@ -175,7 +175,7 @@ export async function GET() {
     },
     {
       avatar:
-        "https://media.vanityfair.com/photos/54cbfe423c894ccb27c81fb3/master/w_2560%2Cc_limit/image.jpg",
+        "https://d.newsweek.com/en/full/2027477/avatar-2-movie.jpg?w=1600&h=1600&q=88&f=a9c76735de5944303f821b996fd8a21c",
       team: "Team Upsilon",
       country: "China",
       flag: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Flag_of_China.png/1024px-Flag_of_China.png",

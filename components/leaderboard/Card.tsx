@@ -1,5 +1,6 @@
 import { Team } from "@/app/(main)/hall-of-fame/leaderboard/page";
 import { Badge } from "../ui/badge";
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 
 const Card = ({
   team,
@@ -29,13 +30,18 @@ const Card = ({
       <h3 className={`text-sm md:text-base font-bold ${textColors[rank - 1]}`}>
         Place {rank}
       </h3>
-      <img
-        src={team.avatar}
-        alt={team.team}
+      <Avatar
         className={`w-12 h-12 md:w-16 md:h-16 rounded-full object-cover border-2 border-white mb-2 ${
           borderColors[rank - 1]
         }`}
-      />
+      >
+        <AvatarImage
+          className="object-cover"
+          src={team.avatar}
+          alt={team.team}
+        />
+        <AvatarFallback>{team.team.charAt(0)}</AvatarFallback>
+      </Avatar>
       <h3 className="text-sm md:text-base font-bold">{team.team}</h3>
       <div className="flex items-center gap-2 my-1">
         <img
