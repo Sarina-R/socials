@@ -39,23 +39,41 @@ const CountriesTable = () => {
     <div className="max-w-4xl mx-auto p-4">
       <h2 className="text-2xl font-bold mb-4">🏆 Top Countries by Points</h2>
       {loading ? (
-        <Skeleton className="w-full h-20" />
+        <div className="space-y-4">
+          {[...Array(5)].map((_, i) => (
+            <Card key={i}>
+              <div className="flex items-center justify-between p-4">
+                <div className="flex items-center gap-4">
+                  <Skeleton className="w-6 h-6 rounded-full" />
+                  <Skeleton className="w-10 h-6 rounded-sm" />
+                  <div>
+                    <Skeleton className="w-32 h-5 mb-1" />
+                    <Skeleton className="w-20 h-4" />
+                  </div>
+                </div>
+                <Skeleton className="w-6 h-6" />
+              </div>
+            </Card>
+          ))}
+        </div>
       ) : (
         <div className="space-y-4">
           {countries.map((country) => (
             <Card key={country.id}>
               <div
-                className="flex items-center justify-between p-4 cursor-pointer"
+                className="flex items-center justify-between sm:p-4 p-2 cursor-pointer"
                 onClick={() => toggleDropdown(country.id)}
               >
                 <div className="flex items-center gap-4">
-                  <Image
-                    src={country.countryFlag}
-                    alt={country.countryName}
-                    width={40}
-                    height={24}
-                    className="w-10 h-6 rounded-sm border object-cover"
-                  />
+                  <p>{country.rank}.</p>
+                  <div className="relative w-10 h-6">
+                    <Image
+                      src={country.countryFlag}
+                      alt={country.countryName}
+                      fill
+                      className="rounded-sm border object-cover"
+                    />
+                  </div>
                   <div>
                     <p className="text-lg font-semibold">
                       {country.countryName}
@@ -78,13 +96,14 @@ const CountriesTable = () => {
                       key={team.Name}
                       className="flex items-center gap-4 p-2 bg-white dark:bg-black rounded-md shadow-sm mb-2"
                     >
-                      <Image
-                        src={team.Avatar}
-                        alt={team.Name}
-                        width={48}
-                        height={48}
-                        className="w-12 h-12 rounded-full border object-cover"
-                      />
+                      <div className="relative w-12 h-12">
+                        <Image
+                          src={team.Avatar}
+                          alt={team.Name}
+                          fill
+                          className="object-cover rounded-full border"
+                        />
+                      </div>
                       <div className="flex-1">
                         <p className="font-medium">{team.Name}</p>
                         <p className="text-sm text-gray-500">

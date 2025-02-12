@@ -7,8 +7,7 @@ const countries = {
       id: 1,
       rank: 1,
       totalPoint: 5950,
-      countryFlag:
-        "https://img.freepik.com/premium-vector/canada-flag_19426-482.jpg?semt=ais_hybrid",
+      countryFlag: "https://flagcdn.com/w640/ca.png",
       top3Teams: [
         {
           Name: "Team Alpha",
@@ -35,8 +34,7 @@ const countries = {
       id: 2,
       rank: 2,
       totalPoint: 5550,
-      countryFlag:
-        "https://cdn.britannica.com/33/4833-050-F6E415FE/Flag-United-States-of-America.jpg",
+      countryFlag: "https://flagcdn.com/w640/us.png",
       top3Teams: [
         {
           Name: "Team Delta",
@@ -63,8 +61,7 @@ const countries = {
       id: 3,
       rank: 3,
       totalPoint: 5170,
-      countryFlag:
-        "https://static.vecteezy.com/system/resources/previews/004/757/066/non_2x/germany-flag-free-vector.jpg",
+      countryFlag: "https://flagcdn.com/w640/de.png",
       top3Teams: [
         {
           Name: "Team Golf",
@@ -91,8 +88,7 @@ const countries = {
       id: 4,
       rank: 4,
       totalPoint: 4950,
-      countryFlag:
-        "https://cdn.britannica.com/82/682-004-F0B47FCB/Flag-France.jpg",
+      countryFlag: "https://flagcdn.com/w640/fr.png",
       top3Teams: [
         {
           Name: "Team Juliet",
@@ -118,8 +114,7 @@ const countries = {
       countryName: "Japan",
       id: 5,
       rank: 5,
-      countryFlag:
-        "https://i.pinimg.com/736x/bc/13/dc/bc13dc9873316cac19aa5c81b56a4857.jpg",
+      countryFlag: "https://flagcdn.com/w640/jp.png",
       top3Teams: [
         {
           Name: "Team Mike",
@@ -145,8 +140,7 @@ const countries = {
       countryName: "Italy",
       id: 6,
       rank: 6,
-      countryFlag:
-        "https://addons-media.operacdn.com/media/CACHE/images/themes/25/123925/1.0-rev1/images/be92e9fa-1fc6-489a-871e-7375471d91f9/087b387f42dd09fde9382227eb4320ce.jpg",
+      countryFlag: "https://flagcdn.com/w640/it.png",
       top3Teams: [
         {
           Name: "Team Papa",
@@ -169,11 +163,10 @@ const countries = {
       ],
     },
     {
-      countryName: "UK",
+      countryName: "Greece",
       id: 7,
       rank: 7,
-      countryFlag:
-        "https://upload.wikimedia.org/wikipedia/en/thumb/a/ae/Flag_of_the_United_Kingdom.svg/800px-Flag_of_the_United_Kingdom.svg.png",
+      countryFlag: "https://flagcdn.com/w640/gr.png",
       top3Teams: [
         {
           Name: "Team Sierra",
@@ -196,11 +189,10 @@ const countries = {
       ],
     },
     {
-      countryName: "South Korea",
+      countryName: "Ukraine",
       id: 8,
       rank: 8,
-      countryFlag:
-        "https://upload.wikimedia.org/wikipedia/en/thumb/a/ae/Flag_of_the_United_Kingdom.svg/800px-Flag_of_the_United_Kingdom.svg.png",
+      countryFlag: "https://flagcdn.com/w640/ua.png",
       top3Teams: [
         {
           Name: "Team Victor",
@@ -226,8 +218,7 @@ const countries = {
       countryName: "India",
       id: 9,
       rank: 9,
-      countryFlag:
-        "https://upload.wikimedia.org/wikipedia/en/thumb/a/ae/Flag_of_the_United_Kingdom.svg/800px-Flag_of_the_United_Kingdom.svg.png",
+      countryFlag: "https://flagcdn.com/w640/in.png",
       top3Teams: [
         {
           Name: "Team Yankee",
@@ -253,8 +244,7 @@ const countries = {
       countryName: "Australia",
       id: 10,
       rank: 10,
-      countryFlag:
-        "https://upload.wikimedia.org/wikipedia/en/thumb/a/ae/Flag_of_the_United_Kingdom.svg/800px-Flag_of_the_United_Kingdom.svg.png",
+      countryFlag: "https://flagcdn.com/w640/au.png",
       top3Teams: [
         {
           Name: "Team Beta",
@@ -280,8 +270,7 @@ const countries = {
       countryName: "Netherlands",
       id: 11,
       rank: 11,
-      countryFlag:
-        "https://upload.wikimedia.org/wikipedia/en/thumb/a/ae/Flag_of_the_United_Kingdom.svg/800px-Flag_of_the_United_Kingdom.svg.png",
+      countryFlag: "https://flagcdn.com/w640/ne.png",
       top3Teams: [
         {
           Name: "Team Epsilon",
@@ -307,8 +296,7 @@ const countries = {
       countryName: "Brazil",
       id: 12,
       rank: 12,
-      countryFlag:
-        "https://upload.wikimedia.org/wikipedia/en/thumb/a/ae/Flag_of_the_United_Kingdom.svg/800px-Flag_of_the_United_Kingdom.svg.png",
+      countryFlag: "https://flagcdn.com/w640/br.png",
       top3Teams: [
         {
           Name: "Team Theta",
@@ -334,8 +322,7 @@ const countries = {
       countryName: "Spain",
       id: 13,
       rank: 13,
-      countryFlag:
-        "https://upload.wikimedia.org/wikipedia/en/thumb/a/ae/Flag_of_the_United_Kingdom.svg/800px-Flag_of_the_United_Kingdom.svg.png",
+      countryFlag: "https://flagcdn.com/w640/es.png",
       top3Teams: [
         {
           Name: "Team Lambda",
@@ -361,8 +348,7 @@ const countries = {
       countryName: "Mexico",
       id: 14,
       rank: 14,
-      countryFlag:
-        "https://upload.wikimedia.org/wikipedia/en/thumb/a/ae/Flag_of_the_United_Kingdom.svg/800px-Flag_of_the_United_Kingdom.svg.png",
+      countryFlag: "https://flagcdn.com/w640/me.png",
       top3Teams: [
         {
           Name: "Team Xi",

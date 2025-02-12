@@ -18,6 +18,7 @@ const nextConfig: NextConfig = {
       "www.therobotreport.com",
       "rguktrkv.ac.in",
       "addons-media.operacdn.com",
+      "flagcdn.com",
     ],
   },
 };
