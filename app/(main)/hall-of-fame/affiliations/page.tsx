@@ -1,7 +1,11 @@
-import React from "react";
+import TopThreeCountries from "./TopThreeCountries";
 
 const Affiliations = () => {
-  return <div>Affiliations</div>;
+  return (
+    <>
+      <TopThreeCountries />
+    </>
+  );
 };
 
 export default Affiliations;

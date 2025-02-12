@@ -11,6 +11,7 @@ const nextConfig: NextConfig = {
       "tribe-s3-production.imgix.net",
       "cdn.iframe.ly",
       "upload.wikimedia.org",
+      "cdn.britannica.com",
     ],
   },
 };
