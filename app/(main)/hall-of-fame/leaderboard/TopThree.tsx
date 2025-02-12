@@ -47,18 +47,30 @@ const TopThree = () => {
   return (
     <>
       <div className="hidden md:flex items-end justify-center gap-4 mt-8">
-        {top3[1] && <Card team={top3[1]} rank={2} className="w-44 h-56" />}
+        {top3[1] && (
+          <Card team={top3[1]} rank={2} className="w-44 h-[14.5rem]" />
+        )}
         {top3[0] && <Card team={top3[0]} rank={1} className="w-52 h-64" />}
-        {top3[2] && <Card team={top3[2]} rank={3} className="w-44 h-56" />}
+        {top3[2] && (
+          <Card team={top3[2]} rank={3} className="w-44 h-[14.5rem]" />
+        )}
       </div>
 
       <div className="flex flex-col md:hidden items-center gap-4 mt-8">
         {top3[0] && (
-          <Card team={top3[0]} rank={1} className="w-full h-52 -mb-3" />
+          <Card
+            team={top3[0]}
+            rank={1}
+            className="w-full h-52 -mb-3  first-place"
+          />
         )}
         <div className="flex w-full justify-between gap-4">
-          {top3[1] && <Card team={top3[1]} rank={2} className="w-full h-48" />}
-          {top3[2] && <Card team={top3[2]} rank={3} className="w-full h-48" />}
+          {top3[1] && (
+            <Card team={top3[1]} rank={2} className="w-full h-[12.3rem]" />
+          )}
+          {top3[2] && (
+            <Card team={top3[2]} rank={3} className="w-full h-[12.3rem]" />
+          )}
         </div>
       </div>
     </>

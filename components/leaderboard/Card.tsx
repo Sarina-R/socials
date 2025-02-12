@@ -1,6 +1,7 @@
 import { Team } from "@/app/(main)/hall-of-fame/leaderboard/page";
 import { Badge } from "../ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+import "./card.scss";
 
 const Card = ({
   team,
@@ -51,9 +52,11 @@ const Card = ({
         />
         <p className="text-xs text-gray-600">{team.country}</p>
       </div>
-      <div className="flex-col md:w-[80%] items-center gap-1 mt-1">
-        <Badge className="text-xs md:w-full m-1">{team.wins} Wins</Badge>
-        <Badge variant="outline" className="text-xs md:w-full m-1">
+      <div className="sm-flex flex-col md:w-[80%] items-center gap-1 mt-1">
+        <Badge className="text-xs md:w-full m-1 text-center">
+          {team.wins} Wins
+        </Badge>
+        <Badge variant="outline" className="text-xs md:w-full m-1 text-center">
           {team.points} Points
         </Badge>
       </div>

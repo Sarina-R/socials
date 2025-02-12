@@ -1,0 +1,13 @@
+.sm-flex {
+  @media screen and (max-width: 450px) {
+    display: flex;
+  }
+}
+
+.first-place {
+  .sm-flex {
+    @media screen and (max-width: 450px) {
+      display: inline !important;
+    }
+  }
+}
