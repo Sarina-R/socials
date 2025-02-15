@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import axios from "axios";
 import { API_URLS } from "@/app/api/url";
 import { Skeleton } from "@/components/ui/skeleton";
+import SendFeedback from "./SendFeedback";
 type HelpCenterItem = {
   id: number;
   title: string;
@@ -21,6 +22,7 @@ export default function HelpCenterDetail() {
   const router = useRouter();
   const { id } = useParams();
   const [helpItem, setHelpItem] = useState<HelpCenterItem | null>(null);
+  const [toggleFeedback, setToggleFeedback] = useState<boolean>(false);
 
   useEffect(() => {
     if (!id) return;
@@ -70,13 +72,17 @@ export default function HelpCenterDetail() {
       )}
 
       <div className="flex gap-4">
-        <Button variant="default" onClick={() => alert("Feedback submitted!")}>
-          Send Feedback
+        <Button
+          variant="default"
+          onClick={() => setToggleFeedback(!toggleFeedback)}
+        >
+          {toggleFeedback ? "Close" : "Send Feedback"}
         </Button>
-        <Button variant="secondary" onClick={() => router.push("/questions/1")}>
+        <Button variant="secondary" onClick={() => router.back()}>
           Go Back
         </Button>
       </div>
+      {toggleFeedback && <SendFeedback />}
     </div>
   );
 }
