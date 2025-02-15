@@ -3,10 +3,9 @@
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { API_URLS } from "@/app/api/url";
-import axios from "axios";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Card } from "@/components/ui/card";
+import axios from "axios";
 
 interface Feed {
   id: number;
