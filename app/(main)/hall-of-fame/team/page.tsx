@@ -53,7 +53,7 @@ const TeamLeaderboard = () => {
   );
 
   return (
-    <div className="max-w-5xl mx-auto p-6">
+    <div className="max-w-5xl mx-auto md:p-6 p-1">
       <h2 className="text-3xl font-bold mb-6 text-center">Teams</h2>
       <Input
         type="text"
