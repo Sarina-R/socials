@@ -65,7 +65,15 @@ const CountriesTable = () => {
                 onClick={() => toggleDropdown(country.id)}
               >
                 <div className="flex items-center gap-4">
-                  <p>{country.rank}.</p>
+                  <p>
+                    {country.rank === 1
+                      ? "🥇"
+                      : country.rank === 2
+                      ? "🥈"
+                      : country.rank === 3
+                      ? "🥉"
+                      : `${country.rank}.`}
+                  </p>
                   <div className="relative w-10 h-6">
                     <Image
                       src={country.countryFlag}

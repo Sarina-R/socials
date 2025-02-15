@@ -46,7 +46,13 @@ const TopTable = () => {
                 <div key={index} className="flex items-start gap-4">
                   <div className="flex flex-col items-center">
                     <span className="text-sm mt-4 font-medium text-gray-500">
-                      {index + 1}
+                      {index + 1 === 1
+                        ? "🥇"
+                        : index + 1 === 2
+                        ? "🥈"
+                        : index + 1 === 3
+                        ? "🥉"
+                        : `${index + 1}.`}
                     </span>
                     {index < teams.length - 1 && (
                       <div className="w-px bg-gray-300 h-full mt-1"></div>

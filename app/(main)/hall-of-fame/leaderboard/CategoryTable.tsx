@@ -77,7 +77,15 @@ const CategoryTable = ({ title }: { title: string }) => {
                 ))
               : teams.map((team, index) => (
                   <TableRow key={index}>
-                    <TableCell>{index + 1}</TableCell>
+                    <TableCell>
+                      {index + 1 === 1
+                        ? "🥇"
+                        : index + 1 === 2
+                        ? "🥈"
+                        : index + 1 === 3
+                        ? "🥉"
+                        : `${index + 1}.`}
+                    </TableCell>
                     <TableCell>
                       <div className="flex items-center gap-2">
                         <Avatar className="w-8 h-8">
