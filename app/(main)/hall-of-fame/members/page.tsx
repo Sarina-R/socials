@@ -64,6 +64,12 @@ const Members = () => {
     setExpandedRow(expandedRow === userId ? null : userId);
   };
 
+  const filteredMembers = members.filter(
+    (member) =>
+      member.user_name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      member.email.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   return (
     <div className="md:p-6 p-1 max-w-5xl mx-auto">
       <h1 className="text-2xl font-bold mb-4">Team Members</h1>
@@ -105,7 +111,7 @@ const Members = () => {
                     </TableCell>
                   </TableRow>
                 ))
-              : members.map((member) => (
+              : filteredMembers.map((member) => (
                   <>
                     <TableRow
                       key={member.user_id}
