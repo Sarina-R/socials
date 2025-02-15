@@ -9,4 +9,5 @@ export const API_URLS = {
   QUESTIONS: "/api/questions",
   Leaderboard: "/api/leaderboard",
   AFFILIATIONS: "/api/affiliations",
+  MEMBERS: "/api/members",
 };

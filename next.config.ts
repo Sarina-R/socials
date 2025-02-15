@@ -19,6 +19,8 @@ const nextConfig: NextConfig = {
       "rguktrkv.ac.in",
       "addons-media.operacdn.com",
       "flagcdn.com",
+      "storage.googleapis.com",
+      "i.natgeofe.com",
     ],
   },
 };
