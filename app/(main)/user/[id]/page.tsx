@@ -85,7 +85,7 @@ const ProfilePage = () => {
 
   return (
     <div className="max-w-3xl mx-auto md:p-6 p-0 space-y-6">
-      <Card className="relative w-full max-w-2xl p-6 shadow-lg rounded-xl overflow-hidden">
+      <Card className="relative w-full p-6 shadow-lg rounded-xl overflow-hidden">
         <video
           src="https://files-us-east-1.t-cdn.net/files/1GG2rmxcOLAUjnt5zTqoY"
           className="absolute top-[-10rem] left-0  w-full h-full object-cover"
