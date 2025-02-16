@@ -11,4 +11,5 @@ export const API_URLS = {
   AFFILIATIONS: "/api/affiliations",
   MEMBERS: "/api/members",
   USER_PROFILE: "/api/user",
+  ACTIVITY: "/api/activity",
 };

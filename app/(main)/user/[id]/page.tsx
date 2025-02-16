@@ -10,45 +10,28 @@ import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import { ExternalLink, MoreHorizontal, ShieldCheck } from "lucide-react";
 import { API_URLS } from "@/app/api/url";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import Image from "next/image";
-
-interface Experience {
-  id: number;
-  position: string;
-  company: string;
-  company_logo: string;
-  start_date: string;
-  end_date: string | null;
-  description: string;
-}
-
-interface Education {
-  id: number;
-  degree: string;
-  institution: string;
-  institution_logo: string;
-  start_date: string;
-  end_date: string;
-}
-
-interface Profile {
-  id: number;
-  name: string;
-  headline: string;
-  avatar: string;
-  location: string;
-  connections: number;
-  about: string;
-  experience: Experience[];
-  education: Education[];
-  skills: string[];
-  projects: { id: number; title: string; description: string; url: string }[];
-  contact: { email: string; phone: string; website: string; linkedin: string };
-}
+import Activity from "./Activity";
+import { ActivityType, Profile } from "./type";
 
 const ProfilePage = () => {
   const [profile, setProfile] = useState<Profile | null>(null);
   const [loading, setLoading] = useState(true);
+  const [activities, setActivities] = useState<ActivityType[]>([]);
+
+  useEffect(() => {
+    const fetchActivities = async () => {
+      try {
+        const response = await axios.get(API_URLS.ACTIVITY);
+        setActivities(response.data);
+      } catch (error) {
+        console.error("Error fetching activities", error);
+      }
+    };
+
+    fetchActivities();
+  }, []);
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -113,7 +96,7 @@ const ProfilePage = () => {
           ))}
         </Card>
 
-        <Card className="p-6">
+        <Card className="p-6 overflow-hidden">
           <Skeleton className="w-1/3 h-6 mb-2" />
           <Separator className="my-3" />
           <div className="flex flex-wrap gap-2">
@@ -193,6 +176,19 @@ const ProfilePage = () => {
         <p className="text-neutral-600 dark:text-neutral-300 mt-2">
           {profile.about}
         </p>
+      </Card>
+
+      <Card className="p-6">
+        <h3 className="text-xl font-semibold">Activity</h3>
+        <Separator className="my-3" />
+        <ScrollArea className="flex">
+          <div className="flex space-x-4 p-4">
+            {activities.map((activity, index) => (
+              <Activity key={index} activity={activity} />
+            ))}
+          </div>
+          <ScrollBar orientation="horizontal" />
+        </ScrollArea>
       </Card>
 
       <Card className="p-6">

@@ -22,6 +22,7 @@ const nextConfig: NextConfig = {
       "storage.googleapis.com",
       "i.natgeofe.com",
       "static.wikia.nocookie.net",
+      "esports.ch",
     ],
   },
 };
