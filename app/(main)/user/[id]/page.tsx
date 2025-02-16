@@ -67,10 +67,73 @@ const ProfilePage = () => {
 
   if (loading) {
     return (
-      <div className="max-w-3xl mx-auto p-6">
-        <Skeleton className="w-full h-40 rounded-lg" />
-        <Skeleton className="w-1/2 h-6 mt-4" />
-        <Skeleton className="w-3/4 h-5 mt-2" />
+      <div className="max-w-3xl mx-auto md:p-6 p-0 space-y-6">
+        <Card className="p-6 flex items-center space-x-4">
+          <Skeleton className="w-24 h-24 rounded-full" />
+          <div className="flex-1">
+            <Skeleton className="w-3/4 h-6" />
+            <Skeleton className="w-1/2 h-5 mt-2" />
+            <Skeleton className="w-1/3 h-4 mt-2" />
+          </div>
+        </Card>
+
+        <Card className="p-6">
+          <Skeleton className="w-1/3 h-6 mb-2" />
+          <Separator className="my-3" />
+          <Skeleton className="w-full h-24" />
+        </Card>
+
+        <Card className="p-6">
+          <Skeleton className="w-1/3 h-6 mb-2" />
+          <Separator className="my-3" />
+          {[...Array(2)].map((_, i) => (
+            <div key={i} className="mb-4 flex space-x-4">
+              <Skeleton className="w-12 h-12 rounded-lg" />
+              <div className="flex-1">
+                <Skeleton className="w-1/2 h-5 mb-2" />
+                <Skeleton className="w-1/3 h-4 mb-2" />
+                <Skeleton className="w-1/4 h-3" />
+              </div>
+            </div>
+          ))}
+        </Card>
+
+        <Card className="p-6">
+          <Skeleton className="w-1/3 h-6 mb-2" />
+          <Separator className="my-3" />
+          {[...Array(2)].map((_, i) => (
+            <div key={i} className="mb-4 flex space-x-4">
+              <Skeleton className="w-12 h-12 rounded-lg" />
+              <div className="flex-1">
+                <Skeleton className="w-1/2 h-5 mb-2" />
+                <Skeleton className="w-1/3 h-4 mb-2" />
+                <Skeleton className="w-1/4 h-3" />
+              </div>
+            </div>
+          ))}
+        </Card>
+
+        <Card className="p-6">
+          <Skeleton className="w-1/3 h-6 mb-2" />
+          <Separator className="my-3" />
+          <div className="flex flex-wrap gap-2">
+            {[...Array(6)].map((_, i) => (
+              <Skeleton key={i} className="w-16 h-6 rounded-md" />
+            ))}
+          </div>
+        </Card>
+
+        <Card className="p-6">
+          <Skeleton className="w-1/3 h-6 mb-2" />
+          <Separator className="my-3" />
+          {[...Array(2)].map((_, i) => (
+            <div key={i} className="mb-4">
+              <Skeleton className="w-1/2 h-5 mb-2" />
+              <Skeleton className="w-full h-12 mb-2" />
+              <Skeleton className="w-1/4 h-6" />
+            </div>
+          ))}
+        </Card>
       </div>
     );
   }
