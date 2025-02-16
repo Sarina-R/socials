@@ -21,6 +21,7 @@ const nextConfig: NextConfig = {
       "flagcdn.com",
       "storage.googleapis.com",
       "i.natgeofe.com",
+      "static.wikia.nocookie.net",
     ],
   },
 };

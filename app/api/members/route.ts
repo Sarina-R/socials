@@ -5,8 +5,8 @@ export async function GET() {
     {
       user_id: 101,
       avatar: "https://esports.ch/wp-content/uploads/2024/11/jinx-arcane.jpg",
-      user_name: "Ali Rezaei",
-      email: "ali.rezaei@example.com",
+      user_name: "John Doe",
+      email: "john.doue@example.com",
       current_team: {
         team_id: 7,
         team_name: "Red Dragons",

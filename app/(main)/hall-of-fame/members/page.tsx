@@ -18,6 +18,7 @@ import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 
 interface Team {
   team_id: number;
@@ -118,18 +119,23 @@ const Members = () => {
                       className="cursor-pointer hover:bg-neutral-100 dark:hover:bg-neutral-900 transition"
                       onClick={() => toggleRow(member.user_id)}
                     >
-                      <TableCell className="flex items-center gap-2">
-                        <Avatar>
-                          <AvatarImage
-                            src={member.avatar}
-                            alt={member.user_name}
-                            className="object-cover"
-                          />
-                          <AvatarFallback>
-                            {member.user_name.charAt(0)}
-                          </AvatarFallback>
-                        </Avatar>
-                        {member.user_name}
+                      <TableCell className="flex items-center gap-2 hover:underline">
+                        <Link
+                          href={`/user/${member.user_id}`}
+                          className="flex items-center justify-center gap-2"
+                        >
+                          <Avatar>
+                            <AvatarImage
+                              src={member.avatar}
+                              alt={member.user_name}
+                              className="object-cover"
+                            />
+                            <AvatarFallback>
+                              {member.user_name.charAt(0)}
+                            </AvatarFallback>
+                          </Avatar>
+                          {member.user_name}
+                        </Link>
                       </TableCell>
                       <TableCell>{member.email}</TableCell>
                       <TableCell>

@@ -10,4 +10,5 @@ export const API_URLS = {
   Leaderboard: "/api/leaderboard",
   AFFILIATIONS: "/api/affiliations",
   MEMBERS: "/api/members",
+  USER_PROFILE: "/api/user",
 };
