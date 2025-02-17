@@ -30,13 +30,14 @@ const Activity = ({ activity }: ActivityProps) => {
   return (
     <Card className="rounded-lg border-non w-96 shadow-md p-4">
       <div className="flex items-center space-x-3">
-        <Image
-          src={activity.user.profile_image}
-          alt={activity.user.name}
-          width={40}
-          height={40}
-          className="rounded-full"
-        />
+        <div className="relative w-12 h-12">
+          <Image
+            src={activity.user.profile_image}
+            alt={activity.user.name}
+            fill
+            className="rounded-full object-cover"
+          />
+        </div>
         <div>
           <p className="text-sm font-semibold">{activity.user.name}</p>
           <p className="text-xs text-gray-500">{activity.timestamp}</p>

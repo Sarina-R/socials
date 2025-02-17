@@ -1,19 +1,19 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
-import { ExternalLink, MoreHorizontal, ShieldCheck } from "lucide-react";
+import { ExternalLink, MoreHorizontal } from "lucide-react";
 import { API_URLS } from "@/app/api/url";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
+import { ActivityType, Profile } from "./type";
 import Image from "next/image";
 import Activity from "./Activity";
-import { ActivityType, Profile } from "./type";
+import axios from "axios";
 
 const ProfilePage = () => {
   const [profile, setProfile] = useState<Profile | null>(null);
@@ -130,7 +130,7 @@ const ProfilePage = () => {
   }
 
   return (
-    <div className="max-w-3xl mx-auto md:p-6 p-0 space-y-6">
+    <div className="max-w-3xl mx-auto md:p-6 p-0 space-y-6 overflow-hidden">
       <Card className="relative w-full p-6 shadow-lg rounded-xl overflow-hidden">
         <video
           src="https://files-us-east-1.t-cdn.net/files/1GG2rmxcOLAUjnt5zTqoY"
@@ -181,7 +181,7 @@ const ProfilePage = () => {
       <Card className="p-6">
         <h3 className="text-xl font-semibold">Activity</h3>
         <Separator className="my-3" />
-        <ScrollArea className="flex">
+        <ScrollArea className="overflow-hidden">
           <div className="flex space-x-4 p-4">
             {activities.map((activity, index) => (
               <Activity key={index} activity={activity} />
