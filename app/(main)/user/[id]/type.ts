@@ -56,6 +56,32 @@ export interface Profile {
   contact: { email: string; phone: string; website: string; linkedin: string };
 }
 
+export interface Achievement {
+  award_id: number;
+  title: string;
+  event_name?: string;
+  community_name?: string;
+  event_date?: string;
+  year?: string;
+  category: string;
+  description: string;
+}
+
+export interface AttendedEvent {
+  event_id: number;
+  event_name: string;
+  event_date: string;
+  location: string;
+  description: string;
+  participation_type: string;
+  team_name?: string;
+  session_topic?: string;
+  organization?: string;
+  ranking?: string;
+  team_mentored?: string;
+  result?: string;
+}
+
 export interface User {
   name: string;
   profile_image: string;
