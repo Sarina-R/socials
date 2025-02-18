@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/button";
 import { ExternalLink, MoreHorizontal } from "lucide-react";
 import { API_URLS } from "@/app/api/url";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
-import { Achievement, ActivityType, AttendedEvent, Profile } from "./type";
+import { ActivityType, AttendedEvent, Profile } from "./type";
 import Image from "next/image";
 import Activity from "./Activity";
 import axios from "axios";
@@ -19,7 +19,6 @@ const ProfilePage = () => {
   const [profile, setProfile] = useState<Profile | null>(null);
   const [loading, setLoading] = useState(true);
   const [activities, setActivities] = useState<ActivityType[]>([]);
-  const [achievements, setAchievements] = useState<Achievement[]>([]);
   const [attendedEvents, setAttendedEvents] = useState<AttendedEvent[]>([]);
 
   useEffect(() => {
@@ -48,21 +47,6 @@ const ProfilePage = () => {
     };
 
     fetchProfile();
-  }, []);
-
-  useEffect(() => {
-    const fetchAchievements = async () => {
-      try {
-        const response = await axios.get(API_URLS.AWARD);
-        setAchievements(response.data.achievements);
-      } catch (error) {
-        console.error("Error fetching profile:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchAchievements();
   }, []);
 
   useEffect(() => {
@@ -236,36 +220,6 @@ const ProfilePage = () => {
             ) : (
               <p className="text-neutral-500">
                 No participation records found.
-              </p>
-            )}
-          </CardContent>
-        </Card>
-
-        <Card className="shadow-lg">
-          <CardHeader>
-            <h3 className="text-xl font-semibold">Award</h3>
-            <Separator className="my-3" />
-          </CardHeader>
-          <CardContent className="space-y-4">
-            {achievements.length > 0 ? (
-              achievements.map((award) => (
-                <div key={award.award_id} className="flex flex-col gap-1">
-                  <h4 className="text-lg font-medium">{award.title}</h4>
-                  <p className="text-sm text-neutral-500">
-                    {award.event_name || award.community_name} -{" "}
-                    {award.year || award.event_date}
-                  </p>
-                  <p className="text-sm text-neutral-700 dark:text-neutral-400">
-                    {award.description}
-                  </p>
-                  <span className="text-xs font-semibold">
-                    {award.category}
-                  </span>
-                </div>
-              ))
-            ) : (
-              <p className="text-neutral-500">
-                No awards or achievements found.
               </p>
             )}
           </CardContent>
