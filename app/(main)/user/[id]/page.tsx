@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/button";
 import { ExternalLink, MoreHorizontal } from "lucide-react";
 import { API_URLS } from "@/app/api/url";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
-import { ActivityType, AttendedEvent, Profile } from "./type";
+import { Achievement, ActivityType, AttendedEvent, Profile } from "./type";
 import Image from "next/image";
 import Activity from "./Activity";
 import axios from "axios";
@@ -19,7 +19,7 @@ const ProfilePage = () => {
   const [profile, setProfile] = useState<Profile | null>(null);
   const [loading, setLoading] = useState(true);
   const [activities, setActivities] = useState<ActivityType[]>([]);
-  const [attendedEvents, setAttendedEvents] = useState<AttendedEvent[]>([]);
+  const [achievements, setAchievements] = useState<Achievement[]>([]);
 
   useEffect(() => {
     const fetchActivities = async () => {
@@ -50,10 +50,10 @@ const ProfilePage = () => {
   }, []);
 
   useEffect(() => {
-    const fetchParticipate = async () => {
+    const fetchAchievements = async () => {
       try {
-        const response = await axios.get(API_URLS.PARTICIPATE);
-        setAttendedEvents(response.data.attended_events);
+        const response = await axios.get(API_URLS.AWARD);
+        setAchievements(response.data.achievements);
       } catch (error) {
         console.error("Error fetching profile:", error);
       } finally {
@@ -61,7 +61,7 @@ const ProfilePage = () => {
       }
     };
 
-    fetchParticipate();
+    fetchAchievements();
   }, []);
 
   if (loading) {
@@ -194,37 +194,31 @@ const ProfilePage = () => {
         </p>
       </Card>
 
-      <div className="xl:grid grid-cols-1 md:grid-cols-2 gap-6">
-        <Card className="shadow-lg xl:m-auto mb-6">
-          <CardHeader>
-            <h3 className="text-xl font-semibold">Participate</h3>
-            <Separator className="my-3" />
-          </CardHeader>
-          <CardContent className="space-y-4">
-            {attendedEvents.length > 0 ? (
-              attendedEvents.map((event) => (
-                <div key={event.event_id} className="flex flex-col gap-1">
-                  <h4 className="text-lg font-medium">{event.event_name}</h4>
-                  <p className="text-sm text-neutral-500">
-                    {event.event_date} - {event.location}
-                  </p>
-                  <p className="text-sm text-neutral-700 dark:text-neutral-400">
-                    {event.description}
-                  </p>
-                  <span className="text-xs font-semibold">
-                    {event.participation_type} -{" "}
-                    {event.team_name || event.session_topic}
-                  </span>
-                </div>
-              ))
-            ) : (
-              <p className="text-neutral-500">
-                No participation records found.
-              </p>
-            )}
-          </CardContent>
-        </Card>
-      </div>
+      <Card className="shadow-lg">
+        <CardHeader>
+          <h3 className="text-xl font-semibold">Award</h3>
+          <Separator className="my-3" />
+        </CardHeader>
+        <CardContent className="space-y-4">
+          {achievements.length > 0 ? (
+            achievements.map((award) => (
+              <div key={award.award_id} className="flex flex-col gap-1">
+                <h4 className="text-lg font-medium">{award.title}</h4>
+                <p className="text-sm text-neutral-500">
+                  {award.event_name || award.community_name} -{" "}
+                  {award.year || award.event_date}
+                </p>
+                <p className="text-sm text-neutral-700 dark:text-neutral-400">
+                  {award.description}
+                </p>
+                <span className="text-xs font-semibold">{award.category}</span>
+              </div>
+            ))
+          ) : (
+            <p className="text-neutral-500">No awards or achievements found.</p>
+          )}
+        </CardContent>
+      </Card>
 
       <Card className="p-6">
         <h3 className="text-xl font-semibold">Experience</h3>
