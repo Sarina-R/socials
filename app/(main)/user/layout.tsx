@@ -61,7 +61,7 @@ export default function RootLayout({
       {children}
 
       <div className="mx-auto flex justify-center">
-        <div className="rounded-xl w-full xl:w-80 max-h-max max-w-3xl mx-auto shadow-md">
+        <div className="rounded-xl w-full xl:w-80 max-h-max max-w-3xl mx-auto">
           <Card className="shadow-lg xl:m-auto mb-6">
             <CardHeader>
               <h3 className="text-xl font-semibold">Participate</h3>

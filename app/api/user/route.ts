@@ -57,6 +57,9 @@ const profile = {
     phone: "+1 123-456-7890",
     website: "https://johndoe.dev",
     linkedin: "https://linkedin.com/in/johndoe",
+    telegram: "https://t.me/johndoe",
+    twitter: "https://twitter.com/johndoe",
+    github: "https://github.com/johndoe",
   },
 };
 

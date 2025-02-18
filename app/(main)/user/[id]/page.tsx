@@ -11,6 +11,14 @@ import { ExternalLink, MoreHorizontal } from "lucide-react";
 import { API_URLS } from "@/app/api/url";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { Achievement, ActivityType, Profile } from "./type";
+import {
+  FaWhatsapp,
+  FaLinkedin,
+  FaEnvelope,
+  FaGithub,
+  FaTwitter,
+  FaTelegram,
+} from "react-icons/fa";
 import Image from "next/image";
 import Activity from "./Activity";
 import axios from "axios";
@@ -318,39 +326,77 @@ const ProfilePage = () => {
         ))}
       </Card>
 
-      <Card className="p-6">
-        <h3 className="text-xl font-semibold">Contact</h3>
-        <Separator className="my-3" />
-        <p className="text-neutral-600 dark:text-neutral-300">
-          <strong className="text-black dark:text-white px-1">Email:</strong>
-          {profile.contact.email}
-        </p>
-        <p className="text-neutral-600 dark:text-neutral-300">
-          <strong className="text-black dark:text-white px-1">Phone:</strong>
-          {profile.contact.phone}
-        </p>
-        <p className="sm:flex inline text-neutral-600 dark:text-neutral-300">
-          <strong className="text-black dark:text-white px-1">Website:</strong>
-          <a
-            href={profile.contact.website}
-            className="hover:underline"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <p>{profile.contact.website}</p>
-          </a>
-        </p>
-        <p className="sm:flex inline text-neutral-600 dark:text-neutral-300">
-          <strong className="text-black dark:text-white px-1">LinkedIn:</strong>
-          <a
-            href={profile.contact.linkedin}
-            className="hover:underline"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <p>{profile.contact.linkedin}</p>
-          </a>
-        </p>
+      <Card className="p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 ease-in-out">
+        <h3 className="text-2xl font-semibold text-gray-900 dark:text-white">
+          Contact
+        </h3>
+        <Separator className="my-4" />
+
+        <div className="mt-6 flex space-x-6">
+          {profile.contact.phone && (
+            <a
+              href={`https://wa.me/${profile.contact.phone.replace(/\D/g, "")}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-3 bg-green-500 text-white rounded-full hover:bg-green-600 transition-all duration-300 ease-in-out"
+            >
+              <FaWhatsapp size={24} />
+            </a>
+          )}
+
+          {profile.contact.linkedin && (
+            <a
+              href={profile.contact.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-3 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-all duration-300 ease-in-out"
+            >
+              <FaLinkedin size={24} />
+            </a>
+          )}
+
+          {profile.contact.email && (
+            <a
+              href={`mailto:${profile.contact.email}`}
+              className="p-3 bg-gray-700 text-white rounded-full hover:bg-gray-800 transition-all duration-300 ease-in-out"
+            >
+              <FaEnvelope size={24} />
+            </a>
+          )}
+
+          {profile.contact.telegram && (
+            <a
+              href={profile.contact.telegram}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-3 bg-blue-500 text-white rounded-full hover:bg-blue-600 transition-all duration-300 ease-in-out"
+            >
+              <FaTelegram size={24} />
+            </a>
+          )}
+
+          {profile.contact.twitter && (
+            <a
+              href={profile.contact.twitter}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-3 bg-blue-400 text-white rounded-full hover:bg-blue-500 transition-all duration-300 ease-in-out"
+            >
+              <FaTwitter size={24} />
+            </a>
+          )}
+
+          {profile.contact.github && (
+            <a
+              href={profile.contact.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-3 bg-black text-white rounded-full hover:bg-gray-800 transition-all duration-300 ease-in-out"
+            >
+              <FaGithub size={24} />
+            </a>
+          )}
+        </div>
       </Card>
     </div>
   );

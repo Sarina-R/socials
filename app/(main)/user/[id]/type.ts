@@ -53,7 +53,15 @@ export interface Profile {
   education: Education[];
   skills: string[];
   projects: { id: number; title: string; description: string; url: string }[];
-  contact: { email: string; phone: string; website: string; linkedin: string };
+  contact: {
+    email: string;
+    phone: string;
+    website: string;
+    linkedin: string;
+    telegram: string;
+    twitter: string;
+    github: string;
+  };
 }
 
 export interface Achievement {
