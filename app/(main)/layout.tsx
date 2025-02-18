@@ -14,6 +14,7 @@ import {
   Presentation,
   Handshake,
   PersonStanding,
+  Telescope,
 } from "lucide-react";
 
 const socialItems = [
@@ -28,7 +29,8 @@ const learnItems = [
 ];
 
 const exploreItems = [
-  { title: "Explore", url: "/explore", icon: HomeIcon },
+  { title: "Home", url: "/home", icon: HomeIcon },
+  { title: "Explore", url: "/explore", icon: Telescope },
   { title: "Feed", url: "/feed", icon: Menu },
 ];
 

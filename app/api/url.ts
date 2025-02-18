@@ -14,4 +14,5 @@ export const API_URLS = {
   ACTIVITY: "/api/activity",
   AWARD: "/api/user/award",
   PARTICIPATE: "/api/user/participate",
+  INFO: "/api/home/info",
 };

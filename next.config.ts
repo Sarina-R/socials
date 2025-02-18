@@ -23,6 +23,7 @@ const nextConfig: NextConfig = {
       "i.natgeofe.com",
       "static.wikia.nocookie.net",
       "esports.ch",
+      "events.avisengine.com",
     ],
   },
 };
