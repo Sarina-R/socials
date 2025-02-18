@@ -66,7 +66,7 @@ const ProfilePage = () => {
 
   if (loading) {
     return (
-      <div className="max-w-3xl mx-auto md:p-6 p-0 space-y-6">
+      <div className="mx-auto md:p-6 p-0 space-y-6">
         <Card className="p-6 flex items-center space-x-4">
           <Skeleton className="w-24 h-24 rounded-full" />
           <div className="flex-1">
@@ -146,7 +146,7 @@ const ProfilePage = () => {
   }
 
   return (
-    <div className="max-w-3xl mx-auto md:p-6 p-0 space-y-6 overflow-hidden">
+    <div className="max-w-3xl mx-auto mb-6 space-y-6 overflow-hidden">
       <Card className="relative w-full p-6 shadow-lg rounded-xl overflow-hidden">
         <video
           src="https://files-us-east-1.t-cdn.net/files/1GG2rmxcOLAUjnt5zTqoY"
