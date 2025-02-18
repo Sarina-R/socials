@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/button";
 import { ExternalLink, MoreHorizontal } from "lucide-react";
 import { API_URLS } from "@/app/api/url";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
-import { Achievement, ActivityType, AttendedEvent, Profile } from "./type";
+import { Achievement, ActivityType, Profile } from "./type";
 import Image from "next/image";
 import Activity from "./Activity";
 import axios from "axios";
