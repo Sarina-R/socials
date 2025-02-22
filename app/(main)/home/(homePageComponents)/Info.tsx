@@ -123,7 +123,7 @@ const Info = () => {
                     src={eventData?.country.flag_url || ""}
                     alt={eventData?.country.name || ""}
                     fill
-                    className="object-cover rounded-full border bord-700"
+                    className="object-cover rounded-full border"
                   />
                 </div>
                 <span className="text-lg font-semibold">
@@ -154,7 +154,7 @@ const Info = () => {
             {eventData?.organizers.map((org, index) => (
               <div
                 key={index}
-                className="flex items-center gap-3 bg-neutral-50 dark:bg-neutral-800 p-2 rounded-lg"
+                className="flex items-center gap-3 p-2 rounded-lg"
               >
                 <div className="relative w-24 h-14">
                   <Image
