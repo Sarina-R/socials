@@ -15,4 +15,5 @@ export const API_URLS = {
   AWARD: "/api/user/award",
   PARTICIPATE: "/api/user/participate",
   INFO: "/api/home/info",
+  LEAGUES: "/api/home/leagues",
 };

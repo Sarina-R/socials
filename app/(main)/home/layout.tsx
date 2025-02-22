@@ -5,7 +5,7 @@ export default function RootLayout({
 }>) {
   return (
     <div className="space-y-6">
-      <div className="relative w-full h-32 overflow-hidden rounded-lg">
+      <div className="relative w-full h-72 overflow-hidden rounded-lg">
         <img
           src="https://jamhospital.ir/uploads/en/pages/tehrancity.jpg"
           className="w-full h-full object-cover"

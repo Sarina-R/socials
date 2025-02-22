@@ -1,6 +1,7 @@
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Info from "./(homePageComponents)/Info";
+import Leagues from "./(homePageComponents)/Leagues";
 
 const HomePage = () => {
   return (
@@ -21,7 +22,9 @@ const HomePage = () => {
       <TabsContent value="info">
         <Info />
       </TabsContent>
-      <TabsContent value="leagues">leagues</TabsContent>
+      <TabsContent value="leagues">
+        <Leagues />
+      </TabsContent>
       <TabsContent value="qualifications">qualifications</TabsContent>
       <TabsContent value="schedule">schedule</TabsContent>
       <TabsContent value="venue">venue</TabsContent>
