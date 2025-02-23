@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 
 const info = {
+  name: "Iran 2025 FIRA Open Competition",
   poster:
     "https://events.avisengine.com/_next/image?url=https%3A%2F%2Fapi.avisengine.com%2Fassets%2F335a471c-3df6-42f3-847f-a1b6cb084e6f&w=1080&q=75",
   important_dates: {
