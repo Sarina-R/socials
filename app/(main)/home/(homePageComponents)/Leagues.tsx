@@ -110,6 +110,7 @@ const Leagues = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-6 gap-x-3">
             {eventGroups[groupName].map((event, index) => (
               <>
+                {/* desktop */}
                 <Card
                   key={index}
                   className="hidden sm:block rounded-lg overflow-hidden transition-transform transform"
@@ -154,7 +155,7 @@ const Leagues = () => {
                       </span>
                     </div>
 
-                    <div className="flex gap-4 mt-4">
+                    <div className="flex gap-2 mx-auto mt-4">
                       <Button variant="outline" className="w-1/2">
                         View Teams
                       </Button>
@@ -165,6 +166,7 @@ const Leagues = () => {
                   </div>
                 </Card>
 
+                {/* mobile */}
                 <Card className="max-w-xl flex p-4 gap-4 shadow-lg sm:hidden">
                   <div className="w-32 h-20 relative">
                     <Image
@@ -182,7 +184,7 @@ const Leagues = () => {
                       {groupName}
                     </p>
 
-                    <div className="bg-neutral-100 dark:bg-neutral-900 p-2 rounded-md mt-2 flex justify-between text-sm">
+                    <div className="bg-neutral-100 dark:bg-neutral-900 w-full p-2 rounded-md mt-2 flex justify-between">
                       <div className="flex flex-col items-center">
                         <span className="text-[0.7rem] px-2">Age Category</span>
                         {event.category.map((cat, index) => (
