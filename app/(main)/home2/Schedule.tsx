@@ -44,14 +44,14 @@ export interface Schedule {
 
 const ScheduleComponent = () => {
   const [view, setView] = useState<string>("timeline");
-  const [data, setData] = useState<Category>({}); // Updated type to Category
+  const [data, setData] = useState<Category>({});
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get<Schedule>(API_URLS.SCHEDULE); // Updated type to Schedule
-        setData(response.data.data); // The data will now contain the full Category structure
+        const response = await axios.get<Schedule>(API_URLS.SCHEDULE);
+        setData(response.data.data);
       } catch (error) {
         console.error("Error fetching schedule:", error);
       } finally {
@@ -62,7 +62,6 @@ const ScheduleComponent = () => {
     fetchData();
   }, []);
 
-  // Flatten events and group by date
   const eventsByDate: Event[] = Object.values(data).reduce<Event[]>(
     (acc, league) => {
       Object.values(league).forEach((events) => {
@@ -73,7 +72,6 @@ const ScheduleComponent = () => {
     []
   );
 
-  // Group events by date
   const eventsGroupedByDate = eventsByDate.reduce<Record<string, Event[]>>(
     (acc, event) => {
       acc[event.date] = acc[event.date] || [];

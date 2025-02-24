@@ -1,6 +1,6 @@
 "use client";
 
-import { format, parse, addMinutes } from "date-fns";
+import { format, parse, addMinutes, differenceInMinutes } from "date-fns";
 import {
   Tooltip,
   TooltipContent,
@@ -11,14 +11,33 @@ import { API_URLS } from "@/app/api/url";
 import axios from "axios";
 import { Event, Schedule } from "@/app/(main)/home2/Schedule";
 
-const categoryColors: Record<string, string> = {
-  "Fira Air": "bg-blue-200",
-  "Fira Challenge": "bg-green-200",
-};
+const getRandomColor = (() => {
+  const colors = [
+    "dark:bg-violet-400 bg-violet-200",
+    "dark:bg-emerald-400 bg-emerald-200",
+    "dark:bg-blue-400 bg-blue-200",
+    "dark:bg-green-400 bg-green-200",
+    "dark:bg-yellow-400 bg-yellow-200",
+    "dark:bg-purple-400 bg-purple-200",
+    "dark:bg-pink-400 bg-pink-200",
+    "dark:bg-indigo-400 bg-indigo-200",
+    "dark:bg-teal-400 bg-teal-200",
+  ];
+  let usedColors = new Set();
+  return () => {
+    if (usedColors.size >= colors.length) usedColors.clear();
+    const availableColors = colors.filter((color) => !usedColors.has(color));
+    const chosenColor =
+      availableColors[Math.floor(Math.random() * availableColors.length)];
+    usedColors.add(chosenColor);
+    return chosenColor;
+  };
+})();
 
 const DifficultTable = () => {
   const [schedule, setSchedule] = useState<Schedule | null>(null);
   const [loading, setLoading] = useState(true);
+  const eventColors = new Map<string, string>();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -34,8 +53,18 @@ const DifficultTable = () => {
     fetchData();
   }, []);
 
-  if (loading) return <p>Loading schedule...</p>;
-  if (!schedule) return <p>No data available.</p>;
+  if (loading)
+    return (
+      <p className="text-center text-lg font-semibold text-neutral-900 dark:text-neutral-100">
+        Loading schedule...
+      </p>
+    );
+  if (!schedule)
+    return (
+      <p className="text-center text-lg text-red-500 dark:text-red-400">
+        No data available.
+      </p>
+    );
 
   const categories = Object.keys(schedule.data);
   const uniqueDates = new Set<string>();
@@ -46,6 +75,9 @@ const DifficultTable = () => {
       league.forEach((event) => {
         uniqueDates.add(event.date);
         allEvents.push(event);
+        if (!eventColors.has(event.title)) {
+          eventColors.set(event.title, getRandomColor());
+        }
       });
     });
   });
@@ -55,14 +87,11 @@ const DifficultTable = () => {
   let minTime = "23:59";
   let maxTime = "00:00";
   allEvents.forEach((event) => {
+    if (!event.time_string) return;
     const times = event.time_string.split(" - ");
-    if (times.length > 1) {
-      minTime = times[0] < minTime ? times[0] : minTime;
-      maxTime = times[1] > maxTime ? times[1] : maxTime;
-    } else {
-      minTime = times[0] < minTime ? times[0] : minTime;
-      maxTime = times[0] > maxTime ? times[0] : maxTime;
-    }
+    if (times.length < 2) return;
+    minTime = times[0] < minTime ? times[0] : minTime;
+    maxTime = times[1] > maxTime ? times[1] : maxTime;
   });
 
   const generateTimeSlots = (start: string, end: string) => {
@@ -79,88 +108,55 @@ const DifficultTable = () => {
   const timeSlots = generateTimeSlots(minTime, maxTime);
 
   return (
-    <div className="overflow-x-auto">
-      <table className="border-collapse w-full text-sm">
+    <div className="overflow-x-auto text-neutral-900 dark:text-neutral-100">
+      <table className="-collapse w-full text-sm shadow-lg rounded-lg overflow-hidden">
         <thead>
-          <tr className="bg-red-300">
-            <th className="border border-gray-500 p-2">Date</th>
-            <th className="border border-gray-500 p-2">Time</th>
+          <tr className="bg-neutral-300 dark:bg-neutral-800 text-black dark:text-white">
+            <th className="p-3">Date</th>
+            <th className="p-3">Time</th>
             {categories.map((category) => (
               <th
                 key={category}
                 colSpan={Object.keys(schedule.data[category]).length}
-                className="border border-gray-500 p-2"
+                className="p-3"
               >
                 {category}
               </th>
             ))}
           </tr>
-          <tr className="bg-gray-200">
-            <th className="border border-gray-500 p-2"></th>
-            <th className="border border-gray-500 p-2"></th>
-            {categories.map((category) =>
-              Object.keys(schedule.data[category]).map((league) => (
-                <th key={league} className="border border-gray-500 p-2">
-                  {league}
-                </th>
-              ))
-            )}
-          </tr>
         </thead>
         <tbody>
           {sortedDates.map((date) => (
             <React.Fragment key={date}>
-              <tr className="bg-pink-300">
+              <tr className="bg-neutral-200 dark:bg-neutral-700">
                 <td
                   rowSpan={timeSlots.length + 1}
-                  className="border border-gray-500 p-2 font-bold align-top w-24 text-center"
+                  className="p-3 border-b-2 border-white dark:border-black font-bold text-center"
                 >
                   {format(new Date(date), "EEEE, MMM d")}
                 </td>
               </tr>
               {timeSlots.map((time) => (
-                <tr key={`${date}-${time}`}>
-                  <td className="border border-gray-500 p-2 bg-gray-100 text-center font-medium">
-                    {time}
-                  </td>
+                <tr
+                  key={`${date}-${time}`}
+                  className="hover:bg-neutral-100 dark:hover:bg-neutral-800"
+                >
+                  <td className="p-3 text-center">{time}</td>
                   {categories.map((category) =>
                     Object.keys(schedule.data[category]).map((league) => {
                       const event = schedule.data[category][league].find(
-                        (e) =>
-                          e.date === date &&
-                          (e.time_string.includes(time) ||
-                            (e.time_string.split(" - ")[0] <= time &&
-                              e.time_string.split(" - ")[1] >= time))
+                        (e) => e.date === date && e.time_string?.includes(time)
                       );
                       return (
                         <td
                           key={`${date}-${time}-${league}`}
-                          className={`border p-2 text-center text-sm relative ${
-                            event ? categoryColors[category] : ""
+                          className={`p-3 text-center relative ${
+                            event
+                              ? eventColors.get(event.title)
+                              : "bg-neutral-50 dark:bg-neutral-800"
                           }`}
                         >
-                          {event ? (
-                            <Tooltip>
-                              <TooltipTrigger>
-                                <span className="cursor-pointer">
-                                  {event.title}
-                                </span>
-                              </TooltipTrigger>
-                              <TooltipContent>
-                                <div>
-                                  <p className="font-bold">{event.title}</p>
-                                  <p className="max-w-40">
-                                    {event.description}
-                                  </p>
-                                  <p className="text-yellow-300">
-                                    {event.time_string}
-                                  </p>
-                                </div>
-                              </TooltipContent>
-                            </Tooltip>
-                          ) : (
-                            ""
-                          )}
+                          {event ? event.title : ""}
                         </td>
                       );
                     })
