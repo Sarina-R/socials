@@ -11,7 +11,7 @@ import { Event, Schedule } from "@/app/(main)/home2/Schedule";
 
 const getRandomColor = (() => {
   const colors = [
-    "dark:bg-violet-400 bg-violet-200",
+    "dark:bg-vioconst-400 bg-vioconst-200",
     "dark:bg-emerald-400 bg-emerald-200",
     "dark:bg-blue-400 bg-blue-200",
     "dark:bg-green-400 bg-green-200",
@@ -21,7 +21,7 @@ const getRandomColor = (() => {
     "dark:bg-indigo-400 bg-indigo-200",
     "dark:bg-teal-400 bg-teal-200",
   ];
-  let usedColors = new Set();
+  const usedColors = new Set();
   return () => {
     if (usedColors.size >= colors.length) usedColors.clear();
     const availableColors = colors.filter((color) => !usedColors.has(color));
@@ -93,9 +93,9 @@ const DifficultTable = () => {
   });
 
   const generateTimeSlots = (start: string, end: string) => {
-    let slots: string[] = [];
+    const slots: string[] = [];
     let startTime = parse(start, "HH:mm", new Date());
-    let endTime = parse(end, "HH:mm", new Date());
+    const endTime = parse(end, "HH:mm", new Date());
     while (startTime <= endTime) {
       slots.push(format(startTime, "HH:mm"));
       startTime = addMinutes(startTime, 30);
