@@ -1,18 +1,23 @@
 "use client";
 
 import { format, parse, addMinutes } from "date-fns";
-import { Tooltip } from "@/components/ui/tooltip";
-import { useState, useEffect } from "react";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import React, { useState, useEffect } from "react";
 import { API_URLS } from "@/app/api/url";
 import axios from "axios";
+import { Event, Schedule } from "@/app/(main)/home2/Schedule";
 
-const categoryColors = {
+const categoryColors: Record<string, string> = {
   "Fira Air": "bg-blue-200",
   "Fira Challenge": "bg-green-200",
 };
 
-const ScheduleTable = () => {
-  const [schedule, setSchedule] = useState(null);
+const DifficultTable = () => {
+  const [schedule, setSchedule] = useState<Schedule | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -33,8 +38,8 @@ const ScheduleTable = () => {
   if (!schedule) return <p>No data available.</p>;
 
   const categories = Object.keys(schedule.data);
-  let uniqueDates = new Set();
-  let allEvents = [];
+  const uniqueDates = new Set<string>();
+  const allEvents: Event[] = [];
 
   categories.forEach((category) => {
     Object.values(schedule.data[category]).forEach((league) => {
@@ -60,8 +65,8 @@ const ScheduleTable = () => {
     }
   });
 
-  const generateTimeSlots = (start, end) => {
-    let slots = [];
+  const generateTimeSlots = (start: string, end: string) => {
+    let slots: string[] = [];
     let startTime = parse(start, "HH:mm", new Date());
     let endTime = parse(end, "HH:mm", new Date());
     while (startTime <= endTime) {
@@ -74,7 +79,7 @@ const ScheduleTable = () => {
   const timeSlots = generateTimeSlots(minTime, maxTime);
 
   return (
-    <div className="overflow-x-auto p-4">
+    <div className="overflow-x-auto">
       <table className="border-collapse w-full text-sm">
         <thead>
           <tr className="bg-red-300">
@@ -104,8 +109,8 @@ const ScheduleTable = () => {
         </thead>
         <tbody>
           {sortedDates.map((date) => (
-            <>
-              <tr key={date} className="bg-pink-300">
+            <React.Fragment key={date}>
+              <tr className="bg-pink-300">
                 <td
                   rowSpan={timeSlots.length + 1}
                   className="border border-gray-500 p-2 font-bold align-top w-24 text-center"
@@ -135,20 +140,23 @@ const ScheduleTable = () => {
                           }`}
                         >
                           {event ? (
-                            <Tooltip
-                              content={
+                            <Tooltip>
+                              <TooltipTrigger>
+                                <span className="cursor-pointer">
+                                  {event.title}
+                                </span>
+                              </TooltipTrigger>
+                              <TooltipContent>
                                 <div>
                                   <p className="font-bold">{event.title}</p>
-                                  <p>{event.description}</p>
+                                  <p className="max-w-40">
+                                    {event.description}
+                                  </p>
                                   <p className="text-yellow-300">
                                     {event.time_string}
                                   </p>
                                 </div>
-                              }
-                            >
-                              <span className="cursor-pointer">
-                                {event.title}
-                              </span>
+                              </TooltipContent>
                             </Tooltip>
                           ) : (
                             ""
@@ -159,7 +167,7 @@ const ScheduleTable = () => {
                   )}
                 </tr>
               ))}
-            </>
+            </React.Fragment>
           ))}
         </tbody>
       </table>
@@ -167,4 +175,4 @@ const ScheduleTable = () => {
   );
 };
 
-export default ScheduleTable;
+export default DifficultTable;

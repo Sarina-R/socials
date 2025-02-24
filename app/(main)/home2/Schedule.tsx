@@ -17,24 +17,41 @@ import axios from "axios";
 import { API_URLS } from "@/app/api/url";
 import DifficultTable from "@/components/schedule/DifficultTable";
 
-interface Event {
+export interface Event {
   id: number;
+  status: string;
+  date_created: string;
+  user_updated: string;
+  date_updated: string;
+  event: string;
   date: string;
   title: string;
   time_string: string;
   description: string;
 }
 
-const Schedule = () => {
+export interface League {
+  [key: string]: Event[];
+}
+
+export interface Category {
+  [key: string]: League;
+}
+
+export interface Schedule {
+  data: Category;
+}
+
+const ScheduleComponent = () => {
   const [view, setView] = useState<string>("timeline");
-  const [data, setData] = useState<Event[]>([]);
+  const [data, setData] = useState<Category>({}); // Updated type to Category
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get<{ data: Event[] }>(API_URLS.SCHEDULE);
-        setData(response.data.data);
+        const response = await axios.get<Schedule>(API_URLS.SCHEDULE); // Updated type to Schedule
+        setData(response.data.data); // The data will now contain the full Category structure
       } catch (error) {
         console.error("Error fetching schedule:", error);
       } finally {
@@ -45,11 +62,26 @@ const Schedule = () => {
     fetchData();
   }, []);
 
-  const eventsByDate = data.reduce<Record<string, Event[]>>((acc, event) => {
-    acc[event.date] = acc[event.date] || [];
-    acc[event.date].push(event);
-    return acc;
-  }, {});
+  // Flatten events and group by date
+  const eventsByDate: Event[] = Object.values(data).reduce<Event[]>(
+    (acc, league) => {
+      Object.values(league).forEach((events) => {
+        acc.push(...events);
+      });
+      return acc;
+    },
+    []
+  );
+
+  // Group events by date
+  const eventsGroupedByDate = eventsByDate.reduce<Record<string, Event[]>>(
+    (acc, event) => {
+      acc[event.date] = acc[event.date] || [];
+      acc[event.date].push(event);
+      return acc;
+    },
+    {}
+  );
 
   if (loading) return <p className="text-center">Loading...</p>;
 
@@ -72,7 +104,7 @@ const Schedule = () => {
 
       {view === "timeline" && (
         <div className="space-y-8">
-          {Object.entries(eventsByDate).map(([date, events]) => (
+          {Object.entries(eventsGroupedByDate).map(([date, events]) => (
             <div key={date}>
               <h2 className="text-xl font-semibold mb-2">
                 {format(new Date(date), "PPP")}
@@ -80,7 +112,7 @@ const Schedule = () => {
               <div className="space-y-4">
                 {events.map((event, index) => (
                   <motion.div
-                    key={event.id}
+                    key={index}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3, delay: index * 0.1 }}
@@ -113,8 +145,8 @@ const Schedule = () => {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {data.map((event) => (
-              <TableRow key={event.id}>
+            {eventsByDate.map((event, index) => (
+              <TableRow key={index}>
                 <TableCell>{format(new Date(event.date), "PPP")}</TableCell>
                 <TableCell>{event.time_string}</TableCell>
                 <TableCell>{event.title}</TableCell>
@@ -130,4 +162,4 @@ const Schedule = () => {
   );
 };
 
-export default Schedule;
+export default ScheduleComponent;
