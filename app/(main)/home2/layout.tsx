@@ -132,7 +132,7 @@ export default function RootLayout({
                 className="object-cover rounded-full border"
               />
             </div>
-            <span className="flex space-x-1 text-xs items-center font-semibold">
+            <span className="flex space-x-1 text-xs items-center font-semibold text-white">
               <p>
                 <MapPin className="w-4 h-4 te-400" />
               </p>

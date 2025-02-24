@@ -6,8 +6,9 @@ import { motion } from "framer-motion";
 import axios from "axios";
 import { EventData } from "./layout";
 import Leagues from "../home/(homePageComponents)/Leagues";
-import { ChevronDown, ChevronUp } from "lucide-react";
+import { CalendarDays, ChevronDown, ChevronUp } from "lucide-react";
 import Image from "next/image";
+import { Card, CardTitle } from "@/components/ui/card";
 
 const faqs = [
   {
@@ -91,7 +92,7 @@ const Home2 = () => {
           </div>
         </div>
 
-        <div className="grid lg:grid-cols-2 justify-center items-center gap-x-4 space-y-6">
+        <div className="grid lg:grid-cols-2 justify-center items-center gap-x-4">
           <div className="grid-cols-1 rounded-lg overflow-hidden shadow-lg">
             <Image
               src={eventData?.poster || "/default-poster.jpg"}
@@ -104,6 +105,33 @@ const Home2 = () => {
           <div className="grid-cols-1 text-sm">
             <div className="mx-auto py-10">
               <div className="space-y-6">
+                <Card className="shadow-lg p-6 rounded-lg">
+                  <CardTitle className="text-xl font-semibold">
+                    Important Dates
+                  </CardTitle>
+                  <div className="mt-4 space-y-4">
+                    {Object.entries(eventData?.important_dates || {}).map(
+                      ([title, date], index) => (
+                        <div
+                          key={index}
+                          className="flex items-center border-l-2 border-neutral-300 dark:border-neutral-600 pl-4"
+                        >
+                          <div className="relative left-[-1.65rem] bg-neutral-50 dark:bg-neutral-900 rounded-full">
+                            <CalendarDays className="w-5 h-5 p-1" />
+                          </div>
+                          <div className="flex flex-col">
+                            <span className="text-sm font-medium ">
+                              {title}
+                            </span>
+                            <div className="bg-neutral-50 dark:bg-neutral-900 w-full px-3 py-1 rounded-[1rem]">
+                              <p className="text-xs">{date}</p>
+                            </div>
+                          </div>
+                        </div>
+                      )
+                    )}
+                  </div>
+                </Card>
                 {faqs.map((faq, index) => (
                   <motion.div
                     key={index}
@@ -113,7 +141,7 @@ const Home2 = () => {
                     transition={{ duration: 0.3, delay: 0.2 }}
                   >
                     <div
-                      className="flex justify-between items-center p-5 cursor-pointer transition duration-300 ease-in-out"
+                      className="flex justify-between items-center p-4 cursor-pointer transition duration-300 ease-in-out"
                       onClick={() => toggleAccordion(index)}
                     >
                       <h3 className="text-lg font-semibold">{faq.question}</h3>
@@ -133,7 +161,7 @@ const Home2 = () => {
                       transition={{ duration: 0.3 }}
                       className="overflow-hidden"
                     >
-                      <div className="p-5 text-neutral-700 dark:text-neutral-300">
+                      <div className="px-5 pb-5 text-neutral-700 dark:text-neutral-300">
                         <p>{faq.answer}</p>
                       </div>
                     </motion.div>
