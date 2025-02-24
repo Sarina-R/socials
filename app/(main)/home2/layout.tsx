@@ -18,10 +18,10 @@ export interface EventData {
   event_dates: { start: string; end: string };
   city: string;
   event_type: string;
-  organizers: organizers[];
+  organizers: Organizers[];
 }
 
-export interface organizers {
+export interface Organizers {
   name: string;
   logo: string;
 }
@@ -31,45 +31,23 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const [loading, setLoading] = useState(true);
-  const [eventData, setEventData] = useState<EventData>();
+  const [eventData, setEventData] = useState<EventData | null>(null);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(API_URLS.INFO);
-        setEventData(response.data);
-      } catch (error) {
-        console.log("Error fetching event data:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
+    axios
+      .get(API_URLS.INFO)
+      .then((response) => setEventData(response.data))
+      .catch((error) => console.log("Error fetching event data:", error));
   }, []);
 
-  const formatDate = (dateString: string) => {
-    const options: Intl.DateTimeFormatOptions = {
+  const formatDate = (dateString?: string) => {
+    if (!dateString) return "Unknown";
+    return new Date(dateString).toLocaleDateString("en-US", {
       year: "numeric",
       month: "long",
       day: "numeric",
-    };
-    return new Date(dateString).toLocaleDateString("en-US", options);
+    });
   };
-
-  if (loading) {
-    return (
-      <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-purple-500 via-blue-500 to-indigo-600">
-        <motion.div
-          className="w-16 h-16 border-8 border-t-8 border-white border-solid rounded-full animate-spin"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, ease: "easeInOut", loop: Infinity }}
-        />
-      </div>
-    );
-  }
 
   return (
     <div className="space-y-6">
@@ -94,7 +72,7 @@ export default function RootLayout({
           <div className="flex text-white flex-col gap-2">
             <div className="flex items-center gap-2 text-sm">
               <CalendarDays className="w-5 h-5" />
-              <span>{formatDate(eventData!.event_dates.start)}</span>
+              <span>{formatDate(eventData?.event_dates?.start)}</span>
             </div>
             <Separator className="w-32 bg-white relative bottom-[-1.3rem]" />
             <div className="item-center justify-center z-50 flex">
@@ -104,7 +82,7 @@ export default function RootLayout({
             </div>
             <div className="flex items-center gap-2 text-sm">
               <CalendarDays className="w-5 h-5" />
-              <span>{formatDate(eventData!.event_dates.end)}</span>
+              <span>{formatDate(eventData?.event_dates?.end)}</span>
             </div>
           </div>
         </motion.div>
@@ -116,30 +94,30 @@ export default function RootLayout({
           className="absolute bottom-[-3rem] right-0 flex flex-col items-end gap-4"
         >
           <motion.h3
-            className="max-w-max mt-6 text-white text-3xl text-right font-extrabold  px-4 py-2 rounded-lg shadow-lg"
+            className="max-w-max mt-6 text-white text-3xl text-right font-extrabold px-4 py-2 rounded-lg shadow-lg"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5 }}
           >
-            {eventData?.name}
+            {eventData?.name ?? "Event Name"}
           </motion.h3>
           <div className="flex p-3 gap-3 justify-center items-center">
             <div className="relative w-9 h-9">
-              <Image
-                src={eventData?.country.flag_url || ""}
-                alt={eventData?.country.name || ""}
-                fill
-                className="object-cover rounded-full border"
-              />
+              {eventData?.country?.flag_url && (
+                <Image
+                  src={eventData.country.flag_url}
+                  alt={eventData.country.name}
+                  fill
+                  className="object-cover rounded-full"
+                />
+              )}
             </div>
             <span className="flex space-x-1 text-xs items-center font-semibold text-white">
-              <p>
-                <MapPin className="w-4 h-4 te-400" />
-              </p>
-              <p>{eventData?.country.name}</p>
-              <p>{eventData?.city}</p>
+              <MapPin className="w-4 h-4" />
+              <p>{eventData?.country?.name ?? "Unknown Country"}</p>
+              <p>{eventData?.city ?? "Unknown City"}</p>
             </span>
-            <Badge>{eventData?.event_type}</Badge>
+            <Badge>{eventData?.event_type ?? "Unknown Type"}</Badge>
           </div>
         </motion.div>
       </div>

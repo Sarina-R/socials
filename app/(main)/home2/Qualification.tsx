@@ -3,6 +3,7 @@
 import axios from "axios";
 import { API_URLS } from "@/app/api/url";
 import { useEffect, useState } from "react";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const Qualification = () => {
   const [text, setText] = useState<string>("");
@@ -23,17 +24,24 @@ const Qualification = () => {
     fetchData();
   }, []);
 
-  if (loading) {
-    return <p className="text-center text-lg font-semibold">Loading...</p>;
-  }
-
   return (
     <div className="mx-auto sm:p-4 p-0">
       <h1 className="text-3xl font-bold mb-4">Qualification</h1>
       <p className="text-lg font-semibold mb-2">
         Submission and qualification material.
       </p>
-      <div className="" dangerouslySetInnerHTML={{ __html: text }} />
+      {loading ? (
+        <>
+          <Skeleton className="h-4 w-full mt-2" />
+          <Skeleton className="h-4 w-5/6 mt-2" />
+          <Skeleton className="h-4 w-full mt-2" />
+          <Skeleton className="h-4 w-5/6 mt-2" />
+          <Skeleton className="h-4 w-full mt-2" />
+          <Skeleton className="h-4 w-5/6 mt-2" />
+        </>
+      ) : (
+        <div className="" dangerouslySetInnerHTML={{ __html: text }} />
+      )}
     </div>
   );
 };
