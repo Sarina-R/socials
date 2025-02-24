@@ -17,4 +17,5 @@ export const API_URLS = {
   INFO: "/api/home/info",
   LEAGUES: "/api/home/leagues",
   SCHEDULE: "/api/home/schedule",
+  QUALIFICATION: "/api/home/qualification",
 };

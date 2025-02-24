@@ -9,6 +9,10 @@ import Leagues from "../home/(homePageComponents)/Leagues";
 import { CalendarDays, ChevronDown, ChevronUp } from "lucide-react";
 import Image from "next/image";
 import { Card, CardTitle } from "@/components/ui/card";
+import Qualification from "./Qualification";
+import Schedule from "./Schedule";
+import Venue from "./Venue";
+import Travel from "./Travel";
 
 const faqs = [
   {
@@ -173,6 +177,10 @@ const Home2 = () => {
         </div>
       </div>
       <Leagues />
+      <Qualification />
+      <Schedule />
+      <Venue />
+      <Travel />
     </>
   );
 };
