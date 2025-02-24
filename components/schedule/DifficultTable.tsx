@@ -1,6 +1,4 @@
-"use client";
-
-import { format, parse, addMinutes, differenceInMinutes } from "date-fns";
+import { format, parse, addMinutes } from "date-fns";
 import {
   Tooltip,
   TooltipContent,
@@ -156,7 +154,21 @@ const DifficultTable = () => {
                               : "bg-neutral-50 dark:bg-neutral-800"
                           }`}
                         >
-                          {event ? event.title : ""}
+                          {event ? (
+                            <Tooltip>
+                              <TooltipTrigger className="cursor-pointer">
+                                {event.title}
+                              </TooltipTrigger>
+                              <TooltipContent className="bg-neutral-800 dark:bg-neutral-50 p-2 rounded-md">
+                                <p className="max-w-40">{event.description}</p>
+                                <p className="text-xs text-yellow-500">
+                                  {event.time_string}
+                                </p>
+                              </TooltipContent>
+                            </Tooltip>
+                          ) : (
+                            ""
+                          )}
                         </td>
                       );
                     })

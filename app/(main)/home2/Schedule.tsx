@@ -43,7 +43,7 @@ export interface Schedule {
 }
 
 const ScheduleComponent = () => {
-  const [view, setView] = useState<string>("timeline");
+  const [view, setView] = useState<string>("difficultTable");
   const [data, setData] = useState<Category>({});
   const [loading, setLoading] = useState<boolean>(true);
 
