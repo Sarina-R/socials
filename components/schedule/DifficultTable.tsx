@@ -1,4 +1,4 @@
-import { format, parse, addMinutes } from "date-fns";
+import { format, parse, addMinutes, differenceInMinutes } from "date-fns";
 import {
   Tooltip,
   TooltipContent,
@@ -11,7 +11,7 @@ import { Event, Schedule } from "@/app/(main)/home2/Schedule";
 
 const getRandomColor = (() => {
   const colors = [
-    "dark:bg-vioconst-400 bg-vioconst-200",
+    "dark:bg-violet-400 bg-violet-200",
     "dark:bg-emerald-400 bg-emerald-200",
     "dark:bg-blue-400 bg-blue-200",
     "dark:bg-green-400 bg-green-200",
@@ -21,15 +21,8 @@ const getRandomColor = (() => {
     "dark:bg-indigo-400 bg-indigo-200",
     "dark:bg-teal-400 bg-teal-200",
   ];
-  const usedColors = new Set();
-  return () => {
-    if (usedColors.size >= colors.length) usedColors.clear();
-    const availableColors = colors.filter((color) => !usedColors.has(color));
-    const chosenColor =
-      availableColors[Math.floor(Math.random() * availableColors.length)];
-    usedColors.add(chosenColor);
-    return chosenColor;
-  };
+  let index = 0;
+  return () => colors[index++ % colors.length];
 })();
 
 const DifficultTable = () => {
@@ -53,15 +46,11 @@ const DifficultTable = () => {
 
   if (loading)
     return (
-      <p className="text-center text-lg font-semibold text-neutral-900 dark:text-neutral-100">
-        Loading schedule...
-      </p>
+      <p className="text-center text-lg font-semibold">Loading schedule...</p>
     );
   if (!schedule)
     return (
-      <p className="text-center text-lg text-red-500 dark:text-red-400">
-        No data available.
-      </p>
+      <p className="text-center text-lg text-red-500">No data available.</p>
     );
 
   const categories = Object.keys(schedule.data);
@@ -81,9 +70,8 @@ const DifficultTable = () => {
   });
 
   const sortedDates = Array.from(uniqueDates).sort();
-
-  let minTime = "23:59";
-  let maxTime = "00:00";
+  let minTime = "23:59",
+    maxTime = "00:00";
   allEvents.forEach((event) => {
     if (!event.time_string) return;
     const times = event.time_string.split(" - ");
@@ -102,25 +90,37 @@ const DifficultTable = () => {
     }
     return slots;
   };
-
   const timeSlots = generateTimeSlots(minTime, maxTime);
 
   return (
-    <div className="overflow-x-auto text-neutral-900 dark:text-neutral-100">
-      <table className="-collapse w-full text-sm shadow-lg rounded-lg overflow-hidden">
-        <thead>
+    <div className="min-w-[40rem] overflow-x-auto text-neutral-900 dark:text-neutral-100">
+      <table className="w-full text-sm shadow-lg rounded-lg overflow-hidden">
+        <thead className="sticky top-0 bg-white dark:bg-neutral-900 z-10">
           <tr className="bg-neutral-300 dark:bg-neutral-800 text-black dark:text-white">
-            <th className="p-3">Date</th>
-            <th className="p-3">Time</th>
+            <th rowSpan={2} className="p-2">
+              Date
+            </th>
+            <th rowSpan={2} className="p-2">
+              Time
+            </th>
             {categories.map((category) => (
               <th
                 key={category}
                 colSpan={Object.keys(schedule.data[category]).length}
-                className="p-3"
+                className="p-2"
               >
                 {category}
               </th>
             ))}
+          </tr>
+          <tr className="bg-gray-200 dark:bg-gray-700">
+            {categories.map((category) =>
+              Object.keys(schedule.data[category]).map((league) => (
+                <th key={league} className="p-2">
+                  {league}
+                </th>
+              ))
+            )}
           </tr>
         </thead>
         <tbody>
@@ -129,32 +129,31 @@ const DifficultTable = () => {
               <tr className="bg-neutral-200 dark:bg-neutral-700">
                 <td
                   rowSpan={timeSlots.length + 1}
-                  className="p-3 border-b-2 border-white dark:border-black font-bold text-center"
+                  className="p-3 border-b-4 border-white dark:border-black font-bold text-center"
                 >
                   {format(new Date(date), "EEEE, MMM d")}
                 </td>
               </tr>
               {timeSlots.map((time) => (
-                <tr
-                  key={`${date}-${time}`}
-                  className="hover:bg-neutral-100 dark:hover:bg-neutral-800"
-                >
+                <tr key={`${date}-${time}`}>
                   <td className="p-3 text-center">{time}</td>
                   {categories.map((category) =>
                     Object.keys(schedule.data[category]).map((league) => {
                       const event = schedule.data[category][league].find(
-                        (e) => e.date === date && e.time_string?.includes(time)
+                        (e) =>
+                          e.date === date &&
+                          e.time_string?.split(" - ")[0] <= time &&
+                          e.time_string?.split(" - ")[1] > time
                       );
                       return (
                         <td
                           key={`${date}-${time}-${league}`}
-                          className={`p-3 text-center relative ${
-                            event
-                              ? eventColors.get(event.title)
-                              : "bg-neutral-50 dark:bg-neutral-800"
+                          className={`p-2 text-center ${
+                            event ? eventColors.get(event.title) : "bg-white"
                           }`}
                         >
-                          {event ? (
+                          {event &&
+                          event.time_string.split(" - ")[0] === time ? (
                             <Tooltip>
                               <TooltipTrigger className="cursor-pointer">
                                 {event.title}
