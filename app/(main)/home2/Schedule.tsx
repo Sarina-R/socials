@@ -16,6 +16,7 @@ import { format } from "date-fns";
 import axios from "axios";
 import { API_URLS } from "@/app/api/url";
 import DifficultTable from "@/components/schedule/DifficultTable";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 export interface Event {
   id: number;
@@ -28,14 +29,16 @@ export interface Event {
   title: string;
   time_string: string;
   description: string;
+  category: string;
+  league: string;
 }
 
 export interface League {
-  [key: string]: Event[];
+  [leagueName: string]: Event[];
 }
 
 export interface Category {
-  [key: string]: League;
+  [categoryName: string]: League;
 }
 
 export interface Schedule {
@@ -62,14 +65,11 @@ const ScheduleComponent = () => {
     fetchData();
   }, []);
 
-  const eventsByDate: Event[] = Object.values(data).reduce<Event[]>(
-    (acc, league) => {
-      Object.values(league).forEach((events) => {
-        acc.push(...events);
-      });
-      return acc;
-    },
-    []
+  const eventsByDate: Event[] = Object.entries(data).flatMap(
+    ([category, leagues]) =>
+      Object.entries(leagues).flatMap(([league, events]) =>
+        events.map((event) => ({ ...event, category, league }))
+      )
   );
 
   const eventsGroupedByDate = eventsByDate.reduce<Record<string, Event[]>>(
@@ -84,75 +84,91 @@ const ScheduleComponent = () => {
   if (loading) return <p className="text-center">Loading...</p>;
 
   return (
-    <div className="p-0 md:p-6 max-w-4xl mx-auto">
+    <div className="p-4 md:p-6 max-w-5xl mx-auto">
       <div className="flex justify-between mb-4">
         <h1 className="text-2xl font-bold">Event Schedule</h1>
         <div className="flex gap-2">
-          <Button onClick={() => setView("timeline")} variant="outline">
-            Timeline
-          </Button>
-          <Button onClick={() => setView("table")} variant="outline">
-            Table
-          </Button>
-          <Button onClick={() => setView("difficultTable")} variant="outline">
-            DifficultTable
-          </Button>
+          {["timeline", "table", "difficultTable"].map((v) => (
+            <Button
+              key={v}
+              onClick={() => setView(v)}
+              variant={view === v ? "default" : "outline"}
+            >
+              {v.charAt(0).toUpperCase() + v.slice(1)}
+            </Button>
+          ))}
         </div>
       </div>
 
       {view === "timeline" && (
-        <div className="space-y-8">
-          {Object.entries(eventsGroupedByDate).map(([date, events]) => (
-            <div key={date}>
-              <h2 className="text-xl font-semibold mb-2">
-                {format(new Date(date), "PPP")}
-              </h2>
-              <div className="space-y-4">
-                {events.map((event, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.3, delay: index * 0.1 }}
-                  >
-                    <Card>
-                      <CardContent className="p-4">
-                        <h3 className="text-lg font-semibold">{event.title}</h3>
-                        <p className="text-sm text-gray-500">
-                          {event.time_string}
-                        </p>
-                        <p className="mt-2 text-sm">{event.description}</p>
-                      </CardContent>
-                    </Card>
-                  </motion.div>
-                ))}
+        <ScrollArea>
+          <div className="space-y-8 max-h-[80vh] ">
+            {Object.entries(eventsGroupedByDate).map(([date, events]) => (
+              <div key={date}>
+                <h2 className="text-xl font-semibold mb-2">
+                  {format(new Date(date), "PPP")}
+                </h2>
+                <div className="space-y-4">
+                  {events.map((event, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.3, delay: index * 0.1 }}
+                    >
+                      <Card>
+                        <CardContent className="p-4">
+                          <h3 className="text-lg font-semibold">
+                            {event.title}
+                          </h3>
+                          <p className="text-sm text-gray-500">
+                            {event.time_string}
+                          </p>
+                          <p className="mt-2 text-sm">{event.description}</p>
+                          <p className="text-xs text-gray-400 mt-2">
+                            <strong>Category:</strong> {event.category} |{" "}
+                            <strong>League:</strong> {event.league}
+                          </p>
+                        </CardContent>
+                      </Card>
+                    </motion.div>
+                  ))}
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        </ScrollArea>
       )}
 
       {view === "table" && (
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead>Date</TableHead>
-              <TableHead>Time</TableHead>
-              <TableHead>Title</TableHead>
-              <TableHead>Description</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {eventsByDate.map((event, index) => (
-              <TableRow key={index}>
-                <TableCell>{format(new Date(event.date), "PPP")}</TableCell>
-                <TableCell>{event.time_string}</TableCell>
-                <TableCell>{event.title}</TableCell>
-                <TableCell>{event.description}</TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
+        <ScrollArea>
+          <div className="overflow-x-auto max-h-[80vh]">
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead className="min-w-20">Date</TableHead>
+                  <TableHead className="min-w-20">Time</TableHead>
+                  <TableHead className="min-w-20">Title</TableHead>
+                  <TableHead className="min-w-40">Description</TableHead>
+                  <TableHead className="min-w-20">Category</TableHead>
+                  <TableHead className="min-w-20">League</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {eventsByDate.map((event, index) => (
+                  <TableRow key={index}>
+                    <TableCell>{format(new Date(event.date), "PPP")}</TableCell>
+                    <TableCell>{event.time_string}</TableCell>
+                    <TableCell>{event.title}</TableCell>
+                    <TableCell>{event.description}</TableCell>
+                    <TableCell>{event.category}</TableCell>
+                    <TableCell>{event.league}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </div>
+        </ScrollArea>
       )}
 
       {view === "difficultTable" && <DifficultTable />}
