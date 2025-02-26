@@ -12,15 +12,15 @@ import { ScrollArea, ScrollBar } from "../ui/scroll-area";
 
 const getRandomColor = (() => {
   const colors = [
-    "dark:bg-violet-400 bg-violet-200",
-    "dark:bg-emerald-400 bg-emerald-200",
-    "dark:bg-blue-400 bg-blue-200",
-    "dark:bg-green-400 bg-green-200",
-    "dark:bg-yellow-400 bg-yellow-200",
-    "dark:bg-purple-400 bg-purple-200",
-    "dark:bg-pink-400 bg-pink-200",
-    "dark:bg-indigo-400 bg-indigo-200",
-    "dark:bg-teal-400 bg-teal-200",
+    "dark:bg-violet-600 bg-violet-200",
+    "dark:bg-emerald-600 bg-emerald-200",
+    "dark:bg-blue-600 bg-blue-200",
+    "dark:bg-green-600 bg-green-200",
+    "dark:bg-yellow-600 bg-yellow-200",
+    "dark:bg-purple-600 bg-purple-200",
+    "dark:bg-pink-600 bg-pink-200",
+    "dark:bg-indigo-600 bg-indigo-200",
+    "dark:bg-teal-600 bg-teal-200",
   ];
   let index = 0;
   return () => colors[index++ % colors.length];
@@ -116,7 +116,7 @@ const DifficultTable = () => {
                   </th>
                 ))}
               </tr>
-              <tr className="bg-gray-200 dark:bg-gray-700">
+              <tr className="bg-neutral-200 dark:bg-neutral-700">
                 {categories.map((category) =>
                   Object.keys(schedule.data[category]).map((league) => (
                     <th key={league} className="p-2">
@@ -154,9 +154,7 @@ const DifficultTable = () => {
                             <td
                               key={`${date}-${time}-${league}`}
                               className={`p-2 text-center ${
-                                event
-                                  ? eventColors.get(event.title)
-                                  : "bg-white"
+                                event ? eventColors.get(event.title) : ""
                               }`}
                             >
                               {event &&
