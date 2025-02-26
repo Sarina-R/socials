@@ -1,4 +1,4 @@
-import { format, parse, addMinutes, differenceInMinutes } from "date-fns";
+import { format, parse, addMinutes } from "date-fns";
 import {
   Tooltip,
   TooltipContent,
@@ -8,6 +8,7 @@ import React, { useState, useEffect } from "react";
 import { API_URLS } from "@/app/api/url";
 import axios from "axios";
 import { Event, Schedule } from "@/app/(main)/home2/Schedule";
+import { ScrollArea, ScrollBar } from "../ui/scroll-area";
 
 const getRandomColor = (() => {
   const colors = [
@@ -93,92 +94,104 @@ const DifficultTable = () => {
   const timeSlots = generateTimeSlots(minTime, maxTime);
 
   return (
-    <div className="min-w-[40rem] overflow-x-auto text-neutral-900 dark:text-neutral-100">
-      <table className="w-full text-sm shadow-lg rounded-lg overflow-hidden">
-        <thead className="sticky top-0 bg-white dark:bg-neutral-900 z-10">
-          <tr className="bg-neutral-300 dark:bg-neutral-800 text-black dark:text-white">
-            <th rowSpan={2} className="p-2">
-              Date
-            </th>
-            <th rowSpan={2} className="p-2">
-              Time
-            </th>
-            {categories.map((category) => (
-              <th
-                key={category}
-                colSpan={Object.keys(schedule.data[category]).length}
-                className="p-2"
-              >
-                {category}
-              </th>
-            ))}
-          </tr>
-          <tr className="bg-gray-200 dark:bg-gray-700">
-            {categories.map((category) =>
-              Object.keys(schedule.data[category]).map((league) => (
-                <th key={league} className="p-2">
-                  {league}
+    <ScrollArea className="w-full max-h-[80vh] rounded-lg">
+      <ScrollArea className="w-full">
+        <div className="min-w-[40rem] max-h-[80vh] text-neutral-900 dark:text-neutral-100">
+          <table className="w-full text-sm shadow-lg">
+            <thead className="sticky top-0 bg-white dark:bg-neutral-900 z-10">
+              <tr className="bg-neutral-300 dark:bg-neutral-800 text-black dark:text-white">
+                <th rowSpan={2} className="p-2">
+                  Date
                 </th>
-              ))
-            )}
-          </tr>
-        </thead>
-        <tbody>
-          {sortedDates.map((date) => (
-            <React.Fragment key={date}>
-              <tr className="bg-neutral-200 dark:bg-neutral-700">
-                <td
-                  rowSpan={timeSlots.length + 1}
-                  className="p-3 border-b-4 border-white dark:border-black font-bold text-center"
-                >
-                  {format(new Date(date), "EEEE, MMM d")}
-                </td>
+                <th rowSpan={2} className="p-2">
+                  Time
+                </th>
+                {categories.map((category) => (
+                  <th
+                    key={category}
+                    colSpan={Object.keys(schedule.data[category]).length}
+                    className="p-2"
+                  >
+                    {category}
+                  </th>
+                ))}
               </tr>
-              {timeSlots.map((time) => (
-                <tr key={`${date}-${time}`}>
-                  <td className="p-3 text-center">{time}</td>
-                  {categories.map((category) =>
-                    Object.keys(schedule.data[category]).map((league) => {
-                      const event = schedule.data[category][league].find(
-                        (e) =>
-                          e.date === date &&
-                          e.time_string?.split(" - ")[0] <= time &&
-                          e.time_string?.split(" - ")[1] > time
-                      );
-                      return (
-                        <td
-                          key={`${date}-${time}-${league}`}
-                          className={`p-2 text-center ${
-                            event ? eventColors.get(event.title) : "bg-white"
-                          }`}
-                        >
-                          {event &&
-                          event.time_string.split(" - ")[0] === time ? (
-                            <Tooltip>
-                              <TooltipTrigger className="cursor-pointer">
-                                {event.title}
-                              </TooltipTrigger>
-                              <TooltipContent className="bg-neutral-800 dark:bg-neutral-50 p-2 rounded-md">
-                                <p className="max-w-40">{event.description}</p>
-                                <p className="text-xs text-yellow-500">
-                                  {event.time_string}
-                                </p>
-                              </TooltipContent>
-                            </Tooltip>
-                          ) : (
-                            ""
-                          )}
-                        </td>
-                      );
-                    })
-                  )}
-                </tr>
+              <tr className="bg-gray-200 dark:bg-gray-700">
+                {categories.map((category) =>
+                  Object.keys(schedule.data[category]).map((league) => (
+                    <th key={league} className="p-2">
+                      {league}
+                    </th>
+                  ))
+                )}
+              </tr>
+            </thead>
+            <tbody>
+              {sortedDates.map((date) => (
+                <React.Fragment key={date}>
+                  <tr className="bg-neutral-200 dark:bg-neutral-700">
+                    <td
+                      rowSpan={timeSlots.length + 1}
+                      className="p-3 border-b-4 border-white dark:border-black font-bold text-center"
+                    >
+                      {format(new Date(date), "EEEE, MMM d")}
+                    </td>
+                  </tr>
+                  {timeSlots.map((time) => (
+                    <tr key={`${date}-${time}`}>
+                      <td className="px-3 pb-3 border-t border-r text-center">
+                        {time}
+                      </td>
+                      {categories.map((category) =>
+                        Object.keys(schedule.data[category]).map((league) => {
+                          const event = schedule.data[category][league].find(
+                            (e) =>
+                              e.date === date &&
+                              e.time_string?.split(" - ")[0] <= time &&
+                              e.time_string?.split(" - ")[1] > time
+                          );
+                          return (
+                            <td
+                              key={`${date}-${time}-${league}`}
+                              className={`p-2 text-center ${
+                                event
+                                  ? eventColors.get(event.title)
+                                  : "bg-white"
+                              }`}
+                            >
+                              {event &&
+                              event.time_string.split(" - ")[0] === time ? (
+                                <Tooltip>
+                                  <TooltipTrigger className="cursor-pointer">
+                                    {event.title}
+                                  </TooltipTrigger>
+                                  <TooltipContent className="bg-neutral-800 dark:bg-neutral-50 p-2 rounded-md">
+                                    <p className="max-w-40">
+                                      {event.description}
+                                    </p>
+                                    <p className="text-xs text-yellow-500">
+                                      {event.time_string}
+                                    </p>
+                                  </TooltipContent>
+                                </Tooltip>
+                              ) : (
+                                ""
+                              )}
+                            </td>
+                          );
+                        })
+                      )}
+                    </tr>
+                  ))}
+                </React.Fragment>
               ))}
-            </React.Fragment>
-          ))}
-        </tbody>
-      </table>
-    </div>
+            </tbody>
+          </table>
+        </div>
+        <ScrollBar orientation="vertical" />
+      </ScrollArea>
+      <ScrollBar orientation="horizontal" />
+    </ScrollArea>
   );
 };
 

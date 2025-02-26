@@ -84,7 +84,7 @@ const ScheduleComponent = () => {
   if (loading) return <p className="text-center">Loading...</p>;
 
   return (
-    <div className="p-6 max-w-4xl mx-auto">
+    <div className="p-0 md:p-6 max-w-4xl mx-auto">
       <div className="flex justify-between mb-4">
         <h1 className="text-2xl font-bold">Event Schedule</h1>
         <div className="flex gap-2">
