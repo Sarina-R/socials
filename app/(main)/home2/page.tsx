@@ -11,7 +11,6 @@ import Image from "next/image";
 import { Card, CardTitle } from "@/components/ui/card";
 import Qualification from "./Qualification";
 import Schedule from "./Schedule";
-import Travel from "./Travel";
 import { Skeleton } from "@/components/ui/skeleton";
 import RegistrationTable from "./RegistrationTable";
 
