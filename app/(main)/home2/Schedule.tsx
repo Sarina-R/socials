@@ -84,9 +84,9 @@ const ScheduleComponent = () => {
   if (loading) return <p className="text-center">Loading...</p>;
 
   return (
-    <div className="p-4 md:p-6 max-w-5xl mx-auto">
-      <div className="flex justify-between mb-4">
-        <h1 className="text-2xl font-bold">Event Schedule</h1>
+    <div className="p-0 md:p-6 max-w-5xl mx-auto">
+      <div className="md:flex pb-2 justify-between mb-4">
+        <h1 className="text-2xl font-bold pb-2">Event Schedule</h1>
         <div className="flex gap-2">
           {["timeline", "table", "difficultTable"].map((v) => (
             <Button

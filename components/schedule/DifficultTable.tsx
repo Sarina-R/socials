@@ -145,7 +145,7 @@ const DifficultTable = () => {
                   <tr className="">
                     <td
                       rowSpan={timeSlots.length + 1}
-                      className="bg-neutral-200 dark:bg-neutral-700 sticky z-9 left-0 p-3 border-b-4 border-white dark:border-black font-bold text-center"
+                      className="bg-neutral-200 dark:bg-neutral-700 sticky z-9 left-0 p-3 border-b-4 font-bold text-center"
                     >
                       {format(new Date(date), "EEEE, MMM d")}
                     </td>
