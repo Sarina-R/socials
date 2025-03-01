@@ -103,7 +103,7 @@ const schedule = {
           event: "b2f1f653-4819-4ab0-98ff-2790d895b078",
           date: "2024-05-19",
           title: "Competition Rounds",
-          time_string: "09:00 - 12:15",
+          time_string: "09:00 - 12:00",
           description: "Competition rounds commence according to the schedule.",
         },
         {
@@ -115,7 +115,7 @@ const schedule = {
           event: "b2f1f653-4819-4ab0-98ff-2790d895b078",
           date: "2024-05-19",
           title: "Lunch time",
-          time_string: "12:15 - 13:00",
+          time_string: "12:00 - 13:00",
           description:
             "Teams can eat packed lunches at desks if items are compact, cleanly packed, and no large backpacks or excessive cleaning supplies. Clean up promptly afterward. Option to dine at nearby restaurants.",
         },
@@ -154,7 +154,7 @@ const schedule = {
           event: "b2f1f653-4819-4ab0-98ff-2790d895b078",
           date: "2024-05-19",
           title: "Close door",
-          time_string: "18:30",
+          time_string: "18:30 - 18:30",
           description:
             "Event concludes, and all participants must leave the university premises by this time.",
         },
@@ -259,7 +259,7 @@ const schedule = {
           event: "b2f1f653-4819-4ab0-98ff-2790d895b078",
           date: "2024-05-19",
           title: "Competition Rounds",
-          time_string: "09:00 - 12:15",
+          time_string: "09:00 - 12:00",
           description: "Competition rounds commence according to the schedule.",
         },
         {
@@ -271,7 +271,7 @@ const schedule = {
           event: "b2f1f653-4819-4ab0-98ff-2790d895b078",
           date: "2024-05-19",
           title: "Lunch time",
-          time_string: "12:15 - 13:00",
+          time_string: "12:00 - 13:00",
           description:
             "Teams can eat packed lunches at desks if items are compact, cleanly packed, and no large backpacks or excessive cleaning supplies. Clean up promptly afterward. Option to dine at nearby restaurants.",
         },
@@ -310,7 +310,7 @@ const schedule = {
           event: "b2f1f653-4819-4ab0-98ff-2790d895b078",
           date: "2024-05-19",
           title: "Close door",
-          time_string: "18:30",
+          time_string: "18:30 - 18:30",
           description:
             "Event concludes, and all participants must leave the university premises by this time.",
         },
@@ -417,7 +417,7 @@ const schedule = {
           event: "b2f1f653-4819-4ab0-98ff-2790d895b078",
           date: "2024-05-19",
           title: "Competition Rounds",
-          time_string: "09:00 - 12:15",
+          time_string: "09:00 - 12:00",
           description: "Competition rounds commence according to the schedule.",
         },
         {
@@ -429,7 +429,7 @@ const schedule = {
           event: "b2f1f653-4819-4ab0-98ff-2790d895b078",
           date: "2024-05-19",
           title: "Lunch time",
-          time_string: "12:15 - 13:00",
+          time_string: "12:00 - 13:00",
           description:
             "Teams can eat packed lunches at desks if items are compact, cleanly packed, and no large backpacks or excessive cleaning supplies. Clean up promptly afterward. Option to dine at nearby restaurants.",
         },
@@ -468,7 +468,7 @@ const schedule = {
           event: "b2f1f653-4819-4ab0-98ff-2790d895b078",
           date: "2024-05-19",
           title: "Close door",
-          time_string: "18:30",
+          time_string: "18:30 - 18:30",
           description:
             "Event concludes, and all participants must leave the university premises by this time.",
         },
@@ -575,7 +575,7 @@ const schedule = {
           event: "b2f1f653-4819-4ab0-98ff-2790d895b078",
           date: "2024-05-19",
           title: "Competition Rounds",
-          time_string: "09:00 - 12:15",
+          time_string: "09:00 - 12:00",
           description: "Competition rounds commence according to the schedule.",
         },
         {
@@ -587,7 +587,7 @@ const schedule = {
           event: "b2f1f653-4819-4ab0-98ff-2790d895b078",
           date: "2024-05-19",
           title: "Lunch time",
-          time_string: "12:15 - 13:00",
+          time_string: "12:00 - 13:00",
           description:
             "Teams can eat packed lunches at desks if items are compact, cleanly packed, and no large backpacks or excessive cleaning supplies. Clean up promptly afterward. Option to dine at nearby restaurants.",
         },
@@ -626,7 +626,7 @@ const schedule = {
           event: "b2f1f653-4819-4ab0-98ff-2790d895b078",
           date: "2024-05-19",
           title: "Close door",
-          time_string: "18:30",
+          time_string: "18:30 - 18:30",
           description:
             "Event concludes, and all participants must leave the university premises by this time.",
         },

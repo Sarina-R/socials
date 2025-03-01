@@ -91,30 +91,59 @@ body {
   scrollbar-width: none !important  ;
 }
 
-tr.sticky {
-  position: sticky;
-  // top: 0;
-  z-index: 1;
-  background: rgba(100, 100, 100, 1);
-  box-shadow: 0 0 6px rgba(0, 0, 0, 0.25);
-}
+// tr.sticky {
+//   position: sticky;
+//   // top: 0;
+//   z-index: 1;
+//   background: rgba(100, 100, 100, 1);
+//   box-shadow: 0 0 6px rgba(0, 0, 0, 0.25);
+// }
 
 /*
 STICKY COLUMN
 Avoid undesirable overlapping shadows by creating a faux shadow on the ::after psudo-element instead of using the css box-shadow property.
 */
 
-th.sticky,
-td.sticky {
-  position: sticky;
-  left: 0;
+// th.sticky,
+// td.sticky {
+//   position: sticky;
+//   left: 0;
+// }
+
+// table tbody th {
+//   position: relative;
+// }
+
+// table tbody th {
+//   position: sticky;
+//   left: 0;
+// }
+
+/* Target all scrollbars globally for Webkit browsers (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+  width: 8px; /* Slim scrollbar width */
+  height: 8px; /* For horizontal scrollbars, if any */
 }
 
-table tbody th {
-  position: relative;
+/* Thumb (the movable part) - hidden by default */
+::-webkit-scrollbar-thumb {
+  background: transparent; /* Invisible when not scrolling */
+  border-radius: 4px;
 }
 
-table tbody th {
-  position: sticky;
-  left: 0;
+/* Show thumb when parent element is hovered or scrolled */
+*:hover::-webkit-scrollbar-thumb,
+*:active::-webkit-scrollbar-thumb {
+  background: #c6c6c6;
+}
+.dark *:hover::-webkit-scrollbar-thumb,
+.dark *:active::-webkit-scrollbar-thumb {
+  background: #656565;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #b4b4b4;
+}
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #7c7c7c;
 }
