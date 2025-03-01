@@ -4,10 +4,12 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import React, { useState, useEffect } from "react";
-import { API_URLS } from "@/app/api/url";
-import { Event, Schedule } from "@/app/(main)/home2/Schedule";
-import axios from "axios";
+import React from "react";
+import { Schedule, Event } from "@/app/(main)/home2/Schedule";
+
+interface Props {
+  schedule: Schedule;
+}
 
 const getRandomColor = (() => {
   const colors = [
@@ -32,33 +34,8 @@ const getRandomColor = (() => {
   return () => colors[index++ % colors.length];
 })();
 
-const DifficultTable = () => {
-  const [schedule, setSchedule] = useState<Schedule | null>(null);
-  const [loading, setLoading] = useState(true);
+const DifficultTable: React.FC<Props> = ({ schedule }) => {
   const eventColors = new Map<string, string>();
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(API_URLS.SCHEDULE);
-        setSchedule(response.data);
-      } catch (error) {
-        console.error("Error fetching schedule:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchData();
-  }, []);
-
-  if (loading)
-    return (
-      <p className="text-center text-lg font-semibold">Loading schedule...</p>
-    );
-  if (!schedule)
-    return (
-      <p className="text-center text-lg text-red-500">No data available.</p>
-    );
 
   const categories = Object.keys(schedule.data);
   const uniqueDates = new Set<string>();
@@ -80,6 +57,7 @@ const DifficultTable = () => {
   const sortedDates = Array.from(uniqueDates).sort();
   let minTime = "23:59",
     maxTime = "00:00";
+
   allEvents.forEach((event) => {
     if (!event.time_string) return;
     const times = event.time_string.split(" - ");
@@ -142,7 +120,7 @@ const DifficultTable = () => {
             <tbody>
               {sortedDates.map((date) => (
                 <React.Fragment key={date}>
-                  <tr className="">
+                  <tr>
                     <td
                       rowSpan={timeSlots.length + 1}
                       className="bg-neutral-200 dark:bg-neutral-700 sticky z-9 left-0 p-3 border-b-4 font-bold text-center"
