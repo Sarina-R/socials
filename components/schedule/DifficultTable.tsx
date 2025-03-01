@@ -94,13 +94,16 @@ const DifficultTable = () => {
   const timeSlots = generateTimeSlots(minTime, maxTime);
 
   return (
-    <ScrollArea className="w-full max-h-[80vh] rounded-lg">
-      <ScrollArea className="w-full">
-        <div className="min-w-[40rem] max-h-[80vh] text-neutral-900 dark:text-neutral-100">
-          <table className="w-full text-sm shadow-lg">
+    <div className="rounded-lg">
+      <div className="w-full overflow-auto rounded-lg">
+        <div className="min-w-full max-h-[80vh] text-neutral-900 dark:text-neutral-100">
+          <table className="w-full text-sm shadow-lg max-w-[100vw]">
             <thead className="sticky top-0 bg-white dark:bg-neutral-900 z-10">
               <tr className="bg-neutral-300 dark:bg-neutral-800 text-black dark:text-white">
-                <th rowSpan={2} className="p-2">
+                <th
+                  rowSpan={2}
+                  className="p-2 sticky left-0 bg-neutral-300 dark:bg-neutral-800 text-black dark:text-white z-20"
+                >
                   Date
                 </th>
                 <th rowSpan={2} className="p-2">
@@ -129,10 +132,10 @@ const DifficultTable = () => {
             <tbody>
               {sortedDates.map((date) => (
                 <React.Fragment key={date}>
-                  <tr className="bg-neutral-200 dark:bg-neutral-700">
+                  <tr className="">
                     <td
                       rowSpan={timeSlots.length + 1}
-                      className="p-3 border-b-4 border-white dark:border-black font-bold text-center"
+                      className=" bg-neutral-200 dark:bg-neutral-700  sticky z-9 left-0 p-3 border-b-4 border-white dark:border-black font-bold text-center"
                     >
                       {format(new Date(date), "EEEE, MMM d")}
                     </td>
@@ -186,10 +189,10 @@ const DifficultTable = () => {
             </tbody>
           </table>
         </div>
-        <ScrollBar orientation="vertical" />
-      </ScrollArea>
-      <ScrollBar orientation="horizontal" />
-    </ScrollArea>
+        {/* <ScrollBar orientation="vertical" /> */}
+      </div>
+      {/* <ScrollBar orientation="horizontal" /> */}
+    </div>
   );
 };
 

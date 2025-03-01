@@ -90,3 +90,31 @@ body {
 #instagram-frame ~ html {
   scrollbar-width: none !important  ;
 }
+
+tr.sticky {
+  position: sticky;
+  // top: 0;
+  z-index: 1;
+  background: rgba(100, 100, 100, 1);
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.25);
+}
+
+/*
+STICKY COLUMN
+Avoid undesirable overlapping shadows by creating a faux shadow on the ::after psudo-element instead of using the css box-shadow property.
+*/
+
+th.sticky,
+td.sticky {
+  position: sticky;
+  left: 0;
+}
+
+table tbody th {
+  position: relative;
+}
+
+table tbody th {
+  position: sticky;
+  left: 0;
+}
