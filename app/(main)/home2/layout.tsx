@@ -26,6 +26,17 @@ export interface Organizers {
   logo: string;
 }
 
+const navigationLinks = [
+  { label: "About Event", href: "#about-event" },
+  { label: "Important Dates", href: "#important-dates" },
+  { label: "FAQ", href: "#faq" },
+  { label: "Leagues", href: "#leagues" },
+  { label: "Qualifications", href: "#qualifications" },
+  { label: "Guidelines", href: "#guidelines" },
+  { label: "Travel", href: "#travel" },
+  { label: "Schedule", href: "#schedule" },
+];
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -123,6 +134,35 @@ export default function RootLayout({
       </div>
 
       <div className="h-[10vh]"></div>
+
+      <div className="sticky top-0 left-0 right-0 z-20 w-full overflow-scroll">
+        <motion.div
+          className="min-w-max overflow-scroll bg-neutral-100/80 dark:bg-neutral-900/80 backdrop-blur-md border-b border-neutral-300 dark:border-neutral-700 shadow-lg"
+          initial={{ y: -100 }}
+          animate={{ y: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+        >
+          <nav className="flex flex-wrap justify-center gap-4 md:gap-6 p-4 md:p-6 mx-auto">
+            {navigationLinks.map((link, index) => (
+              <motion.a
+                key={index}
+                href={link.href}
+                className="text-xs md:text-sm font-semibold text-neutral-800 dark:text-neutral-200 hover:text-black dark:hover:text-white uppercase tracking-wider transform rotate-2 hover:rotate-0 transition-all duration-300"
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1, duration: 0.4 }}
+                whileHover={{
+                  scale: 1.1,
+                  rotate: 0,
+                }}
+                whileTap={{ scale: 0.95 }}
+              >
+                {link.label}
+              </motion.a>
+            ))}
+          </nav>
+        </motion.div>
+      </div>
       {children}
     </div>
   );

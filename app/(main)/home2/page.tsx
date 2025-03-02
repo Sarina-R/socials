@@ -35,17 +35,6 @@ const faqs = [
   },
 ];
 
-const navigationLinks = [
-  { label: "About Event", href: "#about-event" },
-  { label: "Important Dates", href: "#important-dates" },
-  { label: "FAQ", href: "#faq" },
-  { label: "Leagues", href: "#leagues" },
-  { label: "Qualifications", href: "#qualifications" },
-  { label: "Guidelines", href: "#guidelines" },
-  { label: "Travel", href: "#travel" },
-  { label: "Schedule", href: "#schedule" },
-];
-
 const Home2 = () => {
   const [loading, setLoading] = useState(true);
   const [eventData, setEventData] = useState<EventData>();
@@ -92,34 +81,6 @@ const Home2 = () => {
         <div className="w-full h-full bg-[url('/grid-pattern.png')] bg-[size:60px_60px] opacity-10 animate-[float_20s_infinite_ease-in-out]" />
       </div>
 
-      <div className="overflow-scroll">
-        <motion.div
-          className="sticky top-0 left-0 right-0 z-20 min-w-max overflow-scroll bg-neutral-100/80 dark:bg-neutral-900/80 backdrop-blur-md border-b border-neutral-300 dark:border-neutral-700 shadow-lg"
-          initial={{ y: -100 }}
-          animate={{ y: 0 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-        >
-          <nav className="flex flex-wrap justify-center gap-4 md:gap-6 p-4 md:p-6 mx-auto">
-            {navigationLinks.map((link, index) => (
-              <motion.a
-                key={index}
-                href={link.href}
-                className="text-xs md:text-sm font-semibold text-neutral-800 dark:text-neutral-200 hover:text-black dark:hover:text-white uppercase tracking-wider transform rotate-2 hover:rotate-0 transition-all duration-300"
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1, duration: 0.4 }}
-                whileHover={{
-                  scale: 1.1,
-                  rotate: 0,
-                }}
-                whileTap={{ scale: 0.95 }}
-              >
-                {link.label}
-              </motion.a>
-            ))}
-          </nav>
-        </motion.div>
-      </div>
       {loading ? (
         <div className="pt-16 pl-4 xl:pl-8 relative z-10 flex flex-wrap gap-6 xl:gap-8">
           <motion.div
