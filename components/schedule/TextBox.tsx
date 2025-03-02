@@ -6,7 +6,7 @@ interface Props {
 }
 const TextBox = ({ img, text, title, html }: Props) => {
   return (
-    <div className="relative overflow-hidden rounded-3xl p-2 md:p-6 perspective-1000">
+    <div className="relative overflow-hidden perspective-1000">
       <div className="absolute inset-0 bg-[url('/noise.png')] opacity-10 mix-blend-overlay" />
       <h2
         className="text-4xl font-extrabold mb-6"
@@ -25,11 +25,11 @@ const TextBox = ({ img, text, title, html }: Props) => {
 
       {html ? (
         <div
-          className="text-neutral-600 dark:text-neutral-300 leading-relaxed transform hover:-rotate-1 transition-transform duration-300"
+          className="text-neutral-600 dark:text-neutral-300 leading-relaxed"
           dangerouslySetInnerHTML={{ __html: text }}
         />
       ) : (
-        <p className="text-neutral-600 dark:text-neutral-300 leading-relaxed transform hover:-rotate-1 transition-transform duration-300">
+        <p className="text-neutral-600 dark:text-neutral-300 leading-relaxed">
           {text}
         </p>
       )}

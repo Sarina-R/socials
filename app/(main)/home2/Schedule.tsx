@@ -122,9 +122,9 @@ const ScheduleComponent = () => {
     );
 
   return (
-    <div className="p-0 md:p-6 max-w-5xl mx-auto">
+    <div className="p-0 md:p-6 max-w-5xl mx-auto space-y-4">
       <div className="md:flex pb-4 justify-between items-center">
-        <h1 className="text-3xl font-bold">Event Schedule</h1>
+        <h1 className="text-3xl mb-4 font-bold">Event Schedule</h1>
         <div className="flex gap-2">
           {["timeline", "table", "difficultTable"].map((v) => (
             <Button
