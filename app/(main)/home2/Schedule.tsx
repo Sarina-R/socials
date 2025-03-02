@@ -122,7 +122,7 @@ const ScheduleComponent = () => {
     );
 
   return (
-    <div className="p-4 md:p-6 max-w-6xl mx-auto">
+    <div className="p-0 md:p-6 max-w-5xl mx-auto">
       <div className="md:flex pb-4 justify-between items-center">
         <h1 className="text-3xl font-bold">Event Schedule</h1>
         <div className="flex gap-2">
@@ -137,7 +137,7 @@ const ScheduleComponent = () => {
           ))}
         </div>
       </div>
-      <div className="grid grid-cols-1 mb-4 md:grid-cols-4 gap-4 bg-neutral-50 dark:bg-neutral-900 p-4 rounded-xl">
+      <div className="grid grid-cols-1 mb-4 lg:grid-cols-4 gap-4 bg-neutral-50 dark:bg-neutral-900 p-4 rounded-xl">
         <Input
           type="date"
           value={selectedDate}
@@ -172,8 +172,8 @@ const ScheduleComponent = () => {
           </SelectContent>
         </Select>
 
-        <div className="flex items-center justify-between p-2 bg-white dark:bg-neutral-800 rounded-md shadow-sm">
-          <span className="text-sm">Today`&apos;`s Events</span>
+        <div className="flex items-center justify-between p-2 rounded-md shadow-sm">
+          <span className="text-sm">Today&apos;s Events</span>
           <Switch checked={showToday} onCheckedChange={setShowToday} />
         </div>
       </div>
@@ -230,35 +230,39 @@ const ScheduleComponent = () => {
           </div>
         </ScrollArea>
       )}
+
       {view === "table" && (
-        <ScrollArea>
-          <div className="overflow-x-auto max-h-[80vh]">
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Category</TableHead>
-                  <TableHead>League</TableHead>
-                  <TableHead>Date</TableHead>
-                  <TableHead>Time</TableHead>
-                  <TableHead>Title</TableHead>
-                  <TableHead>Description</TableHead>
+        <motion.div
+          className="overflow-auto max-h-[80vh] w-full"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+        >
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead className="min-w-20">Category</TableHead>
+                <TableHead className="min-w-28">League</TableHead>
+                <TableHead className="min-w-32">Date</TableHead>
+                <TableHead className="min-w-32">Time</TableHead>
+                <TableHead className="min-w-20">Title</TableHead>
+                <TableHead className="min-w-52">Description</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {filteredEvents.map((event, index) => (
+                <TableRow key={index}>
+                  <TableCell>{event.category}</TableCell>
+                  <TableCell>{event.league}</TableCell>
+                  <TableCell>{format(new Date(event.date), "PPP")}</TableCell>
+                  <TableCell>{event.time_string}</TableCell>
+                  <TableCell>{event.title}</TableCell>
+                  <TableCell>{event.description}</TableCell>
                 </TableRow>
-              </TableHeader>
-              <TableBody>
-                {filteredEvents.map((event, index) => (
-                  <TableRow key={index}>
-                    <TableCell>{event.category}</TableCell>
-                    <TableCell>{event.league}</TableCell>
-                    <TableCell>{format(parseISO(event.date), "PPP")}</TableCell>
-                    <TableCell>{event.time_string}</TableCell>
-                    <TableCell>{event.title}</TableCell>
-                    <TableCell>{event.description}</TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </div>
-        </ScrollArea>
+              ))}
+            </TableBody>
+          </Table>
+        </motion.div>
       )}
       {view === "difficultTable" && <DifficultTable events={groupedEvents} />}
     </div>

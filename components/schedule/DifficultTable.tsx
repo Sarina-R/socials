@@ -6,6 +6,7 @@ import {
 } from "@/components/ui/tooltip";
 import React from "react";
 import { Event } from "@/app/(main)/home2/Schedule";
+import { motion } from "framer-motion";
 
 interface Props {
   events: Record<string, Record<string, Event[]>>;
@@ -147,7 +148,7 @@ const DifficultTable: React.FC<Props> = ({ events }) => {
                           });
 
                           return (
-                            <td
+                            <motion.td
                               key={`${date}-${time}-${league}`}
                               className={`p-2 text-center text-black ${
                                 event
@@ -156,6 +157,9 @@ const DifficultTable: React.FC<Props> = ({ events }) => {
                                     )
                                   : ""
                               }`}
+                              initial={{ opacity: 0, y: 20 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              transition={{ duration: 0.6, ease: "easeOut" }}
                             >
                               {event &&
                               event.time_string.split(" - ")[0] === time ? (
@@ -173,7 +177,7 @@ const DifficultTable: React.FC<Props> = ({ events }) => {
                                   </TooltipContent>
                                 </Tooltip>
                               ) : null}
-                            </td>
+                            </motion.td>
                           );
                         })
                       )}
