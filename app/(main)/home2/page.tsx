@@ -6,13 +6,11 @@ import { motion } from "framer-motion";
 import axios from "axios";
 import { EventData } from "./layout";
 import Leagues from "../home/(homePageComponents)/Leagues";
-import { CalendarDays, ChevronDown, ChevronUp } from "lucide-react";
+import { CalendarDays, ChevronDown } from "lucide-react";
 import Image from "next/image";
-import { Card, CardTitle } from "@/components/ui/card";
-import Qualification from "./Qualification";
 import Schedule from "./Schedule";
-import { Skeleton } from "@/components/ui/skeleton";
 import RegistrationTable from "./RegistrationTable";
+import TextBox from "@/components/schedule/TextBox";
 
 const faqs = [
   {
@@ -41,6 +39,7 @@ const Home2 = () => {
   const [loading, setLoading] = useState(true);
   const [eventData, setEventData] = useState<EventData>();
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [text, setText] = useState<string>("");
 
   const toggleAccordion = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
@@ -61,146 +60,203 @@ const Home2 = () => {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(API_URLS.QUALIFICATION);
+        setText(response.data.text);
+      } catch (error) {
+        console.log("error", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
-    <>
-      <div className="lg:space-y-0 space-y-6 p-0 xl:p-6">
-        {loading ? (
-          <div className="pt-20">
-            <Skeleton className="h-8 w-40" />
-            <Skeleton className="h-4 w-full mt-2" />
-            <Skeleton className="h-4 w-5/6 mt-2" />
-            <Skeleton className="h-4 w-full mt-2" />
-            <Skeleton className="h-4 w-5/6 mt-2" />
-            <Skeleton className="h-4 w-full mt-2" />
-            <Skeleton className="h-4 w-5/6 mt-2" />
-            <Skeleton className="h-4 w-full mt-2" />
-            <Skeleton className="h-4 w-5/6 mt-2" />
-            <div className="flex items-center mt-4 space-x-4">
-              <Skeleton className="h-20 w-20 rounded-full" />
-              <Skeleton className="h-20 w-20 rounded-full" />
-              <Skeleton className="h-20 w-20 rounded-full" />
+    <div className="relative min-h-screen p-0 xl:p-8 overflow-hidden">
+      {loading ? (
+        <div className="pt-24 relative z-10">
+          <div className="h-8 w-48 bg-neutral-200 rounded-lg mb-4 animate-[pulse_1.5s_ease-in-out_infinite]" />
+          <div className="space-y-3">
+            {[...Array(5)].map((_, i) => (
+              <div
+                key={i}
+                className={`h-4 ${
+                  i % 2 === 0 ? "w-full" : "w-5/6"
+                } bg-neutral-200 rounded transform transition-all duration-1000 hover:scale-105 hover:skew-x-2`}
+              />
+            ))}
+          </div>
+          <div className="flex items-center mt-6 gap-4">
+            {[...Array(3)].map((_, i) => (
+              <div
+                key={i}
+                className="h-20 w-20 bg-neutral-200 rounded-full animate-[spin_2s_linear_infinite] hover:animate-none hover:scale-110 transition-all"
+              />
+            ))}
+          </div>
+        </div>
+      ) : (
+        <div className="max-w-7xl mx-auto relative">
+          <section className="mb-12 relative">
+            <div className="mt-8">
+              <TextBox
+                title={"About This Event"}
+                img={eventData?.poster}
+                text={eventData?.about_event || ""}
+                html={false}
+              />
+              <div className="md:p-6 p-2">
+                <span className="text-sm font-semibold uppercase tracking-wider text-neutral-500">
+                  Organized by
+                </span>
+                <div className="flex gap-8 mt-6">
+                  {eventData?.organizers.map((org, index) => (
+                    <motion.div
+                      key={index}
+                      className="relative group cursor-pointer"
+                      whileHover={{ y: -10, rotate: 5 }}
+                      transition={{ type: "spring", stiffness: 300 }}
+                    >
+                      <img
+                        src={org.logo}
+                        alt={org.name}
+                        className="w-20 h-20 object-contain"
+                      />
+                      <motion.div
+                        className="absolute top-full left-1/2 -translate-x-1/2 mt-4 px-4 py-2 rounded-lg text-white text-sm opacity-0 group-hover:opacity-100"
+                        initial={{ scale: 0 }}
+                        whileHover={{ scale: 1 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        {org.name}
+                      </motion.div>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <div className="grid lg:grid-cols-[4fr_5fr] gap-8">
+            <motion.div
+              className="relative group rounded-3xl overflow-hidden shadow-lg border"
+              whileHover={{ scale: 1.05, rotate: 2 }}
+              transition={{ type: "spring", stiffness: 200 }}
+            >
+              <Image
+                src={eventData?.poster || "/default-poster.jpg"}
+                alt="Event Poster"
+                width={800}
+                height={600}
+                className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
+              />
+            </motion.div>
+
+            <div className="space-y-6">
+              <motion.div
+                className="rounded-3xl p-8 bg-gradient-to-br backdrop-blur-lg border"
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+              >
+                <h3 className="text-3xl font-bold mb-6">Important Dates</h3>
+                <div className="grid gap-4">
+                  {Object.entries(eventData?.important_dates || {}).map(
+                    ([title, date], index) => (
+                      <motion.div
+                        key={index}
+                        className="group relative p-4 rounded-xl hover:bg-neutral-50/70 dark:hover:bg-neutral-900/70 transition-all duration-300 transform-gpu"
+                        whileHover={{ rotateY: 10, scale: 1.05 }}
+                        transition={{ type: "spring", stiffness: 300 }}
+                      >
+                        <div className="flex items-center gap-4">
+                          <motion.div
+                            className="w-12 h-12 rounded-full bg-black dark:bg-white flex items-center justify-center"
+                            whileHover={{ rotate: 360 }}
+                            transition={{ duration: 0.5 }}
+                          >
+                            <CalendarDays className="w-6 h-6 text-white dark:text-black" />
+                          </motion.div>
+                          <div>
+                            <h4 className="font-medium">{title}</h4>
+                            <p className="text-sm text-neutral-600 dark:text-neutral-400">
+                              {date}
+                            </p>
+                          </div>
+                        </div>
+                      </motion.div>
+                    )
+                  )}
+                </div>
+              </motion.div>
+
+              <div className="space-y-4">
+                {faqs.map((faq, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 50 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.05 }}
+                    className="rounded-3xl shadow-lg overflow-hidden group"
+                    whileHover={{ y: -5 }}
+                  >
+                    <button
+                      className="w-full flex justify-between items-center p-5 text-left transition-all duration-300 group-hover:bg-neutral-50 dark:group-hover:bg-neutral-800"
+                      onClick={() => toggleAccordion(index)}
+                    >
+                      <h3 className="font-semibold">{faq.question}</h3>
+                      <motion.div
+                        animate={{ rotate: openIndex === index ? 180 : 0 }}
+                        transition={{ duration: 0.2 }}
+                        className="relative"
+                      >
+                        <ChevronDown className="w-5 h-5 transform group-hover:scale-125 transition-transform" />
+                      </motion.div>
+                    </button>
+                    <motion.div
+                      initial={false}
+                      animate={{
+                        height: openIndex === index ? "auto" : 0,
+                        opacity: openIndex === index ? 1 : 0,
+                      }}
+                      transition={{ duration: 0.4, ease: "easeInOut" }}
+                      className="overflow-hidden relative"
+                    >
+                      <div className="px-5 pb-5 text-neutral-600 dark:text-neutral-300 transform hover:skew-x-2 transition-transform">
+                        {faq.answer}
+                      </div>
+                      <div className="absolute inset-0 bg-neutral-200 dark:bg-neutral-700 opacity-0 group-hover:opacity-10 transition-opacity" />
+                    </motion.div>
+                  </motion.div>
+                ))}
+              </div>
             </div>
           </div>
-        ) : (
-          <>
-            <div className="col-span-2 space-y-6">
-              <div className="p-6 space-y-6 rounded-lg">
-                <div className="text-2xl font-bold">About this Event</div>
-                <p className="text-neutral-600 dark:text-neutral-300 mt-2">
-                  {eventData?.about_event}
-                </p>
-                <div className="flex items-center">
-                  <p className="font-extrabold">Parents</p>
-                  <div className="flex sm:px-12">
-                    {eventData?.organizers.map((org, index) => (
-                      <motion.div
-                        key={index}
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ delay: index * 0.2, duration: 0.6 }}
-                      >
-                        <img
-                          src={org.logo}
-                          alt={org.name}
-                          className="w-20 h-20 object-contain"
-                        />
-                      </motion.div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
 
-            <div className="grid lg:grid-cols-2 justify-center items-center gap-x-4">
-              <div className="grid-cols-1 rounded-lg overflow-hidden shadow-lg">
-                <Image
-                  src={eventData?.poster || "/default-poster.jpg"}
-                  alt="Event Poster"
-                  width={800}
-                  height={600}
-                  className="w-full h-auto object-cover"
-                />
-              </div>
-              <div className="grid-cols-1 text-sm">
-                <div className="mx-auto py-10">
-                  <div className="space-y-6">
-                    <Card className="shadow-lg p-6 rounded-lg">
-                      <CardTitle className="text-xl font-semibold">
-                        Important Dates
-                      </CardTitle>
-                      <div className="mt-4 space-y-4">
-                        {Object.entries(eventData?.important_dates || {}).map(
-                          ([title, date], index) => (
-                            <div
-                              key={index}
-                              className="flex items-center border-l-2 border-neutral-300 dark:border-neutral-600 pl-4"
-                            >
-                              <div className="relative left-[-1.65rem] bg-neutral-50 dark:bg-neutral-900 rounded-full">
-                                <CalendarDays className="w-5 h-5 p-1" />
-                              </div>
-                              <div className="flex flex-col">
-                                <span className="text-sm font-medium ">
-                                  {title}
-                                </span>
-                                <div className="bg-neutral-50 dark:bg-neutral-900 w-full px-3 py-1 rounded-[1rem]">
-                                  <p className="text-xs">{date}</p>
-                                </div>
-                              </div>
-                            </div>
-                          )
-                        )}
-                      </div>
-                    </Card>
-                    {faqs.map((faq, index) => (
-                      <motion.div
-                        key={index}
-                        className="rounded-lg shadow-xl overflow-hidden"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ duration: 0.3, delay: 0.2 }}
-                      >
-                        <div
-                          className="flex justify-between items-center p-4 cursor-pointer transition duration-300 ease-in-out"
-                          onClick={() => toggleAccordion(index)}
-                        >
-                          <h3 className="text-lg font-semibold">
-                            {faq.question}
-                          </h3>
-                          {openIndex === index ? (
-                            <ChevronUp className="w-6 h-6 text-neutral-700 dark:text-neutral-300" />
-                          ) : (
-                            <ChevronDown className="w-6 h-6 text-neutral-700 dark:text-neutral-300" />
-                          )}
-                        </div>
-
-                        <motion.div
-                          initial={{ opacity: 0, height: 0 }}
-                          animate={{
-                            opacity: openIndex === index ? 1 : 0,
-                            height: openIndex === index ? "auto" : 0,
-                          }}
-                          transition={{ duration: 0.3 }}
-                          className="overflow-hidden"
-                        >
-                          <div className="px-5 pb-5 text-neutral-700 dark:text-neutral-300">
-                            <p>{faq.answer}</p>
-                          </div>
-                        </motion.div>
-                      </motion.div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </>
-        )}
-      </div>
-      <Leagues />
-      <Qualification />
-      <Schedule />
-      <Qualification />
-      <RegistrationTable />
-    </>
+          <div className="mt-12 space-y-12">
+            <Leagues />
+            <TextBox
+              title="Qualification"
+              text={text}
+              img={eventData?.poster}
+              html={true}
+            />
+            <Schedule />
+            <TextBox
+              title="Qualification"
+              text={text}
+              img={eventData?.poster}
+              html={true}
+            />
+            <RegistrationTable />
+          </div>
+        </div>
+      )}
+    </div>
   );
 };
 
