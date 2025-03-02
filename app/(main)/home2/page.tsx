@@ -247,7 +247,7 @@ const Home2 = () => {
             />
             <Schedule />
             <TextBox
-              title="Qualification"
+              title="Travel"
               text={text}
               img={eventData?.poster}
               html={true}

@@ -1,10 +1,10 @@
+import { motion } from "framer-motion";
 import {
   Table,
   TableBody,
   TableCell,
   TableHead,
   TableHeader,
-  TableRow,
 } from "@/components/ui/table";
 
 const registrationFees = [
@@ -42,9 +42,9 @@ const registrationFees = [
   },
   {
     category: "FIRA Frontiers Camp Participant",
-    earlyBird: "TDB",
-    regular: "TDB",
-    late: "TDB",
+    earlyBird: "TBD",
+    regular: "TBD",
+    late: "TBD",
     additionalMember: "—",
     condition: "Includes registration and teaching materials for each member",
   },
@@ -52,42 +52,131 @@ const registrationFees = [
 
 export default function RegistrationTable() {
   return (
-    <div className="w-full max-w-5xl mx-auto p-6 rounded-xl shadow-md">
-      <h2 className="text-2xl font-bold">Guidelines</h2>
-      <p className="font-semibold text-lg mb-4">Guidelines and registration.</p>
+    <motion.div
+      className="w-full max-w-5xl mx-auto p-6 dark:bg-neutral-900 rounded-2xl shadow-xl border border-neutral-800"
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+      viewport={{ once: true }}
+    >
+      <motion.h2
+        className="text-3xl font-bold mb-2 tracking-tight"
+        initial={{ opacity: 0, x: -50 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.6, delay: 0.2 }}
+        viewport={{ once: true }}
+      >
+        Guidelines
+      </motion.h2>
 
-      <h3 className="text-xl font-semibold mb-2">Registration fee</h3>
+      <motion.h3
+        className="text-xl font-semibold mb-4"
+        initial={{ opacity: 0, x: -50 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.6, delay: 0.4 }}
+        viewport={{ once: true }}
+      >
+        Registration Fee
+      </motion.h3>
 
-      <Table>
-        <TableHeader>
-          <TableRow>
-            <TableHead className="min-w-40">Category</TableHead>
-            <TableHead className="min-w-40">
-              Early bird Sep 15 st to Oct...
-            </TableHead>
-            <TableHead className="min-w-40">
-              Regular Oct 16 st to 30th...
-            </TableHead>
-            <TableHead className="min-w-40">
-              Late Dec 11th to 21th, 2024
-            </TableHead>
-            <TableHead className="min-w-40">Additional member</TableHead>
-            <TableHead className="min-w-40">Condition</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {registrationFees.map((item, index) => (
-            <TableRow key={index}>
-              <TableCell>{item.category}</TableCell>
-              <TableCell>{item.earlyBird}</TableCell>
-              <TableCell>{item.regular}</TableCell>
-              <TableCell>{item.late}</TableCell>
-              <TableCell>{item.additionalMember}</TableCell>
-              <TableCell>{item.condition}</TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </div>
+      <div className="overflow-hidden rounded-xl border dark:border-neutral-700">
+        <Table>
+          <TableHeader className="dark:bg-neutral-800">
+            <motion.tr
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+              viewport={{ once: true }}
+            >
+              <TableHead className="text-black dark:text-white min-w-44 font-semibold py-4">
+                Category
+              </TableHead>
+              <TableHead className="text-black dark:text-white min-w-40 font-semibold py-4">
+                Early Bird (Sep 15 - Oct...)
+              </TableHead>
+              <TableHead className="text-black dark:text-white min-w-40 font-semibold py-4">
+                Regular (Oct 16 - 30...)
+              </TableHead>
+              <TableHead className="text-black dark:text-white min-w-40 font-semibold py-4">
+                Late (Dec 11 - 21, 2024)
+              </TableHead>
+              <TableHead className="text-black dark:text-white min-w-40 font-semibold py-4">
+                Additional Member
+              </TableHead>
+              <TableHead className="text-black dark:text-white min-w-40 font-semibold py-4">
+                Condition
+              </TableHead>
+            </motion.tr>
+          </TableHeader>
+
+          <TableBody>
+            {registrationFees.map((item, index) => (
+              <motion.tr
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 + 0.6 }}
+                whileHover={{
+                  backgroundColor: "rgba(255, 255, 255, 0.05)",
+                  scale: 1.02,
+                  transition: { duration: 0.3 },
+                }}
+                viewport={{ once: true }}
+                className="border-b border-neutral-700"
+              >
+                <TableCell className="p-4 text-neutral-700 hover:text-black dark:text-neutral-200 dark:hover:text-white">
+                  <motion.span
+                    whileHover={{ x: 5 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    {item.category}
+                  </motion.span>
+                </TableCell>
+                <TableCell className="text-center py-4 text-neutral-700 hover:text-black dark:text-neutral-200 dark:hover:text-white">
+                  <motion.span
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    {item.earlyBird}
+                  </motion.span>
+                </TableCell>
+                <TableCell className="text-center py-4 text-neutral-700 hover:text-black dark:text-neutral-200 dark:hover:text-white">
+                  <motion.span
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    {item.regular}
+                  </motion.span>
+                </TableCell>
+                <TableCell className="text-center py-4 text-neutral-700 hover:text-black dark:text-neutral-200 dark:hover:text-white">
+                  <motion.span
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    {item.late}
+                  </motion.span>
+                </TableCell>
+                <TableCell className="text-center py-4 text-neutral-700 hover:text-black dark:text-neutral-200 dark:hover:text-white">
+                  <motion.span
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    {item.additionalMember}
+                  </motion.span>
+                </TableCell>
+                <TableCell className="text-center py-4 text-neutral-700 hover:text-black dark:text-neutral-200 dark:hover:text-white">
+                  <motion.span
+                    whileHover={{ x: 5 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    {item.condition}
+                  </motion.span>
+                </TableCell>
+              </motion.tr>
+            ))}
+          </TableBody>
+        </Table>
+      </div>
+    </motion.div>
   );
 }
