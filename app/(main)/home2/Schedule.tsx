@@ -142,6 +142,7 @@ const ScheduleComponent = () => {
           type="date"
           value={selectedDate}
           onChange={(e) => setSelectedDate(e.target.value)}
+          className="text-black dark:text-white"
         />
 
         <Select value={selectedCategory} onValueChange={setSelectedCategory}>
