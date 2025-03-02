@@ -77,21 +77,39 @@ const ScheduleComponent = () => {
 
   const eventsByDate: Event[] = Object.entries(data).flatMap(
     ([category, leagues]) =>
-      Object.entries(leagues).flatMap(([league, events]) =>
-        events.map((event) => ({ ...event, category, league }))
+      Object.entries(leagues || {}).flatMap(([league, events]) =>
+        Array.isArray(events)
+          ? events.map((event) => ({ ...event, category, league }))
+          : []
       )
   );
-
   const filteredEvents = eventsByDate.filter((event) => {
     const eventDate = parseISO(event.date);
 
     return (
       (!selectedDate || format(eventDate, "yyyy-MM-dd") === selectedDate) &&
-      (!selectedLeague || event.league === selectedLeague) &&
-      (!selectedCategory || event.category === selectedCategory) &&
+      (selectedLeague === "all" ||
+        !selectedLeague ||
+        event.league === selectedLeague) &&
+      (selectedCategory === "all" ||
+        !selectedCategory ||
+        event.category === selectedCategory) &&
       (!showToday || isToday(eventDate))
     );
   });
+
+  const groupedEvents = filteredEvents.reduce<
+    Record<string, Record<string, Event[]>>
+  >((acc, event) => {
+    if (!acc[event.category]) {
+      acc[event.category] = {};
+    }
+    if (!acc[event.category][event.league]) {
+      acc[event.category][event.league] = [];
+    }
+    acc[event.category][event.league].push(event);
+    return acc;
+  }, {});
 
   const categories = [...new Set(eventsByDate.map((event) => event.category))];
   const leagues = [...new Set(eventsByDate.map((event) => event.league))];
@@ -119,7 +137,6 @@ const ScheduleComponent = () => {
           ))}
         </div>
       </div>
-
       <div className="grid grid-cols-1 mb-4 md:grid-cols-4 gap-4 bg-neutral-50 dark:bg-neutral-900 p-4 rounded-xl">
         <Input
           type="date"
@@ -156,14 +173,14 @@ const ScheduleComponent = () => {
         </Select>
 
         <div className="flex items-center justify-between p-2 bg-white dark:bg-neutral-800 rounded-md shadow-sm">
-          <span className="text-sm">Today's Events</span>
+          <span className="text-sm">Today`&apos;`s Events</span>
           <Switch checked={showToday} onCheckedChange={setShowToday} />
         </div>
       </div>
 
       {view === "timeline" && (
         <ScrollArea>
-          <div className="space-y-8 mt-4">
+          <div className="space-y-8 max-h-[80vh] ">
             {filteredEvents.length === 0 ? (
               <p className="text-center text-neutral-500">No events found.</p>
             ) : (
@@ -176,7 +193,7 @@ const ScheduleComponent = () => {
               ).map(([date, events]) => (
                 <div
                   key={date}
-                  className="p-4 bg-neutral-50 dark:bg-neutral-800 rounded-lg shadow-md"
+                  className="p-4 bg-neutral-50 dark:bg-neutral-900 rounded-lg shadow-md"
                 >
                   <h2 className="text-xl font-semibold">
                     {format(new Date(date), "PPP")}
@@ -213,37 +230,37 @@ const ScheduleComponent = () => {
           </div>
         </ScrollArea>
       )}
-
       {view === "table" && (
-        <div className="overflow-x-auto mt-4">
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>Date</TableHead>
-                <TableHead>Time</TableHead>
-                <TableHead>Title</TableHead>
-                <TableHead>Description</TableHead>
-                <TableHead>Category</TableHead>
-                <TableHead>League</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {filteredEvents.map((event, index) => (
-                <TableRow key={index}>
-                  <TableCell>{format(parseISO(event.date), "PPP")}</TableCell>
-                  <TableCell>{event.time_string}</TableCell>
-                  <TableCell>{event.title}</TableCell>
-                  <TableCell>{event.description}</TableCell>
-                  <TableCell>{event.category}</TableCell>
-                  <TableCell>{event.league}</TableCell>
+        <ScrollArea>
+          <div className="overflow-x-auto max-h-[80vh]">
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Category</TableHead>
+                  <TableHead>League</TableHead>
+                  <TableHead>Date</TableHead>
+                  <TableHead>Time</TableHead>
+                  <TableHead>Title</TableHead>
+                  <TableHead>Description</TableHead>
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </div>
+              </TableHeader>
+              <TableBody>
+                {filteredEvents.map((event, index) => (
+                  <TableRow key={index}>
+                    <TableCell>{event.category}</TableCell>
+                    <TableCell>{event.league}</TableCell>
+                    <TableCell>{format(parseISO(event.date), "PPP")}</TableCell>
+                    <TableCell>{event.time_string}</TableCell>
+                    <TableCell>{event.title}</TableCell>
+                    <TableCell>{event.description}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </div>
+        </ScrollArea>
       )}
-
-      {view === "difficultTable" && <DifficultTable schedule={{ data }} />}
+      {view === "difficultTable" && <DifficultTable events={groupedEvents} />}
     </div>
   );
 };

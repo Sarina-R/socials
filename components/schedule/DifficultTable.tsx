@@ -5,10 +5,10 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import React from "react";
-import { Schedule, Event } from "@/app/(main)/home2/Schedule";
+import { Event } from "@/app/(main)/home2/Schedule";
 
 interface Props {
-  schedule: Schedule;
+  events: Record<string, Record<string, Event[]>>;
 }
 
 const getRandomColor = (() => {
@@ -34,16 +34,16 @@ const getRandomColor = (() => {
   return () => colors[index++ % colors.length];
 })();
 
-const DifficultTable: React.FC<Props> = ({ schedule }) => {
+const DifficultTable: React.FC<Props> = ({ events }) => {
   const eventColors = new Map<string, string>();
 
-  const categories = Object.keys(schedule.data);
+  const categories = Object.keys(events);
   const uniqueDates = new Set<string>();
   const allEvents: Event[] = [];
 
   categories.forEach((category) => {
-    Object.values(schedule.data[category]).forEach((league) => {
-      league.forEach((event) => {
+    Object.values(events[category]).forEach((league) => {
+      Object.values(league).forEach((event) => {
         uniqueDates.add(event.date);
         allEvents.push(event);
         const eventKey = String(event.id ?? event.title);
@@ -87,7 +87,7 @@ const DifficultTable: React.FC<Props> = ({ schedule }) => {
               <tr className="bg-neutral-300 dark:bg-neutral-800 text-black dark:text-white">
                 <th
                   rowSpan={2}
-                  className="p-2 sticky left-0 bg-neutral-300 dark:bg-neutral-800 z-20"
+                  className="p-2 sticky left-0 z-20 bg-neutral-300 dark:bg-neutral-800"
                 >
                   Date
                 </th>
@@ -100,7 +100,7 @@ const DifficultTable: React.FC<Props> = ({ schedule }) => {
                 {categories.map((category) => (
                   <th
                     key={category}
-                    colSpan={Object.keys(schedule.data[category]).length}
+                    colSpan={Object.keys(events[category]).length}
                     className="p-2"
                   >
                     {category}
@@ -109,7 +109,7 @@ const DifficultTable: React.FC<Props> = ({ schedule }) => {
               </tr>
               <tr className="bg-neutral-200 dark:bg-neutral-700">
                 {categories.map((category) =>
-                  Object.keys(schedule.data[category]).map((league) => (
+                  Object.keys(events[category]).map((league) => (
                     <th key={league} className="p-2">
                       {league}
                     </th>
@@ -130,19 +130,22 @@ const DifficultTable: React.FC<Props> = ({ schedule }) => {
                   </tr>
                   {timeSlots.map((time) => (
                     <tr key={`${date}-${time}`}>
-                      <tr className="sticky z-9 left-[86.76px]">
-                        <td className="w-[60px] h-[40px] px-3 pb-3 text-center dark:bg-black bg-white">
-                          {time}
-                        </td>
-                      </tr>
+                      <td className="w-[60px] h-[40px] px-3 pb-3 text-center sticky left-[86.76px] z-9 dark:bg-black bg-white">
+                        {time}
+                      </td>
                       {categories.map((category) =>
-                        Object.keys(schedule.data[category]).map((league) => {
-                          const event = schedule.data[category][league].find(
-                            (e) =>
+                        Object.keys(events[category]).map((league) => {
+                          const event = events[category][league].find((e) => {
+                            if (!e.time_string) return false;
+                            const times = e.time_string.split(" - ");
+                            return (
+                              times.length === 2 &&
                               e.date === date &&
-                              e.time_string?.split(" - ")[0] <= time &&
-                              e.time_string?.split(" - ")[1] > time
-                          );
+                              times[0] <= time &&
+                              times[1] > time
+                            );
+                          });
+
                           return (
                             <td
                               key={`${date}-${time}-${league}`}
@@ -169,9 +172,7 @@ const DifficultTable: React.FC<Props> = ({ schedule }) => {
                                     </p>
                                   </TooltipContent>
                                 </Tooltip>
-                              ) : (
-                                ""
-                              )}
+                              ) : null}
                             </td>
                           );
                         })
