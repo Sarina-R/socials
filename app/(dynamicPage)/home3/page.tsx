@@ -1,7 +1,17 @@
-import React from "react";
+"use client";
 
-const page = () => {
-  return <div>page</div>;
+import HeroSection from "@/components/dynamicPage/HeroSection";
+import { useData } from "@/hooks/DataProvider";
+
+const Page = () => {
+  const data = useData();
+  const heroSection = data.sections.find((section) => section.type === "hero");
+
+  return (
+    <>
+      <HeroSection data={heroSection!} primaryColor={data.brand.primaryColor} />
+    </>
+  );
 };
 
-export default page;
+export default Page;

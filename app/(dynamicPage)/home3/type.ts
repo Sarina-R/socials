@@ -34,9 +34,12 @@ export interface CTAButton {
 
 export interface HeroSection {
   type: "hero";
+  bg: string;
   title: string;
   description: string;
-  background: string;
+  time_string: string;
+  country: string;
+  city: string;
   style: string;
 }
 
