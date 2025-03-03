@@ -84,7 +84,7 @@ const Leagues = () => {
           >
             <Badge
               onClick={() => handleSmoothScroll(groupName)}
-              className="cursor-pointer px-4 py-2 rounded-full shadow-md hover:bg-neutral-700 transition-all duration-300"
+              className="cursor-pointer px-4 py-2 rounded-full shadow-md hover:bg-neutral-700 hover:dark:bg-neutral-200 transition-all duration-300"
             >
               {groupName}
             </Badge>
@@ -92,7 +92,6 @@ const Leagues = () => {
         ))}
       </motion.div>
 
-      {/* Event Groups with Staggered Animations */}
       {Object.keys(eventGroups).map((groupName, index) => (
         <motion.div
           key={index}
@@ -168,7 +167,7 @@ const Leagues = () => {
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: idx * 0.2 + catIdx * 0.1 }}
                       >
-                        <Badge className="bg-neutral-800  px-3 py-1 rounded-full hover:bg-neutral-700 transition-all duration-300">
+                        <Badge className="px-3 py-1 rounded-full transition-all duration-300">
                           {cat}
                         </Badge>
                       </motion.div>
