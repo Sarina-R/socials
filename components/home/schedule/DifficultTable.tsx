@@ -5,7 +5,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import React from "react";
-import { Event } from "@/app/(main)/home2/Schedule";
+import { Event } from "@/components/home/schedule/Schedule";
 import { motion } from "framer-motion";
 
 interface Props {

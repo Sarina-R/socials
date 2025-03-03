@@ -5,12 +5,12 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import axios from "axios";
 import { EventData } from "./layout";
-import Leagues from "../home/(homePageComponents)/Leagues";
+import Leagues from "@/components/home/Leagues";
 import { CalendarDays, ChevronDown } from "lucide-react";
 import Image from "next/image";
-import Schedule from "./Schedule";
-import RegistrationTable from "./RegistrationTable";
-import TextBox from "@/components/schedule/TextBox";
+import Schedule from "@/components/home/schedule/Schedule";
+import RegistrationTable from "@/components/home/RegistrationTable";
+import TextBox from "@/components/home/TextBox";
 
 const faqs = [
   {

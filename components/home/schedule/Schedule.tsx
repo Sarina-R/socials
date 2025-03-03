@@ -5,7 +5,7 @@ import { format, isToday, parseISO } from "date-fns";
 import axios from "axios";
 import { motion } from "framer-motion";
 import { API_URLS } from "@/app/api/url";
-import DifficultTable from "@/components/schedule/DifficultTable";
+import DifficultTable from "@/components/home/schedule/DifficultTable";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
