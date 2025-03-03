@@ -14,7 +14,6 @@ import { API_URLS } from "@/app/api/url";
 
 const HomePage = () => {
   const [eventData, setEventData] = useState<EventData>();
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
   const [text, setText] = useState<string>("");
 
   useEffect(() => {
