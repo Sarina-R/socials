@@ -24,6 +24,7 @@ const nextConfig: NextConfig = {
       "static.wikia.nocookie.net",
       "esports.ch",
       "events.avisengine.com",
+      "canada.firaworldcup.org",
     ],
   },
 };
