@@ -39,7 +39,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ data, primaryColor }) => {
         transition={{ duration: 1 }}
         className="absolute inset-0"
         style={{
-          background: `linear-gradient(135deg, ${safePrimaryColor}, #2A1B3D 100%)`,
+          // background: `linear-gradient(135deg, ${safePrimaryColor}, #2A1B3D 100%)`,
           clipPath: "polygon(0 0, 100% 0, 100% 85%, 0 100%)",
         }}
       >
@@ -48,7 +48,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ data, primaryColor }) => {
             backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
           }}
           transition={{ repeat: Infinity, duration: 10, ease: "linear" }}
-          className="absolute inset-0 bg-[url(${primaryColor})] bg-cover bg-center opacity-30"
+          // className={`absolute inset-0 bg-[url(${primaryColor})] bg-cover bg-center opacity-30`}
           style={{ backgroundBlendMode: "overlay" }}
         />
       </motion.div>
@@ -57,8 +57,8 @@ const HeroSection: React.FC<HeroSectionProps> = ({ data, primaryColor }) => {
         initial={{ scale: 0.95, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 1, ease: "easeInOut" }}
-        className="relative z-10 max-w-4xl px-6 py-8 bg-white/5 backdrop-blur-md rounded-3xl border border-[color:var(--primaryColor)]/20 shadow-2xl"
-        style={{ "--primaryColor": safePrimaryColor } as React.CSSProperties}
+        // className="relative z-10 max-w-4xl px-6 py-8 bg-white/5 backdrop-blur-md rounded-3xl border border-[color:var(--primaryColor)]/20 shadow-2xl"
+        // style={{ "--primaryColor": safePrimaryColor } as React.CSSProperties}
       >
         <div className="text-center">
           <motion.h1
@@ -87,16 +87,16 @@ const HeroSection: React.FC<HeroSectionProps> = ({ data, primaryColor }) => {
             transition={{ delay: 0.4 }}
             className="mt-8 flex flex-col md:flex-row items-center justify-center gap-4"
           >
-            <div className="bg-white/10 text-white px-6 py-3 rounded-xl flex items-center gap-2 shadow-md backdrop-blur-sm border border-[color:var(--primaryColor)]/20">
-              <span className="text-[color:var(--primaryColor)]">⏳</span>
-              <span className="font-semibold">{data.time_string}</span>
-            </div>
-            <div className="bg-white/10 text-white px-6 py-3 rounded-xl flex items-center gap-2 shadow-md backdrop-blur-sm border border-[color:var(--primaryColor)]/20">
-              <span className="text-[color:var(--primaryColor)]">📍</span>
-              <span className="font-semibold">
-                {data.city}, {data.country}
-              </span>
-            </div>
+            {/* <div className="bg-white/10 text-white px-6 py-3 rounded-xl flex items-center gap-2 shadow-md backdrop-blur-sm border border-[color:var(--primaryColor)]/20"> */}
+            {/* <span className="text-[color:var(--primaryColor)]">⏳</span> */}
+            <span className="font-semibold">{data.time_string}</span>
+            {/* </div> */}
+            {/* <div className="bg-white/10 text-white px-6 py-3 rounded-xl flex items-center gap-2 shadow-md backdrop-blur-sm border border-[color:var(--primaryColor)]/20"> */}
+            {/* <span className="text-[color:var(--primaryColor)]">📍</span> */}
+            <span className="font-semibold">
+              {data.city}, {data.country}
+            </span>
+            {/* </div> */}
           </motion.div>
 
           <motion.div
@@ -108,20 +108,20 @@ const HeroSection: React.FC<HeroSectionProps> = ({ data, primaryColor }) => {
             <motion.button
               whileHover={{ scale: 1.05, rotate: 2 }}
               whileTap={{ scale: 0.95 }}
-              className="bg-[color:var(--primaryColor)] text-white px-8 py-4 rounded-xl shadow-lg font-semibold hover:bg-[color:var(--primaryColor)]/90 transition-all duration-300"
-              style={
-                { "--primaryColor": safePrimaryColor } as React.CSSProperties
-              }
+              // className="bg-[color:var(--primaryColor)] text-white px-8 py-4 rounded-xl shadow-lg font-semibold hover:bg-[color:var(--primaryColor)]/90 transition-all duration-300"
+              // style={
+              //   { "--primaryColor": safePrimaryColor } as React.CSSProperties
+              // }
             >
               Categories
             </motion.button>
             <motion.button
               whileHover={{ scale: 1.05, rotate: -2 }}
               whileTap={{ scale: 0.95 }}
-              className="bg-white/20 text-white px-8 py-4 rounded-xl shadow-lg font-semibold hover:bg-white/30 backdrop-blur-sm border border-[color:var(--primaryColor)]/20 transition-all duration-300"
-              style={
-                { "--primaryColor": safePrimaryColor } as React.CSSProperties
-              }
+              // className="bg-white/20 text-white px-8 py-4 rounded-xl shadow-lg font-semibold hover:bg-white/30 backdrop-blur-sm border border-[color:var(--primaryColor)]/20 transition-all duration-300"
+              // style={
+              //   { "--primaryColor": safePrimaryColor } as React.CSSProperties
+              // }
             >
               → Register Now (on AVIS Events)
             </motion.button>

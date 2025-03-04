@@ -1,6 +1,6 @@
 "use client";
 
-import HeroSection from "@/components/dynamicPage/HeroSection";
+// import HeroSection from "@/components/dynamicPage/HeroSection";
 import { useData } from "@/hooks/DataProvider";
 
 const Page = () => {
@@ -9,7 +9,7 @@ const Page = () => {
 
   return (
     <>
-      <HeroSection data={heroSection!} primaryColor={data.brand.primaryColor} />
+      {/* <HeroSection data={heroSection!} primaryColor={data.brand.primaryColor} /> */}
     </>
   );
 };
