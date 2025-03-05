@@ -1,12 +1,14 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import axios from "axios";
 import { serialize } from "next-mdx-remote/serialize";
 import HeroSection from "@/components/dynamicPage/HeroSection";
 import {
   ApiResponse,
   HeroSection as HeroSectionType,
 } from "@/app/(dynamicPage)/home3/type";
+import { API_URLS } from "@/app/api/url";
 
 const Page = () => {
   const [serializedHeroSection, setSerializedHeroSection] =
@@ -17,9 +19,9 @@ const Page = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const apiResponse: ApiResponse = await fetch(
-          "http://localhost:3000/api/home"
-        ).then((res) => res.json());
+        const { data: apiResponse } = await axios.get<ApiResponse>(
+          API_URLS.DYNAMIC_PAGE
+        );
 
         const heroSection = apiResponse.sections.find(
           (section) => section.type === "hero"
