@@ -3,147 +3,141 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { HeroSection as HeroSectionType } from "@/app/(dynamicPage)/home3/type";
-import React from "react";
+import { Button } from "@/components/ui/button";
+import { Calendar, Map } from "lucide-react";
+// import { MDXRemote } from "next-mdx-remote";
 
 interface HeroSectionProps {
   data: HeroSectionType;
+  poster: string;
   primaryColor: string;
 }
 
-const HeroSection: React.FC<HeroSectionProps> = ({ data, primaryColor }) => {
+const fadeIn = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
+};
+
+const slideIn = {
+  hidden: { opacity: 0, x: 50 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.8, delay: 0.2, ease: "easeOut" },
+  },
+};
+
+function hexToRgb(hex: string) {
+  const r = parseInt(hex.slice(1, 3), 16);
+  const g = parseInt(hex.slice(3, 5), 16);
+  const b = parseInt(hex.slice(5, 7), 16);
+  return [r, g, b];
+}
+
+const HeroSection: React.FC<HeroSectionProps> = ({
+  data,
+  poster,
+  primaryColor,
+}) => {
   const safePrimaryColor = primaryColor || "#FF0000";
-
-  const textVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.8, ease: "easeOut" },
-    },
-  };
-
-  const buttonVariants = {
-    hidden: { opacity: 0, scale: 0.8 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: { duration: 0.6, delay: 0.4 },
-    },
-  };
+  const gradientBg = `linear-gradient(to right, rgba(0, 0, 0, 0.7), ${safePrimaryColor}80, ${safePrimaryColor}30), url(${data.bg})`;
 
   return (
-    <section className="relative w-full h-[80vh] overflow-hidden flex items-center justify-center text-white">
+    <section
+      className="w-full min-h-[80vh] flex md:flex-row flex-col items-center justify-center overflow-hidden"
+      style={{
+        backgroundImage: gradientBg,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+      }}
+    >
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 0.7 }}
-        transition={{ duration: 1 }}
-        className="absolute inset-0"
-        style={{
-          // background: `linear-gradient(135deg, ${safePrimaryColor}, #2A1B3D 100%)`,
-          clipPath: "polygon(0 0, 100% 0, 100% 85%, 0 100%)",
-        }}
+        className="z-10 flex flex-col flex-1 items-start px-4"
+        initial="hidden"
+        animate="visible"
+        variants={fadeIn}
       >
+        {/* <MDXRemote {...data.title} components={{ h1: motion.h1 }} /> */}
+
+        {/* Box */}
         <motion.div
-          animate={{
-            backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
-          }}
-          transition={{ repeat: Infinity, duration: 10, ease: "linear" }}
-          // className={`absolute inset-0 bg-[url(${primaryColor})] bg-cover bg-center opacity-30`}
-          style={{ backgroundBlendMode: "overlay" }}
-        />
+          className="bg-white backdrop-blur-xl rounded-2xl p-6 mb-8 shadow-2xl w-full max-w-lg"
+          variants={fadeIn}
+        >
+          <div className="flex flex-col items-center gap-4 space-y-7">
+            <div className="flex flex-col items-center gap-3">
+              <Calendar
+                size={24}
+                style={{ color: safePrimaryColor }}
+                strokeWidth={1.5}
+              />
+              <span
+                style={{ color: safePrimaryColor }}
+                className=" text-[16px] bg-neutral-100 px-4 py-1 rounded-md font-semibold"
+              >
+                {data.time_string}
+              </span>
+            </div>
+            <div className="flex flex-col items-center gap-3">
+              <Map
+                size={24}
+                style={{ color: safePrimaryColor }}
+                strokeWidth={1.5}
+              />
+              <span
+                style={{ color: safePrimaryColor }}
+                className="text-[16px] bg-neutral-100 px-4 py-1 rounded-md font-semibold"
+              >
+                {data.city}, {data.country}
+              </span>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Buttons */}
+        <motion.div
+          className="flex flex-col sm:flex-row gap-4 mb-8"
+          variants={slideIn}
+        >
+          <Button
+            className="bg-[rgba(var(--primary-rgb),1)] hover:bg-[rgba(var(--primary-rgb),0.9)] text-white px-6 py-3 rounded-lg transition-all duration-300 shadow-md"
+            style={
+              {
+                "--primary-rgb": hexToRgb(safePrimaryColor).join(","),
+              } as React.CSSProperties
+            }
+          >
+            Categories
+          </Button>
+          <Button
+            className="bg-white/5 hover:bg-white/10 text-white border border-white/10 px-6 py-3 rounded-lg transition-all duration-300 shadow-md"
+            asChild
+          >
+            <a href="" target="_blank" rel="noopener noreferrer">
+              Register Now (on AVIS Events)
+            </a>
+          </Button>
+        </motion.div>
       </motion.div>
 
-      <motion.div
-        initial={{ scale: 0.95, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ duration: 1, ease: "easeInOut" }}
-        // className="relative z-10 max-w-4xl px-6 py-8 bg-white/5 backdrop-blur-md rounded-3xl border border-[color:var(--primaryColor)]/20 shadow-2xl"
-        // style={{ "--primaryColor": safePrimaryColor } as React.CSSProperties}
-      >
-        <div className="text-center">
-          <motion.h1
-            variants={textVariants}
-            initial="hidden"
-            animate="visible"
-            className="text-5xl md:text-6xl font-bold tracking-tight uppercase"
-          >
-            {data.title}
-          </motion.h1>
-
-          <motion.p
-            variants={textVariants}
-            initial="hidden"
-            animate="visible"
-            transition={{ delay: 0.2 }}
-            className="mt-4 text-xl md:text-2xl font-light"
-          >
-            {data.description}
-          </motion.p>
-
-          <motion.div
-            variants={textVariants}
-            initial="hidden"
-            animate="visible"
-            transition={{ delay: 0.4 }}
-            className="mt-8 flex flex-col md:flex-row items-center justify-center gap-4"
-          >
-            {/* <div className="bg-white/10 text-white px-6 py-3 rounded-xl flex items-center gap-2 shadow-md backdrop-blur-sm border border-[color:var(--primaryColor)]/20"> */}
-            {/* <span className="text-[color:var(--primaryColor)]">⏳</span> */}
-            <span className="font-semibold">{data.time_string}</span>
-            {/* </div> */}
-            {/* <div className="bg-white/10 text-white px-6 py-3 rounded-xl flex items-center gap-2 shadow-md backdrop-blur-sm border border-[color:var(--primaryColor)]/20"> */}
-            {/* <span className="text-[color:var(--primaryColor)]">📍</span> */}
-            <span className="font-semibold">
-              {data.city}, {data.country}
-            </span>
-            {/* </div> */}
-          </motion.div>
-
-          <motion.div
-            variants={buttonVariants}
-            initial="hidden"
-            animate="visible"
-            className="mt-8 flex flex-col md:flex-row gap-4 justify-center"
-          >
-            <motion.button
-              whileHover={{ scale: 1.05, rotate: 2 }}
-              whileTap={{ scale: 0.95 }}
-              // className="bg-[color:var(--primaryColor)] text-white px-8 py-4 rounded-xl shadow-lg font-semibold hover:bg-[color:var(--primaryColor)]/90 transition-all duration-300"
-              // style={
-              //   { "--primaryColor": safePrimaryColor } as React.CSSProperties
-              // }
-            >
-              Categories
-            </motion.button>
-            <motion.button
-              whileHover={{ scale: 1.05, rotate: -2 }}
-              whileTap={{ scale: 0.95 }}
-              // className="bg-white/20 text-white px-8 py-4 rounded-xl shadow-lg font-semibold hover:bg-white/30 backdrop-blur-sm border border-[color:var(--primaryColor)]/20 transition-all duration-300"
-              // style={
-              //   { "--primaryColor": safePrimaryColor } as React.CSSProperties
-              // }
-            >
-              → Register Now (on AVIS Events)
-            </motion.button>
-          </motion.div>
-        </div>
-      </motion.div>
-
-      {/* Subtle Robot Overlay (Optional, inspired by the screenshot) */}
-      <motion.div
-        initial={{ opacity: 0, x: 100 }}
-        animate={{ opacity: 0.3, x: 0 }}
-        transition={{ duration: 1.5, delay: 0.5 }}
-        className="absolute right-0 bottom-0 w-1/3 h-auto"
-      >
-        <Image
-          src={data.bg}
-          alt="Robot"
-          width={300}
-          height={300}
-          className="object-contain opacity-50"
-        />
-      </motion.div>
+      {/* Poster Image */}
+      {poster && (
+        <motion.div
+          className="max-w-[280px] sm:max-w-[320px]"
+          initial="hidden"
+          animate="visible"
+          variants={slideIn}
+        >
+          <Image
+            src={poster}
+            alt="Event poster"
+            width={300}
+            height={400}
+            className="object-contain drop-shadow-2xl rounded-lg"
+          />
+        </motion.div>
+      )}
     </section>
   );
 };

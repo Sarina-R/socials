@@ -84,11 +84,9 @@ export default function RootLayout({
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         className="text-white flex items-center justify-between px-6 py-3 text-sm sticky top-0 z-50"
-        style={
-          {
-            // background: `linear-gradient(to right, ${primaryColor}, ${primaryColor}80)`,
-          }
-        }
+        style={{
+          background: `linear-gradient(to right, ${primaryColor}, ${primaryColor}80)`,
+        }}
       >
         <motion.span
           whileHover={{ scale: 1.05 }}
@@ -150,12 +148,12 @@ export default function RootLayout({
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
                       <button
-                      // className="flex items-center gap-1 font-semibold text-gray-700 dark:text-gray-300 dark:hover:text-[color:var(--primaryColor)] transition-colors "
-                      // style={
-                      //   {
-                      //     "--primaryColor": primaryColor,
-                      //   } as React.CSSProperties
-                      // }
+                        className="flex items-center gap-1 font-semibold text-gray-700 dark:text-gray-300 dark:hover:text-[color:var(--primaryColor)] hover:text-[color:var(--primaryColor)] transition-colors "
+                        style={
+                          {
+                            "--primaryColor": primaryColor,
+                          } as React.CSSProperties
+                        }
                       >
                         {item.name}
                         <ChevronDown className="w-4 h-4 transition-transform group-hover:rotate-180" />
@@ -163,18 +161,18 @@ export default function RootLayout({
                     </DropdownMenuTrigger>
                     <DropdownMenuContent
                       className="w-52 rounded-xl shadow-xl border"
-                      // style={{ borderColor: `${primaryColor}20` }}
+                      style={{ borderColor: `${primaryColor}20` }}
                     >
                       {item.dropdown.map((subItem) => (
                         <DropdownMenuItem key={subItem.name} asChild>
                           <Link
                             href={subItem.path}
-                            // className="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:text-[color:var(--primaryColor)] hover:bg-[color:var(--primaryColor)]/10 transition-colors"
-                            // style={
-                            //   {
-                            //     "--primaryColor": primaryColor,
-                            //   } as React.CSSProperties
-                            // }
+                            className="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:text-[color:var(--primaryColor)] hover:bg-[color:var(--primaryColor)]/10 transition-colors"
+                            style={
+                              {
+                                "--primaryColor": primaryColor,
+                              } as React.CSSProperties
+                            }
                           >
                             {subItem.name}
                           </Link>
@@ -185,10 +183,10 @@ export default function RootLayout({
                 ) : (
                   <Link
                     href={item.path || "#"}
-                    // className="font-semibold text-gray-700 dark:text-gray-300 dark:hover:text-[color:var(--primaryColor)] transition-colors "
-                    // style={
-                    //   { "--primaryColor": primaryColor } as React.CSSProperties
-                    // }
+                    className="font-semibold text-gray-700 dark:text-gray-300 dark:hover:text-[color:var(--primaryColor)] hover:text-[color:var(--primaryColor)] transition-colors "
+                    style={
+                      { "--primaryColor": primaryColor } as React.CSSProperties
+                    }
                   >
                     {item.name}
                   </Link>
@@ -210,7 +208,7 @@ export default function RootLayout({
               <Button
                 variant="default"
                 className="shadow-lg text-white "
-                // style={{ backgroundColor: primaryColor }}
+                style={{ backgroundColor: primaryColor }}
               >
                 {data.menu.ctaButton.text}
               </Button>
@@ -232,19 +230,19 @@ export default function RootLayout({
                       <div>
                         <button className="flex justify-between w-full text-left font-semibold text-gray-700 dark:text-gray-300">
                           {item.name}
-                          {/* <ChevronDown className="w-4 h-4 dark:hover:text-[color:var(--primaryColor)] transition-colors " /> */}
+                          <ChevronDown className="w-4 h-4 dark:hover:text-[color:var(--primaryColor)] hover:text-[color:var(--primaryColor)] transition-colors " />
                         </button>
                         <div className="pl-4 mt-2 space-y-2">
                           {item.dropdown.map((subItem) => (
                             <Link
                               key={subItem.name}
                               href={subItem.path}
-                              // className="block text-gray-600 dark:text-neutral-300 dark:hover:text-[color:var(--primaryColor)] transition-colors "
-                              // style={
-                              //   {
-                              //     "--primaryColor": primaryColor,
-                              //   } as React.CSSProperties
-                              // }
+                              className="block text-gray-600 dark:text-neutral-300 dark:hover:text-[color:var(--primaryColor)] hover:text-[color:var(--primaryColor)] transition-colors "
+                              style={
+                                {
+                                  "--primaryColor": primaryColor,
+                                } as React.CSSProperties
+                              }
                             >
                               {subItem.name}
                             </Link>
@@ -254,12 +252,12 @@ export default function RootLayout({
                     ) : (
                       <Link
                         href={item.path || "#"}
-                        // className="block text-gray-700 dark:text-gray-300 dark:hover:text-[color:var(--primaryColor)] transition-colors "
-                        // style={
-                        //   {
-                        //     "--primaryColor": primaryColor,
-                        //   } as React.CSSProperties
-                        // }
+                        className="block text-gray-700 dark:text-gray-300 dark:hover:text-[color:var(--primaryColor)] hover:text-[color:var(--primaryColor)] transition-colors "
+                        style={
+                          {
+                            "--primaryColor": primaryColor,
+                          } as React.CSSProperties
+                        }
                       >
                         {item.name}
                       </Link>
@@ -277,7 +275,7 @@ export default function RootLayout({
                     <Button
                       variant="default"
                       className="shadow-lg text-white "
-                      // style={{ backgroundColor: primaryColor }}
+                      style={{ backgroundColor: primaryColor }}
                     >
                       {data.menu.ctaButton.text}
                     </Button>
