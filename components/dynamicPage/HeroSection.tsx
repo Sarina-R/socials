@@ -33,7 +33,6 @@ const buttonVariants = {
   visible: { opacity: 1, x: 0 },
   hover: {
     scale: 1.05,
-    boxShadow: "0px 0px 15px rgba(0,0,0,0.2)",
     transition: { duration: 0.3 },
   },
 };
@@ -182,14 +181,14 @@ const HeroSection: React.FC<HeroSectionProps> = ({
           >
             <motion.div variants={buttonVariants} whileHover="hover">
               <Button
-                className="text-lg font-semibold bg-[rgba(var(--primary-rgb),1)] hover:bg-[rgba(var(--primary-rgb),0.9)] text-white px-6 py-6 rounded-lg transition-all duration-300 shadow-md max-w-max"
+                className="text-lg font-semibold bg-[rgba(var(--primary-rgb),1)] hover:bg-[rgba(var(--primary-rgb),0.9)] text-white px-6 py-6 rounded-lg transition-all duration-300 max-w-max"
                 style={
                   {
                     "--primary-rgb": hexToRgb(safePrimaryColor).join(","),
                   } as React.CSSProperties
                 }
               >
-                <a href="category">
+                <a href="#category">
                   <span className="flex items-center space-x-2">
                     <motion.div whileHover={{ x: 5 }}>
                       <Menu />
@@ -202,7 +201,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
 
             <motion.div variants={buttonVariants} whileHover="hover">
               <Button
-                className="max-w-max text-lg text-left font-semibold bg-white hover:bg-white/70 text-black px-6 py-6 rounded-lg transition-all duration-300 shadow-md"
+                className="max-w-max text-lg text-left font-semibold bg-white hover:bg-white/70 text-black px-6 py-6 rounded-lg transition-all duration-300"
                 asChild
               >
                 <a href="" target="_blank" rel="noopener noreferrer">
@@ -219,7 +218,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
             {btnName && (
               <motion.div variants={buttonVariants} whileHover="hover">
                 <Button
-                  className="max-w-max text-lg text-left font-semibold bg-black hover:bg-black/80 text-white py-6 px-6 rounded-lg transition-all duration-300 shadow-md"
+                  className="max-w-max text-lg text-left font-semibold bg-black hover:bg-black/80 text-white py-6 px-6 rounded-lg transition-all duration-300"
                   asChild
                 >
                   <a href={btnURL} target="_blank" rel="noopener noreferrer">

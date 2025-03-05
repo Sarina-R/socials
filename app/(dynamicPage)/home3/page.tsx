@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import { serialize } from "next-mdx-remote/serialize";
 import HeroSection from "@/components/dynamicPage/HeroSection";
 import {
@@ -5,34 +8,52 @@ import {
   HeroSection as HeroSectionType,
 } from "@/app/(dynamicPage)/home3/type";
 
-const Page = async () => {
-  const apiResponse: ApiResponse = await fetch(
-    "http://localhost:3000/api/home"
-  ).then((res) => res.json());
+const Page = () => {
+  const [serializedHeroSection, setSerializedHeroSection] =
+    useState<HeroSectionType>();
+  const [primaryColor, setPrimaryColor] = useState<string>();
+  const [poster, setPoster] = useState<string>();
 
-  const heroSection = apiResponse.sections.find(
-    (section) => section.type === "hero"
-  );
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const apiResponse: ApiResponse = await fetch(
+          "http://localhost:3000/api/home"
+        ).then((res) => res.json());
 
-  let serializedHeroSection: HeroSectionType | undefined;
+        const heroSection = apiResponse.sections.find(
+          (section) => section.type === "hero"
+        );
 
-  if (heroSection) {
-    const serializedTitle = await serialize(heroSection.title);
-    const serializedDescription = await serialize(heroSection.description);
-    serializedHeroSection = {
-      ...heroSection,
-      title: serializedTitle,
-      description: serializedDescription,
+        if (heroSection) {
+          const serializedTitle = await serialize(heroSection.title);
+          const serializedDescription = await serialize(
+            heroSection.description
+          );
+          const serialized = {
+            ...heroSection,
+            title: serializedTitle,
+            description: serializedDescription,
+          };
+          setSerializedHeroSection(serialized);
+          setPrimaryColor(apiResponse.brand.primaryColor);
+          setPoster(apiResponse.brand.poster);
+        }
+      } catch (error) {
+        console.error("Failed to fetch data:", error);
+      }
     };
-  }
+
+    fetchData();
+  }, []);
 
   return (
     <>
       {serializedHeroSection && (
         <HeroSection
           data={serializedHeroSection}
-          primaryColor={apiResponse.brand.primaryColor}
-          poster={apiResponse.brand.poster}
+          primaryColor={primaryColor || "#FF0000"}
+          poster={poster || ""}
           btnName={serializedHeroSection.btnName}
           btnURL={serializedHeroSection.btnURL}
         />
