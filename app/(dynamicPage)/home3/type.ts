@@ -1,3 +1,6 @@
+import { MDXRemoteSerializeResult } from "next-mdx-remote";
+import { serialize } from "next-mdx-remote/serialize";
+
 export interface Brand {
   name: string;
   primaryColor: string;
@@ -35,8 +38,8 @@ export interface CTAButton {
 export interface HeroSection {
   type: "hero";
   bg: string;
-  title: string;
-  description: string;
+  title: MDXRemoteSerializeResult;
+  description: MDXRemoteSerializeResult;
   time_string: string;
   country: string;
   city: string;

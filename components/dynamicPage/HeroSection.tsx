@@ -5,7 +5,8 @@ import Image from "next/image";
 import { HeroSection as HeroSectionType } from "@/app/(dynamicPage)/home3/type";
 import { Button } from "@/components/ui/button";
 import { Calendar, Map } from "lucide-react";
-// import { MDXRemote } from "next-mdx-remote";
+import { MDXRemote } from "next-mdx-remote";
+import { useMDXComponents } from "@/mdx-component";
 
 interface HeroSectionProps {
   data: HeroSectionType;
@@ -42,6 +43,8 @@ const HeroSection: React.FC<HeroSectionProps> = ({
   const safePrimaryColor = primaryColor || "#FF0000";
   const gradientBg = `linear-gradient(to right, rgba(0, 0, 0, 0.7), ${safePrimaryColor}80, ${safePrimaryColor}30), url(${data.bg})`;
 
+  const mdxComponents = useMDXComponents({});
+
   return (
     <section
       className="w-full min-h-[80vh] flex md:flex-row flex-col items-center justify-center overflow-hidden"
@@ -58,7 +61,10 @@ const HeroSection: React.FC<HeroSectionProps> = ({
         animate="visible"
         variants={fadeIn}
       >
-        {/* <MDXRemote {...data.title} components={{ h1: motion.h1 }} /> */}
+        <MDXRemote {...data.title} components={mdxComponents} />
+        <motion.div variants={fadeIn}>
+          <MDXRemote {...data.description} components={mdxComponents} />
+        </motion.div>
 
         {/* Box */}
         <motion.div
@@ -74,7 +80,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
               />
               <span
                 style={{ color: safePrimaryColor }}
-                className=" text-[16px] bg-neutral-100 px-4 py-1 rounded-md font-semibold"
+                className="text-[16px] bg-neutral-100 px-4 py-1 rounded-md font-semibold"
               >
                 {data.time_string}
               </span>

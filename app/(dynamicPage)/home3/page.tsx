@@ -1,19 +1,42 @@
-"use client";
-
+import { serialize } from "next-mdx-remote/serialize";
 import HeroSection from "@/components/dynamicPage/HeroSection";
-import { useData } from "@/hooks/DataProvider";
+import {
+  ApiResponse,
+  HeroSection as HeroSectionType,
+} from "@/app/(dynamicPage)/home3/type";
 
-const Page = () => {
-  const data = useData();
-  const heroSection = data.sections.find((section) => section.type === "hero");
+const Page = async () => {
+  const apiResponse: ApiResponse = await fetch(
+    "http://localhost:3000/api/home"
+  ).then((res) => res.json());
+
+  const heroSection = apiResponse.sections.find(
+    (section) => section.type === "hero"
+  );
+
+  let serializedHeroSection: HeroSectionType | undefined;
+
+  if (heroSection) {
+    console.log("Raw title:", heroSection.title);
+    console.log("Raw description:", heroSection.description);
+    const serializedTitle = await serialize(heroSection.title);
+    const serializedDescription = await serialize(heroSection.description);
+    serializedHeroSection = {
+      ...heroSection,
+      title: serializedTitle,
+      description: serializedDescription,
+    };
+  }
 
   return (
     <>
-      <HeroSection
-        data={heroSection!}
-        primaryColor={data.brand.primaryColor}
-        poster={data.brand.poster}
-      />
+      {serializedHeroSection && (
+        <HeroSection
+          data={serializedHeroSection}
+          primaryColor={apiResponse.brand.primaryColor}
+          poster={apiResponse.brand.poster}
+        />
+      )}
     </>
   );
 };
