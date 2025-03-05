@@ -8,25 +8,58 @@ import { ArrowRight, Calendar, Map, Menu } from "lucide-react";
 import { MDXRemote } from "next-mdx-remote";
 import { useMDXComponents } from "@/mdx-component";
 
-interface HeroSectionProps {
-  data: HeroSectionType;
-  poster: string;
-  primaryColor: string;
-  btnName?: string;
-  btnURL?: string;
-}
-
-const fadeIn = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
-};
-
-const slideIn = {
-  hidden: { opacity: 0, x: 50 },
+// Animation variants
+const containerVariants = {
+  hidden: { opacity: 0 },
   visible: {
     opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+      delayChildren: 0.3,
+    },
+  },
+};
+
+const fadeInUp = {
+  hidden: { opacity: 0, y: 50 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.8, ease: "easeOut" },
+  },
+};
+
+const zoomIn = {
+  hidden: { opacity: 0, scale: 0.8 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: { duration: 0.6, ease: "easeOut" },
+  },
+};
+
+const buttonVariants = {
+  hidden: { opacity: 0, x: -30 },
+  visible: { opacity: 1, x: 0 },
+  hover: {
+    scale: 1.05,
+    boxShadow: "0px 0px 15px rgba(0,0,0,0.2)",
+    transition: { duration: 0.3 },
+  },
+};
+
+const posterVariants = {
+  hidden: { opacity: 0, rotate: -10, x: 100 },
+  visible: {
+    opacity: 1,
+    rotate: 0,
     x: 0,
-    transition: { duration: 0.8, delay: 0.2, ease: "easeOut" },
+    transition: { duration: 1, type: "spring", bounce: 0.4 },
+  },
+  hover: {
+    rotate: 2,
+    scale: 1.02,
+    transition: { duration: 0.3 },
   },
 };
 
@@ -37,6 +70,14 @@ function hexToRgb(hex: string) {
   return [r, g, b];
 }
 
+interface HeroSectionProps {
+  data: HeroSectionType;
+  poster: string;
+  primaryColor: string;
+  btnName?: string;
+  btnURL?: string;
+}
+
 const HeroSection: React.FC<HeroSectionProps> = ({
   data,
   poster,
@@ -45,24 +86,28 @@ const HeroSection: React.FC<HeroSectionProps> = ({
   btnURL,
 }) => {
   const safePrimaryColor = primaryColor || "#FF0000";
-  const gradientBg = `linear-gradient(to right, rgba(0, 0, 0, 0.7), ${safePrimaryColor}80, ${safePrimaryColor}30), url(${data.bg})`;
+  const gradientBg = `linear-gradient(to right, rgba(0, 0, 0, 0.8), ${safePrimaryColor}50, ${safePrimaryColor}10), url(${data.bg})`;
 
   const mdxComponents = useMDXComponents({});
 
   return (
-    <>
-      <svg
+    <div className="overflow-hidden relative z-10">
+      <motion.svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 1440 320"
-        className="absolute -z-0"
+        className="absolute lg:top-[-4rem] -z-0"
+        initial={{ scaleY: 10 }}
+        animate={{ scaleY: 1 }}
+        transition={{ duration: 1, ease: "easeOut" }}
       >
         <path
           fill={safePrimaryColor}
-          fill-opacity="1"
+          fillOpacity="1"
           d="M0,128L1440,256L1440,0L0,0Z"
-        ></path>
-      </svg>
-      <section
+        />
+      </motion.svg>
+
+      <motion.section
         className="w-full pt-32 min-h-[80vh] flex md:flex-row flex-col items-center justify-center overflow-hidden"
         style={{
           backgroundImage: gradientBg,
@@ -70,92 +115,131 @@ const HeroSection: React.FC<HeroSectionProps> = ({
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
         }}
+        initial="hidden"
+        animate="visible"
+        variants={containerVariants}
       >
-        <motion.div
-          className="z-10 flex flex-col flex-1 items-start px-4"
-          initial="hidden"
-          animate="visible"
-          variants={fadeIn}
-        >
-          <div className="text-4xl font-bold mb-4 text-white">
+        <motion.div className="z-10 flex flex-col flex-1 items-start px-4">
+          <motion.div
+            className="text-4xl font-bold mb-4 text-white"
+            variants={fadeInUp}
+          >
             <MDXRemote {...data.title} components={mdxComponents} />
-          </div>
-          <motion.div variants={fadeIn} className="text-lg text-gray-200 mb-6">
+          </motion.div>
+
+          <motion.div
+            className="text-lg text-gray-200 mb-6"
+            variants={fadeInUp}
+          >
             <MDXRemote {...data.description} components={mdxComponents} />
           </motion.div>
 
-          {/* Box */}
-          <motion.div
-            className="bg-white dark:bg-black/70 backdrop-blur-xl rounded-2xl p-6 mb-8 shadow-2xl w-full max-w-lg"
-            variants={fadeIn}
-          >
-            <div className="flex md:flex-row flex-col items-center justify-center gap-4 md:space-y-0 space-y-7+">
-              <div className="flex flex-col items-center justify-center gap-3">
-                <Calendar
-                  size={24}
-                  style={{ color: safePrimaryColor }}
-                  strokeWidth={2}
-                />
+          {/*Box */}
+          <div className="bg-white dark:bg-black/70 backdrop-blur-xl rounded-2xl p-6 mb-8 shadow-2xl w-full max-w-lg">
+            <motion.div
+              className="flex md:flex-row flex-col items-center justify-center gap-4"
+              variants={containerVariants}
+            >
+              <motion.div
+                variants={fadeInUp}
+                className="flex flex-col items-center gap-3"
+              >
+                <motion.div
+                  whileHover={{ rotate: 360 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <Calendar
+                    size={24}
+                    style={{ color: safePrimaryColor }}
+                    strokeWidth={2}
+                  />
+                </motion.div>
                 <span
                   style={{ color: safePrimaryColor }}
                   className="text-[16px] bg-neutral-100 dark:bg-black/70 px-4 py-1 rounded-md font-semibold"
                 >
                   {data.time_string}
                 </span>
-              </div>
-              <div className="flex flex-col items-center justify-center gap-3">
-                <Map
-                  size={24}
-                  style={{ color: safePrimaryColor }}
-                  strokeWidth={2}
-                />
+              </motion.div>
+              <motion.div
+                variants={fadeInUp}
+                className="flex flex-col items-center gap-3"
+              >
+                <motion.div
+                  whileHover={{ rotate: 360 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <Map
+                    size={24}
+                    style={{ color: safePrimaryColor }}
+                    strokeWidth={2}
+                  />
+                </motion.div>
                 <span
                   style={{ color: safePrimaryColor }}
                   className="text-[16px] bg-neutral-100 dark:bg-black/70 px-4 py-1 rounded-md font-semibold"
                 >
                   {data.city}, {data.country}
                 </span>
-              </div>
-            </div>
-          </motion.div>
+              </motion.div>
+            </motion.div>
+          </div>
 
           {/* Buttons */}
-          <motion.div className="flex flex-col gap-4 mb-8" variants={slideIn}>
-            <Button
-              className="text-lg font-semibold bg-[rgba(var(--primary-rgb),1)] hover:bg-[rgba(var(--primary-rgb),0.9)] text-white px-6 py-6 rounded-lg transition-all duration-300 shadow-md max-w-max"
-              style={
-                {
-                  "--primary-rgb": hexToRgb(safePrimaryColor).join(","),
-                } as React.CSSProperties
-              }
-            >
-              <a href="category">
-                <span className="flex items-center space-x-2">
-                  <Menu />
-                  <p>Categories</p>
-                </span>
-              </a>
-            </Button>
-            <Button
-              className="max-w-max text-lg text-left font-semibold bg-white hover:bg-white/70 text-black px-6 py-6 rounded-lg transition-all duration-300 shadow-md"
-              asChild
-            >
-              <a href="" target="_blank" rel="noopener noreferrer">
-                <span className="flex items-center justify-between space-x-2">
-                  <ArrowRight />
-                  <p>Register Now (on AVIS Events)</p>
-                </span>
-              </a>
-            </Button>
-            {btnName && (
+          <motion.div
+            className="flex flex-col gap-4 mb-8"
+            variants={containerVariants}
+          >
+            <motion.div variants={buttonVariants} whileHover="hover">
               <Button
-                className="max-w-max text-lg text-left font-semibold bg-black hover:bg-black/80 text-white py-6 px-6 rounded-lg transition-all duration-300 shadow-md"
-                asChild
+                className="text-lg font-semibold bg-[rgba(var(--primary-rgb),1)] hover:bg-[rgba(var(--primary-rgb),0.9)] text-white px-6 py-6 rounded-lg transition-all duration-300 shadow-md max-w-max"
+                style={
+                  {
+                    "--primary-rgb": hexToRgb(safePrimaryColor).join(","),
+                  } as React.CSSProperties
+                }
               >
-                <a href={btnURL} target="_blank" rel="noopener noreferrer">
-                  <ArrowRight /> {btnName}
+                <a href="category">
+                  <span className="flex items-center space-x-2">
+                    <motion.div whileHover={{ x: 5 }}>
+                      <Menu />
+                    </motion.div>
+                    <p>Categories</p>
+                  </span>
                 </a>
               </Button>
+            </motion.div>
+
+            <motion.div variants={buttonVariants} whileHover="hover">
+              <Button
+                className="max-w-max text-lg text-left font-semibold bg-white hover:bg-white/70 text-black px-6 py-6 rounded-lg transition-all duration-300 shadow-md"
+                asChild
+              >
+                <a href="" target="_blank" rel="noopener noreferrer">
+                  <span className="flex items-center justify-between space-x-2">
+                    <motion.div whileHover={{ x: 5 }}>
+                      <ArrowRight />
+                    </motion.div>
+                    <p>Register Now (on AVIS Events)</p>
+                  </span>
+                </a>
+              </Button>
+            </motion.div>
+
+            {btnName && (
+              <motion.div variants={buttonVariants} whileHover="hover">
+                <Button
+                  className="max-w-max text-lg text-left font-semibold bg-black hover:bg-black/80 text-white py-6 px-6 rounded-lg transition-all duration-300 shadow-md"
+                  asChild
+                >
+                  <a href={btnURL} target="_blank" rel="noopener noreferrer">
+                    <motion.div whileHover={{ x: 5 }}>
+                      <ArrowRight />
+                    </motion.div>
+                    {btnName}
+                  </a>
+                </Button>
+              </motion.div>
             )}
           </motion.div>
         </motion.div>
@@ -164,9 +248,9 @@ const HeroSection: React.FC<HeroSectionProps> = ({
         {poster && (
           <motion.div
             className="max-w-[280px] sm:max-w-[320px]"
-            initial="hidden"
-            animate="visible"
-            variants={slideIn}
+            variants={posterVariants}
+            whileHover="hover"
+            whileTap={{ scale: 0.95 }}
           >
             <Image
               src={poster}
@@ -177,8 +261,8 @@ const HeroSection: React.FC<HeroSectionProps> = ({
             />
           </motion.div>
         )}
-      </section>
-    </>
+      </motion.section>
+    </div>
   );
 };
 
