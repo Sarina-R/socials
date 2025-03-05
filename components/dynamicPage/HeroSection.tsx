@@ -8,7 +8,6 @@ import { ArrowRight, Calendar, Map, Menu } from "lucide-react";
 import { MDXRemote } from "next-mdx-remote";
 import { useMDXComponents } from "@/mdx-component";
 
-// Animation variants
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
@@ -26,15 +25,6 @@ const fadeInUp = {
     opacity: 1,
     y: 0,
     transition: { duration: 0.8, ease: "easeOut" },
-  },
-};
-
-const zoomIn = {
-  hidden: { opacity: 0, scale: 0.8 },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    transition: { duration: 0.6, ease: "easeOut" },
   },
 };
 
