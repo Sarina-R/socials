@@ -83,10 +83,10 @@ export default function RootLayout({
       <motion.div
         initial={{ y: -100 }}
         animate={{ y: 0 }}
-        className="text-white flex items-center justify-between px-6 py-3 text-sm sticky top-0 z-50"
-        style={{
-          background: `linear-gradient(to right, ${primaryColor}, ${primaryColor}80)`,
-        }}
+        className="text-white bg-neutral-600 dark:bg-neutral-900 flex items-center justify-between px-6 py-3 text-sm"
+        // style={{
+        //   background: `linear-gradient(to right, ${primaryColor}, ${primaryColor}80)`,
+        // }}
       >
         <motion.span
           whileHover={{ scale: 1.05 }}
@@ -122,7 +122,7 @@ export default function RootLayout({
         </div>
       </motion.div>
       {/* Navbar */}
-      <nav className="sticky top-0 z-40 backdrop-blur-md shadow-lg">
+      <nav className="sticky top-0 z-40 bg-white/65 dark:bg-black/65 backdrop-blur-md shadow-lg">
         <div className="container mx-auto px-6 py-4 flex justify-between items-center">
           <Link href="/home3">
             <motion.div whileHover={{ rotate: 5 }}>

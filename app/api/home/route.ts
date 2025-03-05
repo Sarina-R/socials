@@ -52,19 +52,22 @@ const data = {
     {
       type: "hero",
       bg: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/MarkhamCivicCenter5.jpg/1200px-MarkhamCivicCenter5.jpg",
-      title: "2nd **FIRA 2025 Canada Open Competition**",
+      title: "2nd <br/> **FIRA 2025 Canada Open** <br/> Competition",
       description:
-        "**Build!** Compete! Learn! Connect! In one of the biggest robotics competitions in the world",
+        "Build! Compete! Learn! Connect! <br/> In one of the biggest robotics competitions in the world",
       time_string: "15-16 March 2025",
       country: "Canada",
       city: "Markham",
+      btnName: "FIRA Canada 2025 Announcement File",
+      btnURL:
+        "https://docs.google.com/document/d/10MsSv6zPkPCfnC221fqKqSwhsBLkylee/edit?tab=t.0#heading=h.gjdgxs",
       style: "1",
     },
     {
       type: "categories",
-      title: "2nd FIRA 2025 Canada Open Competition",
+      title: "2nd <br/> FIRA 2025 Canada Open Competition",
       description:
-        "**Build!** Compete! Learn! Connect! In one of the biggest robotics competitions in the world",
+        "Build! Compete! Learn! Connect! <br/> In one of the biggest robotics competitions in the world",
       items: [
         {
           firaChalenge: [

@@ -43,6 +43,8 @@ export interface HeroSection {
   time_string: string;
   country: string;
   city: string;
+  btnName?: string;
+  btnURL?: string;
   style: string;
 }
 

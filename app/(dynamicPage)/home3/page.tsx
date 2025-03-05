@@ -17,8 +17,6 @@ const Page = async () => {
   let serializedHeroSection: HeroSectionType | undefined;
 
   if (heroSection) {
-    console.log("Raw title:", heroSection.title);
-    console.log("Raw description:", heroSection.description);
     const serializedTitle = await serialize(heroSection.title);
     const serializedDescription = await serialize(heroSection.description);
     serializedHeroSection = {
@@ -35,6 +33,8 @@ const Page = async () => {
           data={serializedHeroSection}
           primaryColor={apiResponse.brand.primaryColor}
           poster={apiResponse.brand.poster}
+          btnName={serializedHeroSection.btnName}
+          btnURL={serializedHeroSection.btnURL}
         />
       )}
     </>
