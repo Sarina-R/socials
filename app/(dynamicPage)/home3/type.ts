@@ -1,5 +1,4 @@
 import { MDXRemoteSerializeResult } from "next-mdx-remote";
-import { serialize } from "next-mdx-remote/serialize";
 
 export interface Brand {
   name: string;
