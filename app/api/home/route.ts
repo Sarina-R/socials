@@ -189,38 +189,44 @@ const data = {
             {
               id: 1,
               logo: "https://canada.firaworldcup.org/wp-content/uploads/2024/02/fira.png",
+              link: "https://firaworldcup.org/",
             },
             {
               id: 2,
-              logo: "https://canada.firaworldcup.org/wp-content/uploads/2025/02/Untitled-design-31.png",
+              logo: "https://canada.firaworldcup.org/wp-content/uploads/2025/02/Untitled-design-13-2.png",
+              link: "https://avisengine.com/",
             },
             {
               id: 3,
-              logo: "https://canada.firaworldcup.org/wp-content/uploads/2025/02/Untitled-design-13-2.png",
-            },
-            {
-              id: 9,
-              logo: "https://canada.firaworldcup.org/wp-content/uploads/2024/02/fira.png",
-            },
-            {
-              id: 8,
               logo: "https://canada.firaworldcup.org/wp-content/uploads/2025/02/Untitled-design-31.png",
             },
             {
-              id: 7,
+              id: 9,
+              logo: "https://canada.firaworldcup.org/wp-content/uploads/2025/02/Untitled-design-31.png",
+              link: "https://firaworldcup.org/",
+            },
+            {
+              id: 8,
               logo: "https://canada.firaworldcup.org/wp-content/uploads/2025/02/Untitled-design-13-2.png",
+              link: "https://avisengine.com/",
+            },
+            {
+              id: 7,
+              logo: "https://canada.firaworldcup.org/wp-content/uploads/2025/02/Untitled-design-31.png",
             },
             {
               id: 4,
               logo: "https://canada.firaworldcup.org/wp-content/uploads/2024/02/fira.png",
+              link: "https://firaworldcup.org/",
             },
             {
               id: 5,
-              logo: "https://canada.firaworldcup.org/wp-content/uploads/2025/02/Untitled-design-31.png",
+              logo: "https://canada.firaworldcup.org/wp-content/uploads/2025/02/Untitled-design-13-2.png",
+              link: "https://avisengine.com/",
             },
             {
               id: 6,
-              logo: "https://canada.firaworldcup.org/wp-content/uploads/2025/02/Untitled-design-13-2.png",
+              logo: "https://canada.firaworldcup.org/wp-content/uploads/2025/02/Untitled-design-31.png",
             },
           ],
         },
@@ -231,14 +237,16 @@ const data = {
             {
               id: 1,
               logo: "https://canada.firaworldcup.org/wp-content/uploads/2024/02/fira.png",
+              link: "https://firaworldcup.org/",
             },
             {
               id: 2,
-              logo: "https://canada.firaworldcup.org/wp-content/uploads/2025/02/Untitled-design-31.png",
+              logo: "https://canada.firaworldcup.org/wp-content/uploads/2025/02/Untitled-design-13-2.png",
+              link: "https://avisengine.com/",
             },
             {
               id: 3,
-              logo: "https://canada.firaworldcup.org/wp-content/uploads/2025/02/Untitled-design-13-2.png",
+              logo: "https://canada.firaworldcup.org/wp-content/uploads/2025/02/Untitled-design-31.png",
             },
           ],
         },

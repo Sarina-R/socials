@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { useState } from "react";
 import { ParentsSection } from "@/app/(dynamicPage)/home3/type";
+import Link from "next/link";
 
 interface ParentsProps {
   data: ParentsSection;
@@ -35,20 +36,39 @@ const Parents = ({ data, primaryColor }: ParentsProps) => {
                   onMouseLeave={() => setHoveredIndex(null)}
                   className="flex justify-center"
                 >
-                  <Image
-                    src={item.logo}
-                    alt={`${category.name} ${item.id}`}
-                    width={150}
-                    height={150}
-                    className="object-contain max-h-16 w-auto"
-                    style={{
-                      opacity:
-                        hoveredIndex === null || hoveredIndex === index
-                          ? 1
-                          : 0.5,
-                      transition: "opacity 0.3s ease-in-out",
-                    }}
-                  />
+                  {item.link ? (
+                    <Link href={item.link} target="_blank" passHref>
+                      <Image
+                        src={item.logo}
+                        alt={`${category.name} ${item.id}`}
+                        width={150}
+                        height={150}
+                        className="object-contain max-h-16 w-auto"
+                        style={{
+                          opacity:
+                            hoveredIndex === null || hoveredIndex === index
+                              ? 1
+                              : 0.5,
+                          transition: "opacity 0.3s ease-in-out",
+                        }}
+                      />
+                    </Link>
+                  ) : (
+                    <Image
+                      src={item.logo}
+                      alt={`${category.name} ${item.id}`}
+                      width={150}
+                      height={150}
+                      className="object-contain max-h-16 w-auto"
+                      style={{
+                        opacity:
+                          hoveredIndex === null || hoveredIndex === index
+                            ? 1
+                            : 0.5,
+                        transition: "opacity 0.3s ease-in-out",
+                      }}
+                    />
+                  )}
                 </motion.div>
               ))}
             </div>

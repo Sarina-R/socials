@@ -71,6 +71,7 @@ export interface CategoriesSection {
 export interface SponsorItem {
   id: number;
   logo: string;
+  link?: string;
 }
 
 export interface SponsorCategory {
