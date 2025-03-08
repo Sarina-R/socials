@@ -67,8 +67,26 @@ export interface CategoriesSection {
   style: string;
 }
 
+//Parents sssssssssssssssssssssss
+export interface SponsorItem {
+  id: number;
+  logo: string;
+}
+
+export interface SponsorCategory {
+  id: number;
+  name: string;
+  items: SponsorItem[];
+}
+
+export interface ParentsSection {
+  type: "parents";
+  style: string;
+  items: SponsorCategory[];
+}
+
 // All lllllllllllllllllllll
-export type Section = HeroSection | CategoriesSection;
+export type Section = HeroSection | CategoriesSection | ParentsSection;
 
 export interface ApiResponse {
   brand: Brand;

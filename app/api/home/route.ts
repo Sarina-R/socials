@@ -178,6 +178,72 @@ const data = {
       ],
       style: "1",
     },
+    {
+      type: "parents",
+      style: "1",
+      items: [
+        {
+          id: 1,
+          name: "Parents",
+          items: [
+            {
+              id: 1,
+              logo: "https://canada.firaworldcup.org/wp-content/uploads/2024/02/fira.png",
+            },
+            {
+              id: 2,
+              logo: "https://canada.firaworldcup.org/wp-content/uploads/2025/02/Untitled-design-31.png",
+            },
+            {
+              id: 3,
+              logo: "https://canada.firaworldcup.org/wp-content/uploads/2025/02/Untitled-design-13-2.png",
+            },
+            {
+              id: 9,
+              logo: "https://canada.firaworldcup.org/wp-content/uploads/2024/02/fira.png",
+            },
+            {
+              id: 8,
+              logo: "https://canada.firaworldcup.org/wp-content/uploads/2025/02/Untitled-design-31.png",
+            },
+            {
+              id: 7,
+              logo: "https://canada.firaworldcup.org/wp-content/uploads/2025/02/Untitled-design-13-2.png",
+            },
+            {
+              id: 4,
+              logo: "https://canada.firaworldcup.org/wp-content/uploads/2024/02/fira.png",
+            },
+            {
+              id: 5,
+              logo: "https://canada.firaworldcup.org/wp-content/uploads/2025/02/Untitled-design-31.png",
+            },
+            {
+              id: 6,
+              logo: "https://canada.firaworldcup.org/wp-content/uploads/2025/02/Untitled-design-13-2.png",
+            },
+          ],
+        },
+        {
+          id: 2,
+          name: "Diamond Sponsors",
+          items: [
+            {
+              id: 1,
+              logo: "https://canada.firaworldcup.org/wp-content/uploads/2024/02/fira.png",
+            },
+            {
+              id: 2,
+              logo: "https://canada.firaworldcup.org/wp-content/uploads/2025/02/Untitled-design-31.png",
+            },
+            {
+              id: 3,
+              logo: "https://canada.firaworldcup.org/wp-content/uploads/2025/02/Untitled-design-13-2.png",
+            },
+          ],
+        },
+      ],
+    },
   ],
 };
 

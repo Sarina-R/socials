@@ -1,11 +1,12 @@
 "use client";
-
 import { useEffect, useState } from "react";
 import { serialize } from "next-mdx-remote/serialize";
 import HeroSection from "@/components/dynamicPage/HeroSection";
+import Parents from "@/components/dynamicPage/Parents";
 import {
   HeroSection as HeroSectionType,
   CategoriesSection,
+  ParentsSection,
 } from "@/app/(dynamicPage)/home3/type";
 import { useData } from "@/hooks/DataProvider";
 import Challenge from "@/components/dynamicPage/Challenges";
@@ -16,6 +17,7 @@ const Page = () => {
     useState<HeroSectionType>();
   const [categoriesSection, setCategoriesSection] =
     useState<CategoriesSection>();
+  const [parentsSection, setParentsSection] = useState<ParentsSection>();
 
   useEffect(() => {
     const processData = async () => {
@@ -27,6 +29,9 @@ const Page = () => {
       const categories = data.sections.find(
         (section) => section.type === "categories"
       ) as CategoriesSection;
+      const parents = data.sections.find(
+        (section) => section.type === "parents"
+      ) as ParentsSection;
 
       if (heroSection) {
         const serializedTitle = await serialize(heroSection.title as string);
@@ -43,6 +48,10 @@ const Page = () => {
       if (categories) {
         setCategoriesSection(categories);
       }
+
+      if (parents) {
+        setParentsSection(parents);
+      }
     };
 
     processData();
@@ -51,20 +60,25 @@ const Page = () => {
   if (!data || !serializedHeroSection) return null;
 
   return (
-    <div className="space-y-10 pb-10">
+    <div className="space-y-16 pb-10">
       <HeroSection
         data={serializedHeroSection}
-        primaryColor={data.brand.primaryColor || "#7338A0"}
+        primaryColor={data.brand.primaryColor || "#FF0000"}
         poster={data.brand.poster || ""}
         btnName={serializedHeroSection.btnName}
         btnURL={serializedHeroSection.btnURL}
       />
-
       {categoriesSection && (
         <Challenge
-          data={categoriesSection}
-          primaryColor={data.brand.primaryColor || "#7338A0"}
           name={data.brand.name}
+          data={categoriesSection}
+          primaryColor={data.brand.primaryColor || "#FF0000"}
+        />
+      )}
+      {parentsSection && (
+        <Parents
+          data={parentsSection}
+          primaryColor={data.brand.primaryColor || "#FF0000"}
         />
       )}
     </div>
