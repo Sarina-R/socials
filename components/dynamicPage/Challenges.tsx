@@ -55,7 +55,7 @@ const Challenge: React.FC<ChallengeProps> = ({ data, primaryColor, name }) => {
               key={category.id}
               className="relative rounded-xl overflow-hidden shadow-lg min-w-52"
             >
-              <Link href={`/categories/${category.id}`} passHref>
+              <Link href={`/home3/categories/${category.id}`} passHref>
                 <Image
                   src={category.img}
                   alt={category.name}
