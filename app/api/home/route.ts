@@ -64,10 +64,8 @@ const data = {
       style: "1",
     },
     {
-      type: "About Challenges",
-      title: "2nd <br/> FIRA 2025 Canada Open Competition",
-      description:
-        "Build! Compete! Learn! Connect! <br/> In one of the biggest robotics competitions in the world",
+      type: "categories",
+      title: "About Challenges",
       items: [
         {
           id: 1001,
@@ -75,18 +73,22 @@ const data = {
           img: "https://canada.firaworldcup.org/wp-content/uploads/2023/09/123818-1-1024x683-1.jpg",
           items: [
             {
+              id: 10011,
               title: "Autonomous Cars Simulation (U19/Pro)",
               img: "https://firaworldcup.org/wp-content/uploads/2023/11/maxresdefault-400x250.jpg",
             },
             {
+              id: 10012,
               title: "Innovation and Business U19",
               img: "https://firaworldcup.org/wp-content/uploads/2021/09/IMG_0321-400x250.jpg",
             },
             {
+              id: 10013,
               title: "Innovation and Business",
               img: "https://firaworldcup.org/wp-content/uploads/2021/09/Creativity1-400x250.png",
             },
             {
+              id: 10014,
               title: "Autonomous Cars",
               img: "https://firaworldcup.org/wp-content/uploads/2021/09/123818-1-400x250.jpg",
             },
@@ -98,18 +100,22 @@ const data = {
           img: "https://canada.firaworldcup.org/wp-content/uploads/2023/09/robotics-companies-roundup1-1.jpeg",
           items: [
             {
+              id: 10021,
               title: "Autonomous Cars Simulation (U19/Pro)",
               img: "https://firaworldcup.org/wp-content/uploads/2023/11/maxresdefault-400x250.jpg",
             },
             {
+              id: 10022,
               title: "Innovation and Business U19",
               img: "https://firaworldcup.org/wp-content/uploads/2021/09/IMG_0321-400x250.jpg",
             },
             {
+              id: 10023,
               title: "Innovation and Business",
               img: "https://firaworldcup.org/wp-content/uploads/2021/09/Creativity1-400x250.png",
             },
             {
+              id: 10024,
               title: "Autonomous Cars",
               img: "https://firaworldcup.org/wp-content/uploads/2021/09/123818-1-400x250.jpg",
             },
@@ -121,18 +127,22 @@ const data = {
           img: "https://canada.firaworldcup.org/wp-content/uploads/2023/09/imageCarousel.imageformat.lightbox.1086769395-scaled-1.jpg",
           items: [
             {
+              id: 10031,
               title: "Autonomous Cars Simulation (U19/Pro)",
               img: "https://firaworldcup.org/wp-content/uploads/2023/11/maxresdefault-400x250.jpg",
             },
             {
+              id: 10032,
               title: "Innovation and Business U19",
               img: "https://firaworldcup.org/wp-content/uploads/2021/09/IMG_0321-400x250.jpg",
             },
             {
+              id: 10033,
               title: "Innovation and Business",
               img: "https://firaworldcup.org/wp-content/uploads/2021/09/Creativity1-400x250.png",
             },
             {
+              id: 10034,
               title: "Autonomous Cars",
               img: "https://firaworldcup.org/wp-content/uploads/2021/09/123818-1-400x250.jpg",
             },
@@ -144,18 +154,22 @@ const data = {
           img: "https://canada.firaworldcup.org/wp-content/uploads/2023/09/FIRA_2019_Gallery_Picture_9.webp",
           items: [
             {
+              id: 10041,
               title: "Autonomous Cars Simulation (U19/Pro)",
               img: "https://firaworldcup.org/wp-content/uploads/2023/11/maxresdefault-400x250.jpg",
             },
             {
+              id: 10042,
               title: "Innovation and Business U19",
               img: "https://firaworldcup.org/wp-content/uploads/2021/09/IMG_0321-400x250.jpg",
             },
             {
+              id: 10043,
               title: "Innovation and Business",
               img: "https://firaworldcup.org/wp-content/uploads/2021/09/Creativity1-400x250.png",
             },
             {
+              id: 10044,
               title: "Autonomous Cars",
               img: "https://firaworldcup.org/wp-content/uploads/2021/09/123818-1-400x250.jpg",
             },

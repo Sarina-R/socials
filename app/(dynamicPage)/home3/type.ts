@@ -1,4 +1,3 @@
-// type.ts
 import { MDXRemoteSerializeResult } from "next-mdx-remote";
 
 export interface Brand {
@@ -45,22 +44,27 @@ export interface HeroSection {
   city: string;
   btnName?: string;
   btnURL?: string;
-  style: string;
 }
 
-export interface CategoriesSection {
-  type: "categories";
+export interface LeagueItems {
+  id: number;
   title: string;
-  description: string;
-  items: { firaChalenge: CategoryItem[] }[];
+  img: string;
 }
 
 export interface CategoryItem {
   id: number;
   name: string;
   img: string;
+  items: LeagueItems[];
 }
 
+export interface CategoriesSection {
+  type: "categories";
+  title: string;
+  items: { firaChalenge: CategoryItem[] }[];
+  style: string;
+}
 export type Section = HeroSection | CategoriesSection;
 
 export interface ApiResponse {
