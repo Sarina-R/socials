@@ -1,20 +1,18 @@
-// app/categories/[categoryId]/[itemId]/page.tsx
 "use client";
 
 import { useData } from "@/hooks/DataProvider";
-import { notFound } from "next/navigation";
-import Image from "next/image";
+import { notFound, useParams } from "next/navigation";
 
-interface ItemPageProps {
-  params: {
-    categoryId: string;
-    itemId: string;
-  };
-}
-
-export default function ItemPage({ params }: ItemPageProps) {
+export default function ItemPage() {
   const data = useData();
-  const { categoryId, itemId } = params;
+  const params = useParams();
+  const categoryId = params?.categoryId as string;
+  const itemId = params?.itemId as string;
+
+  console.log("ItemPage params", params);
+  console.log("categoryId", categoryId);
+  console.log("itemId", itemId);
+  console.log("data", data);
 
   if (!data) {
     return (
@@ -43,11 +41,9 @@ export default function ItemPage({ params }: ItemPageProps) {
       </h1>
       <div className="flex flex-col md:flex-row gap-8">
         <div className="flex-1">
-          <Image
+          <img
             src={item.img}
             alt={item.title}
-            width={600}
-            height={400}
             className="object-cover rounded-lg shadow-lg"
           />
         </div>

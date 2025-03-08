@@ -1,59 +1,53 @@
-// app/categories/[categoryId]/page.tsx
 "use client";
 
 import { useData } from "@/hooks/DataProvider";
 import { notFound, useParams } from "next/navigation";
-import Image from "next/image";
+// import Image from "next/image";
 import Link from "next/link";
 
 export default function CategoryPage() {
-  //   const data = useData();
-  //   const params = useParams();
-  //   const categoryId = params?.categoryId as string;
+  const data = useData();
+  const params = useParams();
+  const categoryId = params?.categoryId as string;
 
-  //   console.log("Rendering CategoryPage");
-  //   console.log("params", params);
-  //   console.log("categoryId", categoryId);
-  //   console.log("data", data);
+  if (!data) {
+    console.log("Data is null, showing loading spinner");
+    return (
+      <div className="min-h-screen flex items-center justify-center text-white font-futura">
+        <div className="w-16 h-16 border-4 border-t-transparent border-white rounded-full animate-spin" />
+      </div>
+    );
+  }
 
-  //   if (!data) {
-  //     console.log("Data is null, showing loading spinner");
-  //     return (
-  //       <div className="min-h-screen flex items-center justify-center text-white font-futura">
-  //         <div className="w-16 h-16 border-4 border-t-transparent border-white rounded-full animate-spin" />
-  //       </div>
-  //     );
-  //   }
+  const categoriesSection = data.sections.find(
+    (section) => section.type === "categories"
+  );
+  console.log("categoriesSection", categoriesSection);
 
-  //   const categoriesSection = data.sections.find(
-  //     (section) => section.type === "categories"
-  //   );
-  //   console.log("categoriesSection", categoriesSection);
+  const category = categoriesSection?.items.find(
+    (cat) => cat.id === Number(categoryId)
+  );
+  console.log("category", category);
 
-  //   const category = categoriesSection?.items.find(
-  //     (cat) => cat.id === Number(categoryId)
-  //   );
-  //   console.log("category", category);
+  if (!category) {
+    console.log("Category not found for ID:", categoryId);
+    notFound();
+  }
 
-  //   if (!category) {
-  //     console.log("Category not found for ID:", categoryId);
-  //     notFound();
-  //   }
-
-  //   const primaryColor = data.brand.primaryColor || "#7338A0";
+  const primaryColor = data.brand.primaryColor || "#7338A0";
 
   return (
     <div className="container mx-auto py-10 px-4">
-      {/* <h1 className="text-4xl font-bold mb-6" style={{ color: primaryColor }}>
+      <h1 className="text-4xl font-bold mb-6" style={{ color: primaryColor }}>
         {category.name}
       </h1>
       <div className="flex flex-col md:flex-row gap-8 mb-8">
         <div className="flex-1">
-          <Image
+          <img
             src={category.img}
             alt={category.name}
-            width={600}
-            height={400}
+            // width={600}
+            // height={400}
             className="object-cover rounded-lg shadow-lg"
           />
         </div>
@@ -79,16 +73,16 @@ export default function CategoryPage() {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {category.items.map((item) => (
           <Link
-            href={`/categories/${category.id}/${item.id}`}
+            href={`/home3/categories/${category.id}/${item.id}`}
             key={item.id}
             className="block"
           >
             <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-              <Image
+              <img
                 src={item.img}
                 alt={item.title}
-                width={300}
-                height={200}
+                // width={300}
+                // height={200}
                 className="object-cover w-full h-48"
               />
               <div className="p-4">
@@ -102,8 +96,7 @@ export default function CategoryPage() {
             </div>
           </Link>
         ))}
-      </div> */}
-      mew{" "}
+      </div>
     </div>
   );
 }
