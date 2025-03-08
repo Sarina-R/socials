@@ -6,7 +6,6 @@ import { CategoriesSection } from "@/app/(dynamicPage)/home3/type";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import Link from "next/link";
 import { ExternalLink } from "lucide-react";
-import { Badge } from "../ui/badge";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -56,7 +55,7 @@ const Challenge: React.FC<ChallengeProps> = ({ data, primaryColor, name }) => {
               key={category.id}
               className="relative rounded-xl overflow-hidden shadow-lg min-w-52"
             >
-              <Link href={`${data.type}${category.id}`} passHref>
+              <Link href={`/categories/${category.id}`} passHref>
                 <Image
                   src={category.img}
                   alt={category.name}
