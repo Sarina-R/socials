@@ -97,7 +97,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
       </motion.svg>
 
       <motion.section
-        className="w-full pt-32 min-h-[80vh] flex md:flex-row flex-col items-center justify-center overflow-hidden"
+        className="w-full pt-32 min-h-[80vh] flex md:flex-row flex-col items-center justify-center overflow-hidden p-4"
         style={{
           backgroundImage: gradientBg,
           backgroundSize: "cover",
@@ -133,16 +133,11 @@ const HeroSection: React.FC<HeroSectionProps> = ({
                 variants={fadeInUp}
                 className="flex flex-col items-center gap-3"
               >
-                <motion.div
-                  whileHover={{ rotate: 360 }}
-                  transition={{ duration: 0.5 }}
-                >
-                  <Calendar
-                    size={24}
-                    style={{ color: safePrimaryColor }}
-                    strokeWidth={2}
-                  />
-                </motion.div>
+                <Calendar
+                  size={24}
+                  style={{ color: safePrimaryColor }}
+                  strokeWidth={2}
+                />
                 <span
                   style={{ color: safePrimaryColor }}
                   className="text-[16px] bg-neutral-100 dark:bg-black/70 px-4 py-1 rounded-md font-semibold"
@@ -154,16 +149,11 @@ const HeroSection: React.FC<HeroSectionProps> = ({
                 variants={fadeInUp}
                 className="flex flex-col items-center gap-3"
               >
-                <motion.div
-                  whileHover={{ rotate: 360 }}
-                  transition={{ duration: 0.5 }}
-                >
-                  <Map
-                    size={24}
-                    style={{ color: safePrimaryColor }}
-                    strokeWidth={2}
-                  />
-                </motion.div>
+                <Map
+                  size={24}
+                  style={{ color: safePrimaryColor }}
+                  strokeWidth={2}
+                />
                 <span
                   style={{ color: safePrimaryColor }}
                   className="text-[16px] bg-neutral-100 dark:bg-black/70 px-4 py-1 rounded-md font-semibold"
@@ -235,12 +225,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
 
         {/* Poster */}
         {poster && (
-          <motion.div
-            className="max-w-[280px] sm:max-w-[320px]"
-            variants={posterVariants}
-            whileHover="hover"
-            whileTap={{ scale: 0.95 }}
-          >
+          <div className="max-w-[280px] sm:max-w-[320px]">
             <Image
               src={poster}
               alt="Event poster"
@@ -248,7 +233,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
               height={400}
               className="object-contain drop-shadow-2xl rounded-lg"
             />
-          </motion.div>
+          </div>
         )}
       </motion.section>
     </div>
