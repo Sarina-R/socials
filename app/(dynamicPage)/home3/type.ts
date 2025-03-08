@@ -1,3 +1,4 @@
+// type.ts
 import { MDXRemoteSerializeResult } from "next-mdx-remote";
 
 export interface Brand {
@@ -37,8 +38,8 @@ export interface CTAButton {
 export interface HeroSection {
   type: "hero";
   bg: string;
-  title: MDXRemoteSerializeResult;
-  description: MDXRemoteSerializeResult;
+  title: string | MDXRemoteSerializeResult;
+  description: string | MDXRemoteSerializeResult;
   time_string: string;
   country: string;
   city: string;

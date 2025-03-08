@@ -5,7 +5,7 @@ import Image from "next/image";
 import { HeroSection as HeroSectionType } from "@/app/(dynamicPage)/home3/type";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Calendar, Map, Menu } from "lucide-react";
-import { MDXRemote } from "next-mdx-remote";
+import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 import { useMDXComponents } from "@/mdx-component";
 
 const containerVariants = {
@@ -33,21 +33,6 @@ const buttonVariants = {
   visible: { opacity: 1, x: 0 },
   hover: {
     scale: 1.05,
-    transition: { duration: 0.3 },
-  },
-};
-
-const posterVariants = {
-  hidden: { opacity: 0, rotate: -10, x: 100 },
-  visible: {
-    opacity: 1,
-    rotate: 0,
-    x: 0,
-    transition: { duration: 1, type: "spring", bounce: 0.4 },
-  },
-  hover: {
-    rotate: 2,
-    scale: 1.02,
     transition: { duration: 0.3 },
   },
 };
@@ -113,17 +98,23 @@ const HeroSection: React.FC<HeroSectionProps> = ({
             className="text-4xl font-bold mb-4 text-white"
             variants={fadeInUp}
           >
-            <MDXRemote {...data.title} components={mdxComponents} />
+            <MDXRemote
+              {...(data.title as MDXRemoteSerializeResult)}
+              components={mdxComponents}
+            />
           </motion.div>
 
           <motion.div
             className="text-lg text-gray-200 mb-6"
             variants={fadeInUp}
           >
-            <MDXRemote {...data.description} components={mdxComponents} />
+            <MDXRemote
+              {...(data.description as MDXRemoteSerializeResult)}
+              components={mdxComponents}
+            />
           </motion.div>
 
-          {/*Box */}
+          {/* Box */}
           <div className="bg-white dark:bg-black/70 backdrop-blur-xl rounded-2xl p-6 mb-8 shadow-2xl w-full max-w-lg">
             <motion.div
               className="flex md:flex-row flex-col items-center justify-center gap-4"

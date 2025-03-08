@@ -1,66 +1,50 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { serialize } from "next-mdx-remote/serialize";
 import HeroSection from "@/components/dynamicPage/HeroSection";
-import {
-  ApiResponse,
-  HeroSection as HeroSectionType,
-} from "@/app/(dynamicPage)/home3/type";
-import { API_URLS } from "@/app/api/url";
+import { HeroSection as HeroSectionType } from "@/app/(dynamicPage)/home3/type";
+import { useData } from "@/hooks/DataProvider";
 
 const Page = () => {
+  const data = useData();
   const [serializedHeroSection, setSerializedHeroSection] =
     useState<HeroSectionType>();
-  const [primaryColor, setPrimaryColor] = useState<string>();
-  const [poster, setPoster] = useState<string>();
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const { data: apiResponse } = await axios.get<ApiResponse>(
-          API_URLS.DYNAMIC_PAGE
-        );
+    const serializeHeroSection = async () => {
+      if (!data) return;
 
-        const heroSection = apiResponse.sections.find(
-          (section) => section.type === "hero"
-        );
+      const heroSection = data.sections.find(
+        (section) => section.type === "hero"
+      ) as HeroSectionType;
 
-        if (heroSection) {
-          const serializedTitle = await serialize(heroSection.title);
-          const serializedDescription = await serialize(
-            heroSection.description
-          );
-          const serialized = {
-            ...heroSection,
-            title: serializedTitle,
-            description: serializedDescription,
-          };
-          setSerializedHeroSection(serialized);
-          setPrimaryColor(apiResponse.brand.primaryColor);
-          setPoster(apiResponse.brand.poster);
-        }
-      } catch (error) {
-        console.error("Failed to fetch data:", error);
+      if (heroSection) {
+        const serializedTitle = await serialize(heroSection.title as string);
+        const serializedDescription = await serialize(
+          heroSection.description as string
+        );
+        setSerializedHeroSection({
+          ...heroSection,
+          title: serializedTitle,
+          description: serializedDescription,
+        });
       }
     };
 
-    fetchData();
-  }, []);
+    serializeHeroSection();
+  }, [data]);
+
+  if (!data || !serializedHeroSection) return null;
 
   return (
-    <>
-      {serializedHeroSection && (
-        <HeroSection
-          data={serializedHeroSection}
-          primaryColor={primaryColor || "#FF0000"}
-          poster={poster || ""}
-          btnName={serializedHeroSection.btnName}
-          btnURL={serializedHeroSection.btnURL}
-        />
-      )}
-    </>
+    <HeroSection
+      data={serializedHeroSection}
+      primaryColor={data.brand.primaryColor || "#FF0000"}
+      poster={data.brand.poster || ""}
+      btnName={serializedHeroSection.btnName}
+      btnURL={serializedHeroSection.btnURL}
+    />
   );
 };
 

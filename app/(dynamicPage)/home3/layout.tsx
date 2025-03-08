@@ -1,7 +1,6 @@
 "use client";
-
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 import { Menu, ChevronDown, Facebook, Link2, Instagram } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -13,10 +12,8 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import Image from "next/image";
-import { ApiResponse, SocialLink } from "./type";
-import { API_URLS } from "@/app/api/url";
-import axios from "axios";
-import { DataProvider } from "@/hooks/DataProvider";
+import { SocialLink } from "./type";
+import { DataProvider, useData } from "@/hooks/DataProvider";
 
 const SocialIcon = ({ social }: { social: SocialLink }) => {
   const getIcon = (icon: string) => {
@@ -41,39 +38,10 @@ const SocialIcon = ({ social }: { social: SocialLink }) => {
   );
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  const [data, setData] = useState<ApiResponse | null>(null);
+function LayoutContent({ children }: { children: React.ReactNode }) {
+  const data = useData();
 
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const response = await axios.get<ApiResponse>(API_URLS.DYNAMIC_PAGE);
-        setData(response.data);
-      } catch (error) {
-        console.error("Failed to fetch navigation data", error);
-      }
-    }
-    fetchData();
-  }, []);
-
-  if (!data)
-    return (
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        className="min-h-screen flex items-center justify-center text-white font-futura"
-      >
-        <motion.div
-          animate={{ rotate: 360 }}
-          transition={{ repeat: Infinity, duration: 2, ease: "linear" }}
-          className="w-16 h-16 border-4 border-t-transparent border-white rounded-full"
-        />
-      </motion.div>
-    );
+  if (!data) return null;
 
   const primaryColor = data.brand.primaryColor;
 
@@ -84,9 +52,6 @@ export default function RootLayout({
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         className="text-white bg-neutral-600 dark:bg-neutral-900 flex items-center justify-between px-6 py-3 text-sm"
-        // style={{
-        //   background: `linear-gradient(to right, ${primaryColor}, ${primaryColor}80)`,
-        // }}
       >
         <motion.span
           whileHover={{ scale: 1.05 }}
@@ -122,7 +87,7 @@ export default function RootLayout({
         </div>
       </motion.div>
       {/* Navbar */}
-      <nav className="sticky top-0 z-40 bg-white/65 dark:bg-black/65 backdrop-blur-md shadow-lg">
+      <nav className="sticky top-0 z-40 bg-white/85 dark:bg-black/85 backdrop-blur-md shadow-lg">
         <div className="container mx-auto px-6 py-4 flex justify-between items-center">
           <Link href="/home3">
             <motion.div whileHover={{ rotate: 5 }}>
@@ -148,7 +113,7 @@ export default function RootLayout({
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
                       <button
-                        className="flex items-center gap-1 font-semibold text-gray-700 dark:text-gray-300 dark:hover:text-[color:var(--primaryColor)] hover:text-[color:var(--primaryColor)] transition-colors "
+                        className="flex items-center gap-1 font-semibold text-gray-700 dark:text-gray-300 dark:hover:text-[color:var(--primaryColor)] hover:text-[color:var(--primaryColor)] transition-colors"
                         style={
                           {
                             "--primaryColor": primaryColor,
@@ -183,7 +148,7 @@ export default function RootLayout({
                 ) : (
                   <Link
                     href={item.path || "#"}
-                    className="font-semibold text-gray-700 dark:text-gray-300 dark:hover:text-[color:var(--primaryColor)] hover:text-[color:var(--primaryColor)] transition-colors "
+                    className="font-semibold text-gray-700 dark:text-gray-300 dark:hover:text-[color:var(--primaryColor)] hover:text-[color:var(--primaryColor)] transition-colors"
                     style={
                       { "--primaryColor": primaryColor } as React.CSSProperties
                     }
@@ -207,7 +172,7 @@ export default function RootLayout({
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Button
                 variant="default"
-                className="shadow-lg text-white "
+                className="shadow-lg text-white"
                 style={{ backgroundColor: primaryColor }}
               >
                 {data.menu.ctaButton.text}
@@ -230,14 +195,14 @@ export default function RootLayout({
                       <div>
                         <button className="flex justify-between w-full text-left font-semibold text-gray-700 dark:text-gray-300">
                           {item.name}
-                          <ChevronDown className="w-4 h-4 dark:hover:text-[color:var(--primaryColor)] hover:text-[color:var(--primaryColor)] transition-colors " />
+                          <ChevronDown className="w-4 h-4 dark:hover:text-[color:var(--primaryColor)] hover:text-[color:var(--primaryColor)] transition-colors" />
                         </button>
                         <div className="pl-4 mt-2 space-y-2">
                           {item.dropdown.map((subItem) => (
                             <Link
                               key={subItem.name}
                               href={subItem.path}
-                              className="block text-gray-600 dark:text-neutral-300 dark:hover:text-[color:var(--primaryColor)] hover:text-[color:var(--primaryColor)] transition-colors "
+                              className="block text-gray-600 dark:text-neutral-300 dark:hover:text-[color:var(--primaryColor)] hover:text-[color:var(--primaryColor)] transition-colors"
                               style={
                                 {
                                   "--primaryColor": primaryColor,
@@ -252,7 +217,7 @@ export default function RootLayout({
                     ) : (
                       <Link
                         href={item.path || "#"}
-                        className="block text-gray-700 dark:text-gray-300 dark:hover:text-[color:var(--primaryColor)] hover:text-[color:var(--primaryColor)] transition-colors "
+                        className="block text-gray-700 dark:text-gray-300 dark:hover:text-[color:var(--primaryColor)] hover:text-[color:var(--primaryColor)] transition-colors"
                         style={
                           {
                             "--primaryColor": primaryColor,
@@ -274,7 +239,7 @@ export default function RootLayout({
                   >
                     <Button
                       variant="default"
-                      className="shadow-lg text-white "
+                      className="shadow-lg text-white"
                       style={{ backgroundColor: primaryColor }}
                     >
                       {data.menu.ctaButton.text}
@@ -287,7 +252,19 @@ export default function RootLayout({
         </div>
       </nav>
 
-      <DataProvider data={data}>{children}</DataProvider>
+      {children}
     </div>
+  );
+}
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <DataProvider>
+      <LayoutContent>{children}</LayoutContent>
+    </DataProvider>
   );
 }
