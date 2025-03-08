@@ -1,3 +1,4 @@
+import { reverse } from "dns";
 import { NextResponse } from "next/server";
 
 const data = {
@@ -251,6 +252,36 @@ const data = {
           ],
         },
       ],
+    },
+    {
+      type: "about",
+      name: "About Fira",
+      title: "One of the OLDEST robotics competitions",
+      description:
+        "In 1996, the **Federation of International Robot-sports Association (FIRA)** was founded.  <br/>It is the *first robotics competition* and one of the most **advanced and influential** competitions globally.<br/>In 2023, as the **National Chapter of International RoboSports Association in Canada**,   <br/>it was officially established in **CANADA**. <br/>The **Second Canadian FIRA Robot Competition**, organized by the   <br/>**Canadian National Robotic Society (CNRS)**, will be launched in **Markham**   <br/>on **March 15-16th, 2025**.",
+      links: [
+        {
+          title: "Visit FIRA official website",
+          link: "https://firaworldcup.org/",
+        },
+        { title: "FIRA RoboWorld Official Website", link: "" },
+      ],
+      image:
+        "https://canada.firaworldcup.org/wp-content/uploads/2024/09/DJI_0924-1536x1044.jpg",
+      reverse: false,
+    },
+    {
+      type: "about",
+      name: "Learn more about FIRA Canada",
+      title: "One of the OLDEST robotics competitions",
+      links: [
+        {
+          title: "FIRA RoboWorld Official Website",
+          link: "https://www.youtube.com/@FIRACANADA",
+        },
+      ],
+      video: "https://www.youtube.com/embed/UYrXdnKIwZA?si=n8iqfZJjZ8Cbzh0c",
+      reverse: true,
     },
   ],
 };

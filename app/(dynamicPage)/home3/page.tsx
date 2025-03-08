@@ -3,10 +3,13 @@ import { useEffect, useState } from "react";
 import { serialize } from "next-mdx-remote/serialize";
 import HeroSection from "@/components/dynamicPage/HeroSection";
 import Parents from "@/components/dynamicPage/Parents";
+import AboutImage from "@/components/dynamicPage/AboutImage";
+import AboutVideo from "@/components/dynamicPage/AboutVideo";
 import {
   HeroSection as HeroSectionType,
   CategoriesSection,
   ParentsSection,
+  AboutSection,
 } from "@/app/(dynamicPage)/home3/type";
 import { useData } from "@/hooks/DataProvider";
 import Challenge from "@/components/dynamicPage/Challenges";
@@ -18,6 +21,7 @@ const Page = () => {
   const [categoriesSection, setCategoriesSection] =
     useState<CategoriesSection>();
   const [parentsSection, setParentsSection] = useState<ParentsSection>();
+  const [aboutSections, setAboutSections] = useState<AboutSection[]>([]);
 
   useEffect(() => {
     const processData = async () => {
@@ -32,6 +36,9 @@ const Page = () => {
       const parents = data.sections.find(
         (section) => section.type === "parents"
       ) as ParentsSection;
+      const abouts = data.sections.filter(
+        (section) => section.type === "about"
+      ) as AboutSection[];
 
       if (heroSection) {
         const serializedTitle = await serialize(heroSection.title as string);
@@ -45,13 +52,9 @@ const Page = () => {
         });
       }
 
-      if (categories) {
-        setCategoriesSection(categories);
-      }
-
-      if (parents) {
-        setParentsSection(parents);
-      }
+      if (categories) setCategoriesSection(categories);
+      if (parents) setParentsSection(parents);
+      if (abouts.length > 0) setAboutSections(abouts);
     };
 
     processData();
@@ -70,16 +73,31 @@ const Page = () => {
       />
       {categoriesSection && (
         <Challenge
-          name={data.brand.name}
           data={categoriesSection}
           primaryColor={data.brand.primaryColor || "#FF0000"}
+          name={data.brand.name}
         />
       )}
       {parentsSection && (
         <Parents
           data={parentsSection}
-          primaryColor={data.brand.primaryColor || "#FF0000"}
+          primaryColor={data.brand.primaryColor || "#c1102d"}
         />
+      )}
+      {aboutSections.map((section, index) =>
+        section.image ? (
+          <AboutImage
+            key={index}
+            data={section}
+            primaryColor={data.brand.primaryColor || "#c1102d"}
+          />
+        ) : section.video ? (
+          <AboutVideo
+            key={index}
+            data={section}
+            primaryColor={data.brand.primaryColor || "#c1102d"}
+          />
+        ) : null
       )}
     </div>
   );
