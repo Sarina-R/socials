@@ -25,6 +25,7 @@ const nextConfig: NextConfig = {
       "esports.ch",
       "events.avisengine.com",
       "canada.firaworldcup.org",
+      "firaworldcup.org",
     ],
   },
 };

@@ -1,5 +1,6 @@
 import { MDXRemoteSerializeResult } from "next-mdx-remote";
 
+// Brand dddddddddddddddddddd
 export interface Brand {
   name: string;
   primaryColor: string;
@@ -7,12 +8,17 @@ export interface Brand {
   poster: string;
 }
 
+// top Bar rrrrrrrrrrrrrrrrrrrr
 export interface SocialLink {
   name: string;
   icon: string;
   url: string;
 }
-
+export interface NavItem {
+  name: string;
+  path?: string;
+  dropdown?: { name: string; path: string }[];
+}
 export interface Menu {
   topBar: {
     linkText: string;
@@ -22,18 +28,12 @@ export interface Menu {
   navItems: NavItem[];
   ctaButton: CTAButton;
 }
-
-export interface NavItem {
-  name: string;
-  path?: string;
-  dropdown?: { name: string; path: string }[];
-}
-
 export interface CTAButton {
   text: string;
   path: string;
 }
 
+// Hero Section nnnnnnnnnnnnnn
 export interface HeroSection {
   type: "hero";
   bg: string;
@@ -46,6 +46,7 @@ export interface HeroSection {
   btnURL?: string;
 }
 
+// Categories ssssssssssssssssss
 export interface LeagueItems {
   id: number;
   title: string;
@@ -61,10 +62,12 @@ export interface CategoryItem {
 
 export interface CategoriesSection {
   type: "categories";
-  title: string;
-  items: { firaChalenge: CategoryItem[] }[];
+  title?: string;
+  items: CategoryItem[];
   style: string;
 }
+
+// All lllllllllllllllllllll
 export type Section = HeroSection | CategoriesSection;
 
 export interface ApiResponse {
