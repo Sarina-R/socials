@@ -95,8 +95,8 @@ export interface AboutLink {
 export interface AboutSection {
   type: "about";
   name: string;
-  title: string;
-  description?: string;
+  title: string | MDXRemoteSerializeResult;
+  description?: string | MDXRemoteSerializeResult;
   links?: AboutLink[];
   image?: string;
   video?: string;
