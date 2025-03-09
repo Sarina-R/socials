@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { ImportantDatesSection } from "@/app/(dynamicPage)/home3/type";
 import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 import { useMDXComponents } from "@/mdx-component";
-import { Calendar, CircleChevronRight, Clock, Pencil } from "lucide-react";
+import { CircleChevronRight, Clock, Pencil } from "lucide-react";
 
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
