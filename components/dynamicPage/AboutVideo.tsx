@@ -150,13 +150,14 @@ const AboutVideo = ({ data, primaryColor }: AboutVideoProps) => {
         >
           {data.video && (
             <motion.div
+              whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.4, ease: "easeOut" }}
-              className="w-full h-0 pb-[56.25%] relative rounded-lg shadow-md overflow-hidden"
+              className="w-full flex justify-center items-center rounded-xl shadow-lg overflow-hidden aspect-video min-w-max sm:min-w-[500px]"
             >
               <iframe
                 src={data.video}
                 title={data.name}
-                className="absolute top-0 left-0 w-full h-full"
+                className="w-full h-full rounded-xl object-cover"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
