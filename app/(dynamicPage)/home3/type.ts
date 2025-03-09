@@ -6,6 +6,7 @@ export interface Brand {
   primaryColor: string;
   logo: string;
   poster: string;
+  copyright: string;
 }
 
 // top Bar rrrrrrrrrrrrrrrrrrrr
@@ -122,13 +123,27 @@ export interface ImportantDatesSection {
   items: ImportantDatesItem[];
 }
 
+// Footer rrrrrrrrrrrrrrrr
+export interface FooterLinks {
+  name: string;
+  url: string;
+}
+
+export interface FooterSection {
+  type: "footer";
+  title: string;
+  contacts: { registration_email: string; address: string };
+  links: FooterLinks[];
+}
+
 // All lllllllllllllllllllll
 export type Section =
   | HeroSection
   | CategoriesSection
   | ParentsSection
   | AboutSection
-  | ImportantDatesSection;
+  | ImportantDatesSection
+  | FooterSection;
 
 export interface ApiResponse {
   brand: Brand;

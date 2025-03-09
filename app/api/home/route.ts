@@ -7,6 +7,7 @@ const data = {
     logo: "https://canada.firaworldcup.org/wp-content/uploads/2020/11/logo.png",
     poster:
       "https://canada.firaworldcup.org/wp-content/uploads/2025/02/Screenshot-2025-02-13-at-12.56.18%E2%80%AFPM.png",
+    copyright: "2025 FIRA Canada © All rights reserved",
   },
   menu: {
     topBar: {
@@ -296,6 +297,20 @@ const data = {
             text: "Pre-register Now",
             url: "https://events.avisengine.com/",
           },
+        },
+      ],
+    },
+    {
+      type: "footer",
+      title: "FIRA Canada Regional Chapter",
+      contacts: {
+        registration_email: "infocanada@firaworldcup.org",
+        address: "187 Finch ave. West Toronto",
+      },
+      links: [
+        {
+          name: "Federation of International Robot-Sports Association",
+          url: "https://firaworldcup.org/",
         },
       ],
     },

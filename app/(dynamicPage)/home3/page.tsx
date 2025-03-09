@@ -14,14 +14,18 @@ import {
   AboutSection,
   Section,
   ImportantDatesSection,
+  FooterSection,
 } from "@/app/(dynamicPage)/home3/type";
 import { useData } from "@/hooks/DataProvider";
 import { MDXRemoteSerializeResult } from "next-mdx-remote";
 import ImportantDates from "@/components/dynamicPage/ImportantDates";
+import Footer from "@/components/dynamicPage/Footer";
 
 const Page = () => {
   const data = useData();
   const [sections, setSections] = useState<Section[]>([]);
+  const [categoriesSection, setCategoriesSection] =
+    useState<CategoriesSection | null>(null);
 
   useEffect(() => {
     const processData = async () => {
@@ -73,6 +77,12 @@ const Page = () => {
           data.sections.map(processSection)
         );
 
+        const categories = processedSections.find(
+          (section): section is CategoriesSection =>
+            section.type === "categories"
+        );
+        setCategoriesSection(categories || null);
+
         setSections(processedSections);
       } catch (error) {
         console.error("Error processing sections:", error);
@@ -91,65 +101,83 @@ const Page = () => {
   }
 
   return (
-    <div className="space-y-28 pb-10">
-      {sections.map((section, index) => {
-        switch (section.type) {
-          case "hero":
-            return (
-              <HeroSection
-                key={index}
-                data={section as HeroSectionType}
-                primaryColor={data.brand.primaryColor || "#c1102d"}
-                poster={data.brand.poster || ""}
-                btnName={(section as HeroSectionType).btnName}
-                btnURL={(section as HeroSectionType).btnURL}
-              />
-            );
-          case "categories":
-            return (
-              <Challenge
-                key={index}
-                data={section as CategoriesSection}
-                primaryColor={data.brand.primaryColor || "#c1102d"}
-                name={data.brand.name}
-              />
-            );
-          case "parents":
-            return (
-              <Parents
-                key={index}
-                data={section as ParentsSection}
-                primaryColor={data.brand.primaryColor || "#c1102d"}
-              />
-            );
-          case "about":
-            const aboutSection = section as AboutSection;
-            return aboutSection.image ? (
-              <AboutImage
-                key={index}
-                data={aboutSection}
-                primaryColor={data.brand.primaryColor || "#c1102d"}
-              />
-            ) : aboutSection.video ? (
-              <AboutVideo
-                key={index}
-                data={aboutSection}
-                primaryColor={data.brand.primaryColor || "#c1102d"}
-              />
-            ) : null;
-          case "importantDates":
-            return (
-              <ImportantDates
-                key={index}
-                data={section as ImportantDatesSection}
-                primaryColor={data.brand.primaryColor || "#c1102d"}
-              />
-            );
-          default:
-            return null;
-        }
-      })}
-    </div>
+    <>
+      <div className="space-y-28">
+        {sections.map((section, index) => {
+          switch (section.type) {
+            case "hero":
+              return (
+                <HeroSection
+                  key={index}
+                  data={section as HeroSectionType}
+                  primaryColor={data.brand.primaryColor || "#c1102d"}
+                  poster={data.brand.poster || ""}
+                  btnName={(section as HeroSectionType).btnName}
+                  btnURL={(section as HeroSectionType).btnURL}
+                />
+              );
+            case "categories":
+              return (
+                <Challenge
+                  key={index}
+                  data={section as CategoriesSection}
+                  primaryColor={data.brand.primaryColor || "#c1102d"}
+                  name={data.brand.name}
+                />
+              );
+            case "parents":
+              return (
+                <Parents
+                  key={index}
+                  data={section as ParentsSection}
+                  primaryColor={data.brand.primaryColor || "#c1102d"}
+                />
+              );
+            case "about":
+              const aboutSection = section as AboutSection;
+              return aboutSection.image ? (
+                <AboutImage
+                  key={index}
+                  data={aboutSection}
+                  primaryColor={data.brand.primaryColor || "#c1102d"}
+                />
+              ) : aboutSection.video ? (
+                <AboutVideo
+                  key={index}
+                  data={aboutSection}
+                  primaryColor={data.brand.primaryColor || "#c1102d"}
+                />
+              ) : null;
+            case "importantDates":
+              return (
+                <ImportantDates
+                  key={index}
+                  data={section as ImportantDatesSection}
+                  primaryColor={data.brand.primaryColor || "#c1102d"}
+                />
+              );
+            case "footer":
+              return (
+                <Footer
+                  key={index}
+                  data={section as FooterSection}
+                  primaryColor={data.brand.primaryColor || "#c1102d"}
+                  logo={data.brand.logo}
+                  categories={categoriesSection}
+                />
+              );
+            default:
+              return null;
+          }
+        })}
+      </div>
+      <div
+        style={{ background: data.brand.primaryColor }}
+        className="text-white items-center p-5 text-sm"
+      >
+        {data.brand.copyright}
+      </div>
+    </>
   );
 };
 
