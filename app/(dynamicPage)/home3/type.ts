@@ -103,12 +103,32 @@ export interface AboutSection {
   reverse?: boolean;
 }
 
+// Important Dates ssssssssssss
+export interface ImportantDatesItem {
+  title: string | MDXRemoteSerializeResult;
+  description: string | MDXRemoteSerializeResult;
+  date: string;
+  links: {
+    text: string;
+    url: string;
+  };
+}
+
+export interface ImportantDatesSection {
+  type: "importantDates";
+  name: string;
+  title: string | MDXRemoteSerializeResult;
+  description: string | MDXRemoteSerializeResult;
+  items: ImportantDatesItem[];
+}
+
 // All lllllllllllllllllllll
 export type Section =
   | HeroSection
   | CategoriesSection
   | ParentsSection
-  | AboutSection;
+  | AboutSection
+  | ImportantDatesSection;
 
 export interface ApiResponse {
   brand: Brand;

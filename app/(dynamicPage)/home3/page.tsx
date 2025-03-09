@@ -13,33 +13,56 @@ import {
   ParentsSection,
   AboutSection,
   Section,
+  ImportantDatesSection,
 } from "@/app/(dynamicPage)/home3/type";
 import { useData } from "@/hooks/DataProvider";
 import { MDXRemoteSerializeResult } from "next-mdx-remote";
+import ImportantDates from "@/components/dynamicPage/ImportantDates";
 
 const Page = () => {
   const data = useData();
-  const [sections, setSections] = useState<
-    (HeroSectionType | CategoriesSection | ParentsSection | AboutSection)[]
-  >([]);
+  const [sections, setSections] = useState<Section[]>([]);
 
   useEffect(() => {
     const processData = async () => {
       if (!data) return;
 
       const processSection = async (section: Section): Promise<Section> => {
-        if (section.type === "hero" || section.type === "about") {
+        if (
+          section.type === "hero" ||
+          section.type === "about" ||
+          section.type === "importantDates"
+        ) {
           const [serializedTitle, serializedDescription] = await Promise.all([
             serialize(section.title as string),
             section.description
               ? serialize(section.description as string)
-              : Promise.resolve(undefined),
+              : Promise.resolve({} as MDXRemoteSerializeResult),
           ]);
+
+          if (section.type === "importantDates") {
+            const serializedItems = await Promise.all(
+              section.items.map(async (item) => ({
+                ...item,
+                title: await serialize(item.title as string),
+                description: item.description
+                  ? await serialize(item.description as string)
+                  : ({} as MDXRemoteSerializeResult),
+              }))
+            );
+
+            return {
+              ...section,
+              title: serializedTitle,
+              description: serializedDescription,
+              items: serializedItems,
+            };
+          }
+
           return {
             ...section,
             title: serializedTitle,
-            description:
-              serializedDescription ?? ({} as MDXRemoteSerializeResult),
+            description: serializedDescription,
           };
         }
         return section;
@@ -61,7 +84,7 @@ const Page = () => {
 
   if (!data || sections.length === 0) {
     return (
-      <div className="min-h-screen flex items-center justify-center text-white font-futura">
+      <div className="min-h-screen flex items-center justify-center font-futura">
         <div className="w-16 h-16 border-4 border-t-transparent border-white rounded-full animate-spin" />
       </div>
     );
@@ -114,6 +137,14 @@ const Page = () => {
                 primaryColor={data.brand.primaryColor || "#c1102d"}
               />
             ) : null;
+          case "importantDates":
+            return (
+              <ImportantDates
+                key={index}
+                data={section as ImportantDatesSection}
+                primaryColor={data.brand.primaryColor || "#c1102d"}
+              />
+            );
           default:
             return null;
         }

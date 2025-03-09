@@ -282,6 +282,23 @@ const data = {
       video: "https://www.youtube.com/embed/UYrXdnKIwZA?si=n8iqfZJjZ8Cbzh0c",
       reverse: true,
     },
+    {
+      type: "importantDates",
+      name: "Dates",
+      title: "Important Dates",
+      description: "Mark it on your calandars",
+      items: [
+        {
+          title: "Competition",
+          description: "Register your team on the website",
+          date: "2025-03-15T00:00:00Z",
+          links: {
+            text: "Pre-register Now",
+            url: "https://events.avisengine.com/",
+          },
+        },
+      ],
+    },
   ],
 };
 
