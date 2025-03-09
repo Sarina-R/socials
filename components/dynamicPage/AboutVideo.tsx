@@ -87,7 +87,6 @@ const AboutVideo = ({ data, primaryColor }: AboutVideoProps) => {
 
   return (
     <motion.section
-      className="py-12"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.2 }}
@@ -152,7 +151,7 @@ const AboutVideo = ({ data, primaryColor }: AboutVideoProps) => {
             <motion.div
               whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.4, ease: "easeOut" }}
-              className="w-full flex justify-center items-center rounded-xl shadow-lg overflow-hidden aspect-video min-w-max sm:min-w-[500px]"
+              className="w-full flex justify-center items-center rounded-xl shadow-lg overflow-hidden aspect-video min-w-max md:min-w-max sm:min-w-[500px]"
             >
               <iframe
                 src={data.video}

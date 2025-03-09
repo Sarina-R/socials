@@ -12,8 +12,10 @@ import {
   CategoriesSection,
   ParentsSection,
   AboutSection,
+  Section,
 } from "@/app/(dynamicPage)/home3/type";
 import { useData } from "@/hooks/DataProvider";
+import { MDXRemoteSerializeResult } from "next-mdx-remote";
 
 const Page = () => {
   const data = useData();
@@ -25,18 +27,19 @@ const Page = () => {
     const processData = async () => {
       if (!data) return;
 
-      const processSection = async (section: any): Promise<any> => {
+      const processSection = async (section: Section): Promise<Section> => {
         if (section.type === "hero" || section.type === "about") {
           const [serializedTitle, serializedDescription] = await Promise.all([
             serialize(section.title as string),
             section.description
               ? serialize(section.description as string)
-              : Promise.resolve(null),
+              : Promise.resolve(undefined),
           ]);
           return {
             ...section,
             title: serializedTitle,
-            description: serializedDescription,
+            description:
+              serializedDescription ?? ({} as MDXRemoteSerializeResult),
           };
         }
         return section;
@@ -65,7 +68,7 @@ const Page = () => {
   }
 
   return (
-    <div className="space-y-16 pb-10">
+    <div className="space-y-28 pb-10">
       {sections.map((section, index) => {
         switch (section.type) {
           case "hero":
