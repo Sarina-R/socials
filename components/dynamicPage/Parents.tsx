@@ -14,24 +14,72 @@ interface ParentsProps {
 const Parents = ({ data, primaryColor }: ParentsProps) => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.3,
+      },
+    },
+  };
+
+  const titleVariants = {
+    hidden: { opacity: 0, y: -40, scale: 0.85 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.8,
+        ease: [0.6, -0.05, 0.01, 0.9], // Elastic bounce
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 60, rotate: 5, scale: 0.9 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      rotate: 0,
+      scale: 1,
+      transition: {
+        duration: 0.9,
+        ease: "easeOut",
+        type: "spring",
+        bounce: 0.35,
+      },
+    },
+  };
+
   return (
-    <section>
+    <motion.section
+      initial="hidden"
+      whileInView="visible" // Triggers when section is in view
+      viewport={{ once: true, amount: 0.2 }} // Runs once when 20% visible
+      variants={containerVariants}
+    >
       <div className="container mx-auto px-4 space-y-12">
         {data.items.map((category, categoryIndex) => (
           <div key={categoryIndex}>
-            <h2
+            <motion.h2
               className="text-3xl font-bold text-center mb-4"
               style={{ color: primaryColor }}
+              variants={titleVariants}
             >
               {category.name}
-            </h2>
+            </motion.h2>
             <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-9 gap-6 justify-center">
               {category.items.map((item, index) => (
                 <motion.div
                   key={item.id}
-                  initial={{ opacity: 0, y: 50 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  variants={itemVariants}
+                  initial="hidden"
+                  whileInView="visible" // Triggers individually for each item
+                  viewport={{ once: true, amount: 0.3 }} // Runs once when 30% of item is visible
                   onMouseEnter={() => setHoveredIndex(index)}
                   onMouseLeave={() => setHoveredIndex(null)}
                   className="flex justify-center"
@@ -75,7 +123,7 @@ const Parents = ({ data, primaryColor }: ParentsProps) => {
           </div>
         ))}
       </div>
-    </section>
+    </motion.section>
   );
 };
 
