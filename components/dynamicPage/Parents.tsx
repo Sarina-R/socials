@@ -14,7 +14,6 @@ interface ParentsProps {
 const Parents = ({ data, primaryColor }: ParentsProps) => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
-  // Animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -34,7 +33,7 @@ const Parents = ({ data, primaryColor }: ParentsProps) => {
       scale: 1,
       transition: {
         duration: 0.8,
-        ease: [0.6, -0.05, 0.01, 0.9], // Elastic bounce
+        ease: [0.6, -0.05, 0.01, 0.9],
       },
     },
   };
@@ -58,8 +57,8 @@ const Parents = ({ data, primaryColor }: ParentsProps) => {
   return (
     <motion.section
       initial="hidden"
-      whileInView="visible" // Triggers when section is in view
-      viewport={{ once: true, amount: 0.2 }} // Runs once when 20% visible
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.2 }}
       variants={containerVariants}
     >
       <div className="container mx-auto px-4 space-y-12">
@@ -78,8 +77,8 @@ const Parents = ({ data, primaryColor }: ParentsProps) => {
                   key={item.id}
                   variants={itemVariants}
                   initial="hidden"
-                  whileInView="visible" // Triggers individually for each item
-                  viewport={{ once: true, amount: 0.3 }} // Runs once when 30% of item is visible
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.3 }}
                   onMouseEnter={() => setHoveredIndex(index)}
                   onMouseLeave={() => setHoveredIndex(null)}
                   className="flex justify-center"
