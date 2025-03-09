@@ -141,7 +141,7 @@ const ImportantDates: React.FC<ImportantDatesProps> = ({
           {data.items.map((item, index) => (
             <motion.div
               key={index}
-              className="grid grid-cols-2 bg-white dark:bg-neutral-500 rounded-xl shadow-lg py-10 px-6 gap-6 border"
+              className="grid grid-cols-2 bg-white dark:bg-neutral-900 rounded-xl shadow-lg py-10 px-6 gap-6 border"
               initial="hidden"
               animate="visible"
               whileHover={{ scale: 1.02 }}
