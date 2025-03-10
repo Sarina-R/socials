@@ -131,7 +131,7 @@ function LayoutContent({ children }: { children: React.ReactNode }) {
                       {item.dropdown.map((subItem) => (
                         <DropdownMenuItem key={subItem.name} asChild>
                           <Link
-                            href={subItem.path}
+                            href={subItem.path || "#"}
                             className="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:text-[color:var(--primaryColor)] hover:bg-[color:var(--primaryColor)]/10 transition-colors"
                             style={
                               {
@@ -201,7 +201,7 @@ function LayoutContent({ children }: { children: React.ReactNode }) {
                           {item.dropdown.map((subItem) => (
                             <Link
                               key={subItem.name}
-                              href={subItem.path}
+                              href={subItem.path || "#"}
                               className="block text-gray-600 dark:text-neutral-300 dark:hover:text-[color:var(--primaryColor)] hover:text-[color:var(--primaryColor)] transition-colors"
                               style={
                                 {
