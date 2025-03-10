@@ -85,7 +85,7 @@ export default function RootLayout({
           </Link>
         </div>
       </div>
-      <div className="min-h-[50vh] p-12 space-y-12">{children}</div>
+      <div className="min-h-[50vh] md:p-12 p-4 space-y-12">{children}</div>
       {footerData && (
         <Footer
           data={footerData as FooterSection}

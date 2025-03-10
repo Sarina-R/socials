@@ -1,9 +1,8 @@
-// mdx-component.tsx
 import type { MDXComponents } from "mdx/types";
 import { motion } from "framer-motion";
 
 interface MDXComponentProps {
-  primaryColor?: string; // Optional prop for custom color
+  primaryColor?: string;
 }
 
 export function useMDXComponents({
