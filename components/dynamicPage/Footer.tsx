@@ -29,7 +29,7 @@ const Footer = ({ data, primaryColor, logo, categories }: FooterProps) => {
             alt={data.title}
             height={100}
             width={200}
-            className="dark:invert"
+            // className="dark:invert"
           />
           <p className="mt-4 text-sm font-semibold text-neutral-700 dark:text-neutral-300">
             {data.title}

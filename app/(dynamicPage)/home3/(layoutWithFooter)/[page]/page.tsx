@@ -13,7 +13,9 @@ const Page = () => {
   const pathname = usePathname();
   const [mdxSource, setMdxSource] = useState<MDXRemoteSerializeResult>();
 
-  const mdxComponents = useMDXComponents({});
+  const mdxComponents = useMDXComponents({
+    primaryColor: data.brand.primaryColor,
+  });
 
   useEffect(() => {
     const findActiveLink = async () => {
@@ -48,7 +50,7 @@ const Page = () => {
   }, [pathname, data.menu.navItems]);
 
   return (
-    <div className="container mx-auto p-4 text-neutral-700">
+    <div className="container mx-auto p-4" style={{ textAlign: "justify" }}>
       {mdxSource ? (
         <MDXRemote {...mdxSource} components={mdxComponents} />
       ) : (

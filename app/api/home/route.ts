@@ -18,30 +18,60 @@ const item1 = `
     - [Instagram](https://instagram.com/fira)
     - [Twitter](https://twitter.com/fira)
   `;
+
 const item2 = `
-    # Welcome to FIRA Canada
+# FIRA Canada Overview
 
-    **FIRA Canada** is dedicated to the promotion of rugby across Canada. We believe in creating opportunities for everyone to play and enjoy rugby.
+**FIRA Canada** is dedicated to advancing rugby at all levels. Here's a comprehensive look at what we offer:
 
-    ![FIRA Canada Logo](https://canada.firaworldcup.org/wp-content/uploads/2020/11/logo.png)
+## Key Features
 
-    ## Our Vision
+### Grassroots Programs
+We emphasize:
+- *Youth development* through local training camps
+- **Coach education** with certified instructors
+- Community outreach events
 
-    We aim to grow the rugby community in Canada by providing youth with access to the sport, promoting inclusivity, and enhancing the rugby culture.
+### Event Highlights
+> "The FIRA Canada Championship was a game-changer for youth rugby in 2024."  
+> — *John Doe, Head Coach*
 
-    ### Key Values
+#### Upcoming Schedule
+| Date       | Event            | Location       |
+|------------|------------------|----------------|
+| 2025-04-15 | Junior Finals    | Toronto, ON    |
+| 2025-06-20 | Senior Qualifiers| Vancouver, BC  |
 
-    - **Integrity**: We believe in the highest standards of fair play.
-    - **Community**: Rugby brings people together.
-    - **Excellence**: Striving to excel on and off the field.
+## Supported Formats
+- **Unordered Lists:**
+  - Training sessions
+  - Equipment grants
+  - Volunteer opportunities
+    - Referee training
+    - Event staffing
 
-    ### Connect with Us
-    Stay updated with FIRA Canada on our social media platforms.
+- **Ordered Lists:**
+  1. Register your team
+  2. Attend orientation
+  3. Compete in qualifiers
 
-    - [Instagram](https://instagram.com/fira)
-    - [Twitter](https://twitter.com/fira)
-    - [Facebook](https://facebook.com/fira)
-  `;
+## Media
+![Rugby Action Shot](https://kabartolo.github.io/chicago-docs-demo/static/0a1b76564b2e630e6fcf0ce5cbdc1cb1/e5166/sahand-babali-unsplash.jpg "Players in action during the 2024 finals")
+
+## Code Example
+Here's a sample of our registration API:
+\`\`\`json
+{
+  "team": {
+    "name": "Toronto Titans",
+    "division": "Junior",
+    "registered": "2025-03-10"
+  }
+}
+\`\`\`
+
+*For more details, contact us at [info@firacanada.org](mailto:info@firacanada.org).*
+`;
 
 const data = {
   brand: {
