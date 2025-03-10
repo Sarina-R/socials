@@ -1,11 +1,11 @@
 "use client";
 
 import { useData } from "@/hooks/DataProvider";
-import { ApiResponse, NavItem } from "../../type";
+import { ApiResponse } from "../../type";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote";
-import { serialize } from "next-mdx-remote/serialize"; // Import serialize
+import { serialize } from "next-mdx-remote/serialize";
 import { useMDXComponents } from "@/mdx-component";
 
 const Page = () => {
