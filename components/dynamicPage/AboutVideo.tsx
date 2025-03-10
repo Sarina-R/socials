@@ -91,7 +91,7 @@ const AboutVideo = ({ data, primaryColor }: AboutVideoProps) => {
       whileInView="visible"
       viewport={{ once: true, amount: 0.2 }}
       variants={containerVariants}
-      className="overflow-x-hidden px-6"
+      className="overflow-hidden px-6"
     >
       <div className="container mx-auto px-4 flex flex-col md:flex-row md:items-center justify-between gap-8">
         <motion.div
