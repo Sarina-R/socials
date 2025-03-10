@@ -20,6 +20,7 @@ import { useData } from "@/hooks/DataProvider";
 import { MDXRemoteSerializeResult } from "next-mdx-remote";
 import ImportantDates from "@/components/dynamicPage/ImportantDates";
 import Footer from "@/components/dynamicPage/Footer";
+import Copyright from "@/components/dynamicPage/Copyright";
 
 const Page = () => {
   const data = useData();
@@ -171,12 +172,10 @@ const Page = () => {
           }
         })}
       </div>
-      <div
-        style={{ background: data.brand.primaryColor }}
-        className="text-white items-center p-5 text-sm"
-      >
-        {data.brand.copyright}
-      </div>
+      <Copyright
+        primaryColor={data.brand.primaryColor}
+        text={data.brand.copyright}
+      />
     </>
   );
 };
