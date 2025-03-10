@@ -46,7 +46,7 @@ function LayoutContent({ children }: { children: React.ReactNode }) {
   const primaryColor = data.brand.primaryColor;
 
   return (
-    <div className="font-futura overflow-x-hidden">
+    <div className="font-futura">
       {/* Top Bar */}
       <motion.div
         initial={{ y: -100 }}

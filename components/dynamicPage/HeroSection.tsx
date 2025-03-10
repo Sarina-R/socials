@@ -82,7 +82,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
       </motion.svg>
 
       <motion.section
-        className="w-full pt-32 min-h-[80vh] flex md:flex-row flex-col items-center justify-center overflow-hidden p-4"
+        className="w-full pt-32 min-h-[80vh] flex md:flex-row flex-col items-center justify-center p-4"
         style={{
           backgroundImage: gradientBg,
           backgroundSize: "cover",
@@ -93,9 +93,9 @@ const HeroSection: React.FC<HeroSectionProps> = ({
         animate="visible"
         variants={containerVariants}
       >
-        <motion.div className="z-10 flex flex-col flex-1 items-start px-4">
+        <motion.div className="z-10 flex flex-col flex-1 items-start w-full">
           <motion.div
-            className="text-4xl font-bold mb-4 text-white"
+            className="sm:text-4xl text-2xl font-bold mb-4 text-white"
             variants={fadeInUp}
           >
             <MDXRemote
@@ -105,7 +105,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
           </motion.div>
 
           <motion.div
-            className="text-lg text-gray-200 mb-6"
+            className="sm:text-lg text-sm text-gray-200 mb-6"
             variants={fadeInUp}
           >
             <MDXRemote
@@ -162,7 +162,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
           >
             <motion.div variants={buttonVariants} whileHover="hover">
               <Button
-                className="text-lg font-semibold bg-[rgba(var(--primary-rgb),1)] hover:bg-[rgba(var(--primary-rgb),0.9)] text-white px-6 py-6 rounded-lg transition-all duration-300 max-w-max"
+                className="md:text-lg font-semibold bg-[rgba(var(--primary-rgb),1)] hover:bg-[rgba(var(--primary-rgb),0.9)] text-white px-6 py-6 rounded-lg transition-all duration-300 max-w-max"
                 style={
                   {
                     "--primary-rgb": hexToRgb(safePrimaryColor).join(","),
@@ -182,7 +182,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
 
             <motion.div variants={buttonVariants} whileHover="hover">
               <Button
-                className="max-w-max text-lg text-left font-semibold bg-white hover:bg-white/70 text-black px-6 py-6 rounded-lg transition-all duration-300"
+                className="max-w-max md:text-lg text-left font-semibold bg-white hover:bg-white/70 text-black px-6 py-6 rounded-lg transition-all duration-300"
                 asChild
               >
                 <a href="" target="_blank" rel="noopener noreferrer">
@@ -199,7 +199,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
             {btnName && (
               <motion.div variants={buttonVariants} whileHover="hover">
                 <Button
-                  className="max-w-max text-lg text-left font-semibold bg-black hover:bg-black/80 text-white py-6 px-6 rounded-lg transition-all duration-300"
+                  className="max-w-max md:text-lg text-left font-semibold bg-black hover:bg-black/80 text-white py-6 px-6 rounded-lg transition-all duration-300"
                   asChild
                 >
                   <a href={btnURL} target="_blank" rel="noopener noreferrer">
