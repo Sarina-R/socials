@@ -1,3 +1,4 @@
+import { color } from "framer-motion";
 import type { MDXComponents } from "mdx/types";
 import Image, { ImageProps } from "next/image";
 
@@ -9,13 +10,13 @@ import Image, { ImageProps } from "next/image";
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
     // Allows customizing built-in components, e.g. to add styling.
-    h1: ({ children, style }) => <h1 className={style}>{children}</h1>,
+    h1: ({ children, primaryColor }) => (
+      <h1 style={{ color: primaryColor, fontSize: "2rem", fontWeight: "bold" }}>
+        {children}
+      </h1>
+    ),
     img: (props) => (
-      <Image
-        sizes="100vw"
-        style={{ width: "100%", height: "auto" }}
-        {...(props as ImageProps)}
-      />
+      <img style={{ width: "100%", height: "auto" }} {...props} />
     ),
     p: ({ children, style }) => <p className={style}>{children}</p>,
     ...components,

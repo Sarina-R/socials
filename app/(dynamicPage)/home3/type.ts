@@ -18,7 +18,8 @@ export interface SocialLink {
 export interface NavItem {
   name: string;
   path?: string;
-  dropdown?: { name: string; path: string }[];
+  MarkDownItem: string | MDXRemoteSerializeResult;
+  dropdown?: NavItem[];
 }
 export interface Menu {
   topBar: {

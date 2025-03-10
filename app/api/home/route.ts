@@ -1,5 +1,48 @@
 import { NextResponse } from "next/server";
 
+const item1 = `
+    # About Fira
+
+    **FIRA Canada** is committed to promoting and developing rugby across Canada.
+
+    ![Logo](https://canada.firaworldcup.org/wp-content/uploads/2020/11/logo.png)
+
+    ## Our Mission
+
+    Our goal is to build a stronger rugby community in Canada, focusing on grassroots development.
+
+    ### Connect With Us
+
+    Follow us on our social media platforms to stay updated:
+
+    - [Instagram](https://instagram.com/fira)
+    - [Twitter](https://twitter.com/fira)
+  `;
+const item2 = `
+    # Welcome to FIRA Canada
+
+    **FIRA Canada** is dedicated to the promotion of rugby across Canada. We believe in creating opportunities for everyone to play and enjoy rugby.
+
+    ![FIRA Canada Logo](https://canada.firaworldcup.org/wp-content/uploads/2020/11/logo.png)
+
+    ## Our Vision
+
+    We aim to grow the rugby community in Canada by providing youth with access to the sport, promoting inclusivity, and enhancing the rugby culture.
+
+    ### Key Values
+
+    - **Integrity**: We believe in the highest standards of fair play.
+    - **Community**: Rugby brings people together.
+    - **Excellence**: Striving to excel on and off the field.
+
+    ### Connect with Us
+    Stay updated with FIRA Canada on our social media platforms.
+
+    - [Instagram](https://instagram.com/fira)
+    - [Twitter](https://twitter.com/fira)
+    - [Facebook](https://facebook.com/fira)
+  `;
+
 const data = {
   brand: {
     name: "Fira Canada",
@@ -26,15 +69,17 @@ const data = {
       {
         name: "About",
         dropdown: [
-          { name: "About Fira", path: "http://localhost:3000/home3/aboutFira" },
+          { name: "About Fira", path: "/home3/aboutFira", MarkDownItem: item2 },
           {
             name: "About Fira Canada",
-            path: "http://localhost:3000/home3/aboutFiraCanada",
+            path: "/home3/aboutFiraCanada",
+            MarkDownItem: "",
           },
-          { name: "Objective", path: "http://localhost:3000/home3/objective" },
+          { name: "Objective", path: "/home3/objective", MarkDownItem: item1 },
           {
             name: "FIRA Canada 2024 Report",
-            path: "http://localhost:3000/home3/FiraCanada2024REport",
+            path: "/home3/FiraCanada2024REport",
+            MarkDownItem: "mew2",
           },
         ],
       },
