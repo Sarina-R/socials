@@ -93,7 +93,7 @@ const AboutImage = ({ data, primaryColor }: AboutImageProps) => {
       viewport={{ once: true, amount: 0.2 }}
       variants={containerVariants}
     >
-      <div className="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-8">
+      <div className="container mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-8">
         <motion.div
           className={`md:w-1/2 ${isReversed ? "md:order-2" : "md:order-1"}`}
           variants={textBlockVariants}

@@ -110,11 +110,11 @@ const ImportantDates: React.FC<ImportantDatesProps> = ({
   }, [data.items]);
 
   return (
-    <div className="max-w-6xl m-auto">
-      <section className="w-full p-4 flex flex-col md:flex-row gap-8 mx-auto">
+    <div className="max-w-6xl m-auto xl:px-4 px-10">
+      <section className="w-full flex flex-col md:flex-row gap-8 mx-auto">
         {/* Sticky */}
         <motion.div
-          className="md:w-1/3 w-full md:sticky md:top-20 p-6"
+          className="md:w-1/3 w-full md:sticky md:top-0"
           initial="hidden"
           animate="visible"
           variants={fadeIn}

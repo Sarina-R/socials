@@ -93,7 +93,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
         animate="visible"
         variants={containerVariants}
       >
-        <motion.div className="z-10 flex flex-col flex-1 items-start w-full">
+        <motion.div className="z-10 flex flex-col flex-1 items-start w-full md:px-4">
           <motion.div
             className="sm:text-4xl text-2xl font-bold mb-4 text-white"
             variants={fadeInUp}

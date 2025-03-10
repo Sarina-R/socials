@@ -91,14 +91,15 @@ const AboutVideo = ({ data, primaryColor }: AboutVideoProps) => {
       whileInView="visible"
       viewport={{ once: true, amount: 0.2 }}
       variants={containerVariants}
+      className="overflow-x-hidden px-6"
     >
-      <div className="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-8">
+      <div className="container mx-auto px-4 flex flex-col md:flex-row md:items-center justify-between gap-8">
         <motion.div
           className={`md:w-1/2 ${isReversed ? "md:order-2" : "md:order-1"}`}
           variants={textBlockVariants}
         >
           <motion.h2
-            className="text-sm flex items-center text-neutral-500 mb-3"
+            className="text-sm flex md:items-center text-neutral-500 mb-3"
             variants={textBlockVariants}
           >
             <Earth className="mr-3" color={primaryColor} />
@@ -118,7 +119,7 @@ const AboutVideo = ({ data, primaryColor }: AboutVideoProps) => {
               {data.links.map((link, index) => (
                 <motion.li
                   key={index}
-                  className="font-semibold items-center flex space-x-2"
+                  className="font-semibold md:items-center flex space-x-2"
                   variants={linkVariants}
                   initial="hidden"
                   whileInView="visible"
@@ -151,7 +152,7 @@ const AboutVideo = ({ data, primaryColor }: AboutVideoProps) => {
             <motion.div
               whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.4, ease: "easeOut" }}
-              className="w-full flex justify-center items-center rounded-xl shadow-lg overflow-hidden aspect-video min-w-max md:min-w-max sm:min-w-[500px]"
+              className="w-full flex justify-center md:items-center rounded-xl shadow-lg overflow-hidden aspect-video min-w-max md:min-w-max sm:min-w-[500px]"
             >
               <iframe
                 src={data.video}
