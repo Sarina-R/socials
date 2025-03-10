@@ -26,8 +26,16 @@ const data = {
       {
         name: "About",
         dropdown: [
-          { name: "Overview", path: "/home3/about/overview" },
-          { name: "History", path: "/home3/about/history" },
+          { name: "About Fira", path: "http://localhost:3000/home3/aboutFira" },
+          {
+            name: "About Fira Canada",
+            path: "http://localhost:3000/home3/aboutFiraCanada",
+          },
+          { name: "Objective", path: "http://localhost:3000/home3/objective" },
+          {
+            name: "FIRA Canada 2024 Report",
+            path: "http://localhost:3000/home3/FiraCanada2024REport",
+          },
         ],
       },
       {
