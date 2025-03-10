@@ -39,13 +39,13 @@ export default function RootLayout({
       {footerData && (
         <Footer
           data={footerData as FooterSection}
-          primaryColor={primaryColor || "#c1102d"}
+          primaryColor={primaryColor || "#0ebaba"}
           logo={data.brand.logo}
           categories={categoriesSection}
         />
       )}
       <Copyright
-        primaryColor={primaryColor || "#c1102d"}
+        primaryColor={primaryColor || "#0ebaba"}
         text={data.brand.copyright}
       />
     </>

@@ -111,7 +111,7 @@ const Page = () => {
                 <HeroSection
                   key={index}
                   data={section as HeroSectionType}
-                  primaryColor={data.brand.primaryColor || "#c1102d"}
+                  primaryColor={data.brand.primaryColor || "#0ebaba"}
                   poster={data.brand.poster || ""}
                   btnName={(section as HeroSectionType).btnName}
                   btnURL={(section as HeroSectionType).btnURL}
@@ -122,7 +122,7 @@ const Page = () => {
                 <Challenge
                   key={index}
                   data={section as CategoriesSection}
-                  primaryColor={data.brand.primaryColor || "#c1102d"}
+                  primaryColor={data.brand.primaryColor || "#0ebaba"}
                   name={data.brand.name}
                 />
               );
@@ -131,7 +131,7 @@ const Page = () => {
                 <Parents
                   key={index}
                   data={section as ParentsSection}
-                  primaryColor={data.brand.primaryColor || "#c1102d"}
+                  primaryColor={data.brand.primaryColor || "#0ebaba"}
                 />
               );
             case "about":
@@ -140,13 +140,13 @@ const Page = () => {
                 <AboutImage
                   key={index}
                   data={aboutSection}
-                  primaryColor={data.brand.primaryColor || "#c1102d"}
+                  primaryColor={data.brand.primaryColor || "#0ebaba"}
                 />
               ) : aboutSection.video ? (
                 <AboutVideo
                   key={index}
                   data={aboutSection}
-                  primaryColor={data.brand.primaryColor || "#c1102d"}
+                  primaryColor={data.brand.primaryColor || "#0ebaba"}
                 />
               ) : null;
             case "importantDates":
@@ -154,7 +154,7 @@ const Page = () => {
                 <ImportantDates
                   key={index}
                   data={section as ImportantDatesSection}
-                  primaryColor={data.brand.primaryColor || "#c1102d"}
+                  primaryColor={data.brand.primaryColor || "#0ebaba"}
                 />
               );
             case "footer":
@@ -162,7 +162,7 @@ const Page = () => {
                 <Footer
                   key={index}
                   data={section as FooterSection}
-                  primaryColor={data.brand.primaryColor || "#c1102d"}
+                  primaryColor={data.brand.primaryColor || "#0ebaba"}
                   logo={data.brand.logo}
                   categories={categoriesSection}
                 />
@@ -173,7 +173,7 @@ const Page = () => {
         })}
       </div>
       <Copyright
-        primaryColor={data.brand.primaryColor}
+        primaryColor={data.brand.primaryColor || "#0ebaba"}
         text={data.brand.copyright}
       />
     </>
