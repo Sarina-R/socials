@@ -11,6 +11,7 @@ import {
 } from "../type";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
+import Link from "next/link";
 
 export default function RootLayout({
   children,
@@ -72,13 +73,16 @@ export default function RootLayout({
       >
         <h2 className="text-white font-bold text-xl">{header?.name}</h2>
         <div className="text-xs text-white/60 flex justify-center gap-2">
-          <a href="/home3" className="hover:text-white/90 transition-all">
+          <Link href="/home3" className="hover:text-white/90 transition-all">
             Home
-          </a>
+          </Link>
           <p>{">"}</p>
-          <a href={header?.path} className="hover:text-white/90 transition-all">
+          <Link
+            href={header?.path || "#"}
+            className="hover:text-white/90 transition-all"
+          >
             {header?.name}
-          </a>
+          </Link>
         </div>
       </div>
       <div className="min-h-[50vh] p-12 space-y-12">{children}</div>
