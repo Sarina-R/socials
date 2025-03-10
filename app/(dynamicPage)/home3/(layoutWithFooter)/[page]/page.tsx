@@ -4,14 +4,14 @@ import { useData } from "@/hooks/DataProvider";
 import { ApiResponse } from "../../type";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
-import { MDXRemote } from "next-mdx-remote";
+import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 import { serialize } from "next-mdx-remote/serialize";
 import { useMDXComponents } from "@/mdx-component";
 
 const Page = () => {
   const data = useData() as ApiResponse;
   const pathname = usePathname();
-  const [mdxSource, setMdxSource] = useState<any>(null);
+  const [mdxSource, setMdxSource] = useState<MDXRemoteSerializeResult>();
 
   const mdxComponents = useMDXComponents({});
 
@@ -50,11 +50,7 @@ const Page = () => {
   return (
     <div className="container mx-auto p-4 text-neutral-700">
       {mdxSource ? (
-        <MDXRemote
-          {...mdxSource}
-          components={mdxComponents}
-          primaryColor="blue"
-        />
+        <MDXRemote {...mdxSource} components={mdxComponents} />
       ) : (
         <p>No Markdown content available for this page.</p>
       )}
