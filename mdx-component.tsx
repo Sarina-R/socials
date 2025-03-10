@@ -5,6 +5,18 @@ interface MDXComponentProps {
   primaryColor?: string;
 }
 
+export function useMDXComponents1(components: MDXComponents): MDXComponents {
+  return {
+    // Allows customizing built-in components, e.g. to add styling.
+    h1: ({ children, style }) => <h1 className={style}>{children}</h1>,
+    img: (props) => (
+      <img sizes="100vw" style={{ width: "100%", height: "auto" }} {...props} />
+    ),
+    p: ({ children, style }) => <p className={style}>{children}</p>,
+    ...components,
+  };
+}
+
 export function useMDXComponents({
   primaryColor = "#1a1a1a",
 }: MDXComponentProps): MDXComponents {

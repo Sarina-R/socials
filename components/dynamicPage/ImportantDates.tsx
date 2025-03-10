@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { ImportantDatesSection } from "@/app/(dynamicPage)/home3/type";
 import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
-import { useMDXComponents } from "@/mdx-component";
+import { useMDXComponents1 } from "@/mdx-component";
 import { CircleChevronRight, Clock, Pencil } from "lucide-react";
 
 const fadeIn = {
@@ -59,7 +59,7 @@ const ImportantDates: React.FC<ImportantDatesProps> = ({
   data,
   primaryColor,
 }) => {
-  const mdxComponents = useMDXComponents({});
+  const mdxComponents = useMDXComponents1({});
 
   const [countdowns, setCountdowns] = useState<Countdown[]>(
     data.items.map(() => ({

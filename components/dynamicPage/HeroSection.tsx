@@ -6,7 +6,7 @@ import { HeroSection as HeroSectionType } from "@/app/(dynamicPage)/home3/type";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Calendar, Map, Menu } from "lucide-react";
 import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
-import { useMDXComponents } from "@/mdx-component";
+import { useMDXComponents1 } from "@/mdx-component";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -62,7 +62,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
   const safePrimaryColor = primaryColor || "#FF0000";
   const gradientBg = `linear-gradient(to right, rgba(0, 0, 0, 0.8), ${safePrimaryColor}50, ${safePrimaryColor}10), url(${data.bg})`;
 
-  const mdxComponents = useMDXComponents({});
+  const mdxComponents = useMDXComponents1({});
 
   return (
     <div className="overflow-hidden relative z-10">
