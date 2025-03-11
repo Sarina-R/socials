@@ -37,10 +37,30 @@ We emphasize:
 > — *John Doe, Head Coach*
 
 #### Upcoming Schedule
-| Date       | Event            | Location       |
-|------------|------------------|----------------|
-| 2025-04-15 | Junior Finals    | Toronto, ON    |
-| 2025-06-20 | Senior Qualifiers| Vancouver, BC  |
+<div className="p-6">
+      <div className="overflow-hidden rounded-2xl shadow-lg">
+        <table className="min-w-full border-collapse bg-gradient-to-r from-purple-500 to-blue-500 text-white">
+          <thead>
+            <tr className="bg-purple-700">
+              <th className="px-6 py-3 text-left text-lg font-semibold">ID</th>
+              <th className="px-6 py-3 text-left text-lg font-semibold">Name</th>
+              <th className="px-6 py-3 text-left text-lg font-semibold">Role</th>
+              <th className="px-6 py-3 text-left text-lg font-semibold">Status</th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-purple-300 bg-white text-black">
+              <tr className="hover:bg-gray-200 transition">
+                <td className="px-6 py-4 font-medium">name</td>
+                <td className="px-6 py-4">name</td>
+                <td className="px-6 py-4">role</td>
+                <td className="px-6 py-2">
+                  status
+                </td>
+              </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
 
 ## Supported Formats
 - **Unordered Lists:**
